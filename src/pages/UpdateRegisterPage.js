@@ -264,7 +264,7 @@ const  InputForm= () => {
 
     const sendEmail=(e)=>{
      e.preventDefault();
-     emailjs.sendForm('service_6fagg4j','template_hd72rui',e.target,
+     emailjs.sendForm('service_6fagg4j','template_s4nlfgi',e.target,
      'bveuxYuaszuf4-2ay').then((result)=>{
          console.log(result.text)
      },(error)=>{
