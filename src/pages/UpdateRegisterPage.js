@@ -69,7 +69,7 @@ margin:10px;`
 const LogoContainer=styled.div`
 height:140px;
 width:300px;
-background-image:url(${require('../src/assets/logo.jpeg')});
+background-image:url(${require('../assets/logo.jpeg')});
 background-position: center;
 background-size:cover;
 background-repeat: no-repeat;
@@ -283,10 +283,7 @@ const  InputForm= () => {
          </Link>
          </DiscordContainer>
          <DetailsContainer>
-             <LogoContainer>
-
-             </LogoContainer>
-
+             <LogoContainer />
              <Desc>
              Welcome to TLAC, creators of the world’s first Meta-Raffle.
              </Desc>
