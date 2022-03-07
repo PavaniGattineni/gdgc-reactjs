@@ -1,7 +1,7 @@
 import React from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
-import logo from '../assets/logo.jpeg'
+//import logo from '../assets/logo.jpeg'
 import Barcode from '../assets/barcode.jpeg'
 import {FaInstagram} from '@react-icons/all-files/fa/FaInstagram'
 import {FaTwitter} from '@react-icons/all-files/fa/FaTwitter'
@@ -81,7 +81,7 @@ background-repeat: no-repeat;
 
 
 const Desc=styled.p`
-color: #4c4c4c;
+color: #000;
 fontsize:14px;
 margin:10px;
 `
@@ -117,7 +117,7 @@ font-size:18px;
 color:#2c2c2c;
 font-weight:600;
 width:100%;
-background-color:#f0f8ff;
+background-color:#fff   ;
 border-radius:15px;
 
 &::placeholder{
@@ -133,10 +133,10 @@ border-radius:15px;
 `
 
 const Submit=styled.button`
-width:20%;
+width:200px;
 background-color:#000;
 font-weight:600;
-color:#D9D9D9;
+color:#fff;
 padding:15px;
 font-size:18px;
 border:none;
@@ -172,7 +172,7 @@ margin:10px 0;
 
 const Time=styled.div`
 background-color:#000;
-color:#f6f6f6;
+color:#fff;
 display:flex;
 justify-content:center;
 align-items:center;
