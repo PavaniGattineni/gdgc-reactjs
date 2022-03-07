@@ -1,6 +1,6 @@
 
 import './App.css';
-import Form from './UpdateRegisterPage';
+import Form from './pages/UpdateRegisterPage';
 
 function App() {
   return (
