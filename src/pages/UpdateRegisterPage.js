@@ -166,7 +166,7 @@ align-items:center;
 const Numbers=styled.div`
 display:flex;
 align-items:center;
-font-size:24px;
+font-size:20px;
 margin:10px 0;
 `
 
@@ -182,7 +182,8 @@ margin:0 15px;
 `
 
 const Words=styled.h4`
-word-spacing:18px;
+word-spacing:10px;
+font-size:15px;
 `
 const SocialContainer=styled.div`
 display:flex;
@@ -285,7 +286,7 @@ const  InputForm= () => {
          <DetailsContainer>
              <LogoContainer />
              <Desc>
-             Welcome to TLAC, creators of the world’s first Meta-Raffle.
+             WELCOME TO TLAC, CREATORS OF THE WORLD’S FIRST META-RAFFLE.
              </Desc>
         </DetailsContainer> 
 
@@ -293,7 +294,7 @@ const  InputForm= () => {
         <FormContainer>
         <FormTitle>WHITELIST MINT</FormTitle>
         <Input type={"text"} placeholder="Email" name='email'/>
-        <Input type={"text"} placeholder="WalletAddress" name="walletAdd"/>
+        <Input type={"text"} placeholder="Wallet Address" name="walletAdd"/>
         </FormContainer>
         <Submit type='submit'>NOTIFY ME</Submit>   
         {/* <Result></Result>   */}
@@ -305,10 +306,10 @@ const  InputForm= () => {
                 <Time>{countminutes}</Time> :
                 <Time>{countseconds}</Time>
                </Numbers>
-           <Words>Days : Hours : Mins : Sec</Words>
+           <Words>DAYS : HOURS : MINS : SEC</Words>
         </CountDown>
         <SocialContainer>
-            <Info>Follow us on Social media for more updates</Info>
+            <Info>FOLLOW US ON SOCIAL MEDIA FOR MORE UPDATES</Info>
             <SocialMedias >
               <SocialMedia  href={"https://instagram.com/luxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></SocialMedia>
               <SocialMedia  href="https://twitter.com/luxuryassetclub?s=21"> <FaTwitter  /></SocialMedia>
