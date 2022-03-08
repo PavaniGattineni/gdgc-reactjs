@@ -21,7 +21,7 @@ background-color: #EFE9CE;
 `
 
 const InnerContainer=styled.div`
-width:40%;
+width:44%;
 display:flex;
 flex-direction:column;
 margin:20px;
@@ -45,7 +45,7 @@ link-style-decoration:none;
 const DiscordButton=styled.button`
 background-color:#000;
 padding:10px 15px;
-color:#f6f6f6;
+color:#fff;
 border:none;
 font-size:12px;
 border-radius:5px;
@@ -192,7 +192,7 @@ align-items:center;
 margin-top:40px;
 `
 const Info=styled.p`
-color: #1c1c1c;
+color: #000;
 font-weight:bold;
 font-size:16px;`
 
