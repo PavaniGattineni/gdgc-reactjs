@@ -25,9 +25,11 @@ width:44%;
 display:flex;
 flex-direction:column;
 margin:20px;
+text-align:center;
 
 @media screen and (max-width: 450px) {
     width:100%;
+
      }
 
 `
@@ -84,6 +86,10 @@ const Desc=styled.p`
 color: #000;
 fontsize:14px;
 margin:10px;
+
+@media screen and (max-width: 450px) {
+    font-size:12px;
+     }
 `
 
 const FormContainer=styled.div`
@@ -168,6 +174,10 @@ display:flex;
 align-items:center;
 font-size:20px;
 margin:10px 0;
+
+@media screen and (max-width: 450px) {
+    font-size:14px;
+    }
 `
 
 const Time=styled.div`
@@ -179,11 +189,18 @@ align-items:center;
 padding:10px;
 border-radius:5px;
 margin:0 15px;
+
+@media screen and (max-width: 450px) {
+     padding:6px;
+    }
 `
 
 const Words=styled.h4`
 word-spacing:10px;
 font-size:15px;
+@media screen and (max-width: 450px) {
+    font-size:12px;
+    }
 `
 const SocialContainer=styled.div`
 display:flex;
@@ -194,7 +211,12 @@ margin-top:40px;
 const Info=styled.p`
 color: #000;
 font-weight:bold;
-font-size:16px;`
+font-size:16px;
+
+@media screen and (max-width: 450px) {
+    font-size:12px;
+     }
+`
 
 const SocialMedias=styled.div`
 margin:20px 10px;
@@ -265,8 +287,8 @@ const  InputForm= () => {
 
     const sendEmail=(e)=>{
      e.preventDefault();
-     emailjs.sendForm('service_6fagg4j','template_s4nlfgi',e.target,
-     'bveuxYuaszuf4-2ay').then((result)=>{
+     emailjs.sendForm('service_vgh1cao','template_awl04r7',e.target,
+     'd1yMbjx7hhKgbin29').then((result)=>{
          console.log(result.text)
      },(error)=>{
          console.log(error.text)
