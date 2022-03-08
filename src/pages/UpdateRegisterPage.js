@@ -162,6 +162,25 @@ margin-top:10px;
     }
 `
 
+const Result=styled.div`
+background-color:#62a762;
+width:50%;
+margin:10px 0;
+border-radius:5px;
+`
+const Fail=styled.div`
+background-color:#f86060;
+width:50%;
+margin:10px 0;
+border-radius:5px;
+`
+const Success=styled.p`
+color:#fff;
+font-size:12px;
+padding:5px;
+
+`
+
 const CountDown=styled.div`
 margin-top:30px;
 display:flex;
@@ -251,6 +270,10 @@ const  InputForm= () => {
     const [counthours,setCountHours]=useState('00');
     const [countminutes,setCountMinutes]=useState('00');
     const [countseconds,setCountSeconds]=useState('00');
+    const [emailSent,setEmailSent]=useState(false)
+    const [error,setError]=useState(false)
+    const [invalid,setInvalid]=useState(false)
+
 
     let interval=useRef()
 
@@ -287,13 +310,39 @@ const  InputForm= () => {
 
     const sendEmail=(e)=>{
      e.preventDefault();
-     emailjs.sendForm('service_vgh1cao','template_awl04r7',e.target,
+     if(e.target.email.value !== ''){
+
+
+     emailjs.sendForm('service_vgh1cao','template_uwhuqgl',e.target,
      'd1yMbjx7hhKgbin29').then((result)=>{
          console.log(result.text)
+         setEmailSent(true)
+         setTimeout(
+             ()=>{
+                 setEmailSent(false)
+             },
+             3000
+         )
      },(error)=>{
-         console.log(error.text)
+         setError(true)
+         setTimeout(
+            ()=>{
+                setError(false)
+            },
+            3000
+        )
      })
-     console.log(e.target)
+    }else{
+       setInvalid(true)
+       setTimeout(
+        ()=>{
+            setInvalid(false)
+        },
+        3000
+    )
+    }    
+  
+
     }
 
   return (
@@ -313,13 +362,30 @@ const  InputForm= () => {
         </DetailsContainer> 
 
         <Form onSubmit={sendEmail}>
+        {emailSent &&
+          <Result>
+              <Success>Your requested has been sucessfully submitted</Success>
+          </Result>  
+         }
+         {
+             invalid &&
+             <Fail>
+                 <Success>Please enter the Email Address</Success>
+             </Fail>
+         }
+         {
+          error &&
+          <Fail>
+              <Success>Some Error occured.Please try again </Success>
+          </Fail>
+         }
         <FormContainer>
         <FormTitle>WHITELIST MINT</FormTitle>
         <Input type={"text"} placeholder="Email" name='email'/>
         <Input type={"text"} placeholder="Wallet Address" name="walletAdd"/>
         </FormContainer>
         <Submit type='submit'>NOTIFY ME</Submit>   
-        {/* <Result></Result>   */}
+      
         </Form>
         <CountDown>
            <Numbers>
