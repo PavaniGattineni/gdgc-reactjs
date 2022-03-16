@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { style } from 'synonyms/dictionary'
 
 const Container=styled.div`
   display: flex;

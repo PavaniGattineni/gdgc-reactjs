@@ -183,11 +183,7 @@ z-index:99;
 
 @media screen and (max-width: 580px) {
       flex-direction:column;
-    }
-
-    @media screen and (max-width: 1400px) {
-        flex-direction:column;
-      }    
+    }   
 `
 const WhitelistTitle = styled.h1`
 margin-right: 25px;
