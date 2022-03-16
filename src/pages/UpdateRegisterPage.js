@@ -183,7 +183,9 @@ z-index:99;
 
 @media screen and (max-width: 580px) {
       flex-direction:column;
-    }   
+    }
+
+   
 `
 const WhitelistTitle = styled.h1`
 margin-right: 25px;
@@ -194,9 +196,7 @@ font-weight:700;
  font-size:24px;
    margin:10px 0;
     }
- @media screen and (max-width: 1400px) {
-      margin:20px 0;
-      }    
+ 
 `
 
 const Input = styled.input`
@@ -217,10 +217,7 @@ font-weight: 700;
  margin:10px 0; 
     }
 
- @media screen and (max-width: 1400px) {
-margin:10px 0;
-width:400px;
-      }        
+       
 `
 
 const Submit = styled.button`
