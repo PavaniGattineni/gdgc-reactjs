@@ -328,6 +328,10 @@ width:100%;
 padding:3px;
 cursor:pointer;
 `
+const Open=styled.a`
+link-decoration-style:none;
+`
+
 const FrameContainer=styled.div`
 width:100%;
 height:100vh;
@@ -501,9 +505,9 @@ const InputForm = () => {
               <SocialMedia  href="https://discord.gg/8jfZP5TW"><FaDiscord  /></SocialMedia>
             </Box>
             <Box>
-                <a>
+                <Open>
                 <SocialMediaImg src={opensea}/>
-                </a>
+                </Open>
              </Box>
             </SocialMedias> 
 
