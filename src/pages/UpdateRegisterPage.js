@@ -429,7 +429,7 @@ const InputForm = () => {
                     <Logo src={logo} />
                 </LogoContainer> 
             </TitleContainer>
-                <Link href='https://discord.com/invite/8jfZP5TW'>
+                <Link href='https://discord.gg/9BvBTyN2S7'>
                 <DiscordButton >Join Discord</DiscordButton>
                 </Link>
 
@@ -495,7 +495,7 @@ const InputForm = () => {
               <SocialMedia  href="http://www.tiktok.com/@theluxuryassetclub"> <FaTiktok  /></SocialMedia>
                </Box>
                <Box>   
-              <SocialMedia  href="https://discord.gg/8jfZP5TW"><FaDiscord  /></SocialMedia>
+              <SocialMedia  href="https://discord.gg/9BvBTyN2S7"><FaDiscord  /></SocialMedia>
             </Box>
             <Box>
                 <Open>
