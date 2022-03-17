@@ -486,7 +486,7 @@ const InputForm = () => {
 
             <SocialMedias >
               <Box>
-              <SocialMedia  href={"https://instagram.com/luxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></SocialMedia>
+              <SocialMedia  href={"https://instagram.com/theluxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></SocialMedia>
               </Box>
               <Box>
               <SocialMedia  href="https://twitter.com/luxuryassetclub?s=21"> <FaTwitter  /></SocialMedia>
