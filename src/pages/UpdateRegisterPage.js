@@ -272,6 +272,7 @@ margin:10px 0;
 `
 
 const SocialMedias=styled.div`
+Z-index:99;
 position:absolute;
 right:0;
 top:30%;
@@ -486,7 +487,7 @@ const InputForm = () => {
 
             <SocialMedias >
               <Box>
-              <SocialMedia  href={"https://instagram.com/theluxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></SocialMedia>
+              <SocialMedia  href="https://instagram.com/theluxuryassetclub?utm_medium=copy_link"> <FaInstagram /></SocialMedia>
               </Box>
               <Box>
               <SocialMedia  href="https://twitter.com/luxuryassetclub?s=21"> <FaTwitter  /></SocialMedia>
