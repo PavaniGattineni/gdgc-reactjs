@@ -1,11 +1,11 @@
-import React from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import styled from 'styled-components'
 
 const Container=styled.div`
   display: flex;
   align-items:center;
-   height:155px;
-   z-index:99;
+  height:155px;
+  z-index:99;
   `
 
  
@@ -23,6 +23,8 @@ const Container=styled.div`
   font-weight: 600;
   border-radius: 15px;
   text-align: center;
+  z-index:99;
+
 
   @media screen and (max-width: 580px) {
    height:60px;
@@ -38,6 +40,8 @@ const Container=styled.div`
   font-weight:600;
   padding:15px;
   text-align:center;
+  z-index:99;
+
 
   @media screen and (max-width: 500px) {
    font-size:12px;
@@ -59,12 +63,16 @@ const Container=styled.div`
   @media screen and (max-width: 500px) {
   border-radius: 0px 0px 10px 10px;
    top:50px;
+  z-index:99;
+
   }
   `
 
   const Colon=styled.h1`
   font-size: 75px;
   font-weight: 700;
+  z-index:99;
+
 
 
   @media screen and (max-width: 580px) {
@@ -72,7 +80,45 @@ const Container=styled.div`
   }
   `
 
-const Counter = ({countdays,counthours,countminutes,countseconds}) => {
+const Counter = () => {
+
+  const [countdays, setCountDays] = useState('00');
+  const [counthours, setCountHours] = useState('00');
+  const [countminutes, setCountMinutes] = useState('00');
+  const [countseconds, setCountSeconds] = useState('00');
+
+
+  let interval = useRef()
+
+  const startTimer = () => {
+      const countDate = new Date('April 15 , 2022 00:55:00').getTime()
+
+      interval = setInterval(() => {
+          const now = new Date().getTime();
+          const Distance = countDate - now;
+
+          const days = Math.floor(Distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(Distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+          const minutes = Math.floor(Distance % (1000 * 60 * 60) / (1000 * 60));
+          const seconds = Math.floor(Distance % (1000 * 60) / (1000));
+
+          if (Distance < 0) {
+              clearInterval(interval.current)
+          } else {
+              setCountDays(days.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
+              setCountHours(hours.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
+              setCountMinutes(minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
+              setCountSeconds(seconds.toLocaleString('en-US', { minimumIntegerDigits: 2 }))
+          }
+      }, 1000);
+  }
+
+  useEffect(() => {
+      startTimer();
+      return () => {
+          clearInterval(interval.current)
+      }
+  })
   return (
     <Container>
            
@@ -105,8 +151,8 @@ const Counter = ({countdays,counthours,countminutes,countseconds}) => {
         <TimeContainer>{countseconds}
        <Wordcontainer>
         <Word>Seconds</Word>
-     </Wordcontainer>
-       </TimeContainer>
+     </Wordcontainer> 
+       </TimeContainer >
    </Container>
   )
 }

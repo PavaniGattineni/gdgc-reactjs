@@ -2,15 +2,12 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
-import opensea from '../assets/image 8.png'
-import Barcode from '../assets/barcode.jpeg'
+
 import frame from '../assets/Frame.png'
-import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram'
-import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
-import { FaTiktok } from 'react-icons/fa'
-import { FaDiscord } from '@react-icons/all-files/fa/FaDiscord'
-import { useState, useRef, useEffect } from 'react'
-import Counter from '../components/Counter'
+import { useState } from 'react'
+import Counter from '../components/Counter/Counter'
+import SocialMedia from '../components/Socialmedia/SocialMedia'
+import Barcode from '../components/Barcode/Barcode'
 
 
 
@@ -84,6 +81,7 @@ const HeaderContainer = styled.div`
     text-align: center;
     margin-bottom:50px;
     z-index:99;
+    position:relative;
 
     @media screen and (max-width: 500px) {
         margin:0;
@@ -242,28 +240,7 @@ background-color:#000;
     }
 `
 
-const BarcodeContainer=styled.div`
-width:350px;
-height:350px;
-border:10px solid #000;
-border-radius:40px;
 
-@media screen and (max-width: 500px) {
-    width:150px;
-    height:150px;
-    margin-top:20px;
-    border-radius:20px;
-    border:5px solid #000;
-
-    }
-`
-
-const BarcodeImg=styled.img`
-height:100%;
-width:100%;
-border-radius:20px;
-object-fit:cover;
-`
 const Desc=styled.p`
 font-size:12px;
 font-weight:bold;
@@ -271,65 +248,14 @@ color:#000;
 margin:10px 0;
 `
 
-const SocialMedias=styled.div`
-position:absolute;
-right:0;
-top:30%;
-background-color:#000;
-padding:10px;
-display:flex;
-flex-direction:column;
-align-items:center;
-border-radius:10px 0 0 10px; 
 
-@media screen and (max-width: 500px) {
-   position:relative;
-   flex-direction:row;
-   width:100%;
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-    }
-`
-const Box=styled.div`
-width:45px;
-height:45px;
-margin:10px;
-background-color:#fff;
-border-radius:6px;
-display:flex;
-justify-content:center;
-
-@media screen and (max-width: 500px) {
-    width:35px;
-    height:35px;
-    }
-`
-
-
-const SocialMedia=styled.a`
-color:#000;
-font-size:28px;
-display:flex;
-align-items:center;
-justify-content:center;
-`
-
-const SocialMediaImg=styled.img`
-height:100%;
-width:100%;
-padding:3px;
-cursor:pointer;
-`
-const Open=styled.a`
-link-decoration-style:none;
-`
 
 const FrameContainer=styled.div`
 width:100%;
 height:100vh;
 position:absolute;
 top:22%;
+z-index:1;
 `
 
 const Frame=styled.div`
@@ -337,52 +263,19 @@ width:100%;
 height:100%;
 mix-blend-mode: darken;
 background:url(${frame}) top no-repeat;
-z-index:-99;
+z-index:1;
 
 `
 
-const InputForm = () => {
+const UpdateRegisterPage = () => {
 
-    const [countdays, setCountDays] = useState('00');
-    const [counthours, setCountHours] = useState('00');
-    const [countminutes, setCountMinutes] = useState('00');
-    const [countseconds, setCountSeconds] = useState('00');
+
     const [emailSent, setEmailSent] = useState(false)
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
 
 
-    let interval = useRef()
-
-    const startTimer = () => {
-        const countDate = new Date('April 15 , 2022 00:55:00').getTime()
-
-        interval = setInterval(() => {
-            const now = new Date().getTime();
-            const Distance = countDate - now;
-
-            const days = Math.floor(Distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(Distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-            const minutes = Math.floor(Distance % (1000 * 60 * 60) / (1000 * 60));
-            const seconds = Math.floor(Distance % (1000 * 60) / (1000));
-
-            if (Distance < 0) {
-                clearInterval(interval.current)
-            } else {
-                setCountDays(days.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
-                setCountHours(hours.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
-                setCountMinutes(minutes.toLocaleString('en-US', { minimumIntegerDigits: 2 }));
-                setCountSeconds(seconds.toLocaleString('en-US', { minimumIntegerDigits: 2 }))
-            }
-        }, 1000);
-    }
-
-    useEffect(() => {
-        startTimer();
-        return () => {
-            clearInterval(interval.current)
-        }
-    })
+ 
 
 
     const sendEmail = (e) => {
@@ -432,7 +325,7 @@ const InputForm = () => {
                 <Link href='https://discord.com/invite/8jfZP5TW'>
                 <DiscordButton >Join Discord</DiscordButton>
                 </Link>
-
+            
             <HeaderContainer>
                 <Title>Welcome to TLAC</Title>
                 <Subtitle>CREATORS OF THE WORLD'S FIRST META-RAFFLE</Subtitle>
@@ -441,10 +334,10 @@ const InputForm = () => {
                     Join Discord
                 </DiscordButton2>
                 </Link2>
-
+                <SocialMedia />
             </HeaderContainer>
 
-            <Counter countdays={countdays} counthours={counthours} countminutes={countminutes} countseconds={countseconds} />
+            <Counter  />
 
 
             <Form onSubmit={sendEmail}>
@@ -473,36 +366,12 @@ const InputForm = () => {
                 </Whitelist>
             </Form>
             
-
-            <BarcodeContainer>
-               <BarcodeImg src={Barcode}/>
-            </BarcodeContainer>
+            <Barcode />
             <Desc>TLAC 2022 All rights reserved</Desc> 
             
             <FrameContainer>
             <Frame/>
             </FrameContainer>
-    
-
-            <SocialMedias >
-              <Box>
-              <SocialMedia  href={"https://instagram.com/luxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></SocialMedia>
-              </Box>
-              <Box>
-              <SocialMedia  href="https://twitter.com/luxuryassetclub?s=21"> <FaTwitter  /></SocialMedia>
-                  </Box>
-              <Box>
-              <SocialMedia  href="http://www.tiktok.com/@theluxuryassetclub"> <FaTiktok  /></SocialMedia>
-               </Box>
-               <Box>   
-              <SocialMedia  href="https://discord.gg/8jfZP5TW"><FaDiscord  /></SocialMedia>
-            </Box>
-            <Box>
-                <Open>
-                <SocialMediaImg src={opensea}/>
-                </Open>
-             </Box>
-            </SocialMedias> 
 
         </Container>
 
@@ -511,6 +380,6 @@ const InputForm = () => {
     )
 }
 
-export default InputForm
+export default UpdateRegisterPage
 
  
