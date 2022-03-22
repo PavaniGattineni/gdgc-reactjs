@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import logo from '../../assets/logo.png'
+import {MdMenu} from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 
 const Container=styled.div`
 margin-top:70px;
@@ -11,19 +13,63 @@ align-items:center;
 justify-content:space-between;
 background-color:#fff;
 border-radius:14px;
+
+
+@media screen and (max-width: 500px) {
+ width:100%;
+background-color:rgba(0,0,0,0);
+}
 `
 
 const Left=styled.div`
+width:100%;
+height:100%;
+flex:1;
+display:flex;
+align-items:center;
 padding:25px;
+transition: all 1s ease;
+
+@media screen and (max-width: 500px) {
+  position:fixed;
+  top:0;
+  right:0;
+  width:70%;
+  height:100vh;
+  padding-top:40px;
+  flex-direction:column;
+  background:hsl(0 0% 100% / 0.5);
+  backdrop-filter:blur(5px);
+  display:${props=>props.open ? 'flex' : 'none'};
+  z-index:999;
+  
+ }
 `
 const Right=styled.div`
-padding:13px;
+display:flex;
+align-items:center;
+justify-content:center;
 `
 const Link=styled.a`
 margin-right:25px;
-link-style-decoration:none;
+text-decoration:none;
 font-size:14px;
 font-weight:700;
+z-index:999;
+color:#000;
+
+@media screen and (max-width: 500px) {
+ display:${props=>props.discord ==="true" ?"none" : ''};
+ margin-bottom:${props=>props.discord ==="true" ?"" : '20px'};
+ width:100%;
+ text-align:center;
+ margin:10px;
+ font-size:24px;
+}
+
+&:active{
+  color:#444;
+}
 `
 
 const DiscordButton=styled.button`
@@ -34,30 +80,88 @@ border:none;
 border-radius:8px;
 font-size:18px;
 font-weight:700;
+text-align:center;
 `
-const Logo=styled.img`
+
+
+
+const LogoContainer=styled.div`
+width:250px;
+height:250px;
 position:absolute;
 top:0;
+left:calc(50% - 126.5px);
+
+@media screen and (max-width: 500px) {
+  height:150px;
+  width:150px;
+  left:calc(50% - 75px);
+  top:0;
+  }
+`
+
+const Logo=styled.img`
+width:100%;
+height:100%;
+objet-fit:cover;
+
+`
+
+const Menu=styled.a`
+display:none;
+
+@media screen and (max-width: 500px) {
+  display:flex;
+  position:absolute;
+  color: #1A132F;
+  font-size:40px;
+  top:10px;
+  right:10px;
+  z-index:9999;
+  }
 `
 
 const NavContainer = () => {
-  return (
-      <>
-    <Container>
-    <Left>
-       <Link>TLAC</Link>
-       <Link>Roadmap</Link>
-       <Link>The Doxxing</Link>
-       <Link>Contact Us</Link>
 
+  const [isOpen,setisOpen]=useState(false)
+
+
+  return (
+<>
+    <Container>
+    <Left open={isOpen}>
+       <Link href='/'>TLAC</Link>
+       <Link href='#roadmap'>Roadmap</Link>
+       <Link href='/doxxing'>The Doxxing</Link>
+       <Link href='/contact'>Contact Us</Link>
+      
     </Left>
+    {
+         isOpen ?
+         <Menu onClick={()=>{setisOpen(false)}} >
+           <MdClose />
+         </Menu>
+         :
+         <Menu onClick={()=>{setisOpen(true)}} >
+         <MdMenu />
+       </Menu>
+       }
     <Right>
+      <Link discord="true">
        <DiscordButton>Join Discord</DiscordButton>
+      </Link>
     </Right>
+ 
+
+
+    
   </Container>
 
-   <Logo src={logo}/>
-   </>
+<LogoContainer>
+<Logo src={logo}/>
+</LogoContainer>
+
+</>
 
   )
 }

@@ -13,6 +13,10 @@
     top: 0;
     left: calc(50% - 3px);
   }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 }
 
 .ItemContainer {
@@ -73,6 +77,51 @@
     }
     .Circle {
       left: 200px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    &::after {
+      width: 50px;
+      height: 4px;
+      position: absolute;
+      top: calc(50% - 2px);
+      right: 0;
+      z-index: 99;
+    }
+
+    h1 {
+      font-size: 18px;
+      right: 10px;
+      top: calc(50% - 30px);
+    }
+
+    h4 {
+      font-size: 12px;
+      padding-right: 80px;
+    }
+    .Circle {
+      border: 2px solid rgb(170, 170, 170);
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      right: 45px;
+      top: calc(50% - 10px);
+    }
+    &:nth-child(even) {
+      h1 {
+        left: -100px;
+        top: calc(50% - 30px);
+      }
+
+      h4 {
+        padding-left: 80px;
+        padding-right: 10px;
+      }
+      .Circle {
+        left: 45px;
+      }
     }
   }
 }

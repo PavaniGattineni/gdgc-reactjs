@@ -20,6 +20,21 @@ background: linear-gradient(90.13deg, #efe9ce 0.15%, #cfdbd9 99.93%);
 position:relative;
 `
 
+const DiscordButton2=styled.button`
+background-color:#000;
+color:#fff;
+padding:10px 35px;
+border:none;
+border-radius:8px;
+font-size:18px;
+font-weight:700;
+text-align:center;
+margin-bottom:20px;
+
+@media screen and (min-width:500px){
+display:none;
+}
+`
 
 
 const TitleContainer=styled.div`
@@ -31,15 +46,26 @@ flex-direction:column;
 align-items:center;
 justify-content:center;
 position:relative;
+
+@media screen and (max-width:500px){
+  margin-top:100px;
+  }
 `
 const Title=styled.h1`
 font-size:75px;
 font-weight:700;
 margin:12px;
+
+@media screen and (max-width: 500px) {
+font-size:40px;
+}
 `
 const Desc=styled.h4`
 font-size:24px;
 font-weight:600;
+@media screen and (max-width: 500px) {
+  font-size:18px;
+  }
 `
 const MintContainer=styled.div`
 width:252px;
@@ -48,6 +74,12 @@ margin-top:35px;
 padding:10px;
 border-radius:14px;
 margin-bottom:120px;
+
+@media screen and (max-width: 500px) {
+  width:130px;
+  height:60px;
+  margin-bottom:50px;
+  }
 `
 
 const MintButton=styled.button`
@@ -59,6 +91,11 @@ background-color:#000;
 color:#fff;
 border-radius:8px;
 
+@media screen and (max-width: 500px) {
+  padding:10px 35px;
+  height:40px;
+  font-size:14px;
+  }
 `
 
 const RoadMapContainer=styled.div`
@@ -66,12 +103,21 @@ width:1052px;
 display:flex;
 flex-direction:column;
 align-items:center;
+text-align:center;
+
+@media screen and (max-width: 500px) {
+width:100%;
+
+}
 
 `
 const RoadmapTitle=styled.h1`
 font-size:45px;
 font-weight:700;
 
+@media screen and (max-width: 500px) {
+  font-size:30px;
+  }
 `
 
 const RoadmapSubTitle=styled.h4`
@@ -80,6 +126,10 @@ font-size:18px;
 font-weight:600;
 color:rgba(0, 0, 0, 0.6);
 margin-bottom:43px;
+
+@media screen and (max-width: 500px) {
+  font-size:14px;
+  }
 `
 
 const CountDownContainer=styled.div`
@@ -87,12 +137,22 @@ margin-top:97px;
 display:flex;
 align-items:center;
 flex-direction:column;
+
+@media screen and (max-width: 500px) {
+  margin-top:30px;
+  }
 `
 
 const CountTitle=styled.h1`
 font-size:45px;
 font-weight:700;
 margin-bottom:10px;
+text-align:center;
+
+@media screen and (max-width: 500px) {
+  font-size:24px;
+  margin:0;
+  }
 `
 const AboutContainer=styled.div`
 width:1290px;
@@ -101,12 +161,26 @@ display:flex;
 align-items:center;
 flex-direction:column;
 margin-top:120px;
+
+@media screen and (max-width: 500px) {
+  width:100%;
+  margin-top:20px;
+  }
 `
 const Group=styled.div`
 height:640px;
 width:100%;
 display:flex;
 align-items:center;
+
+@media screen and (max-width: 500px) {
+  flex-direction:column;
+   height:100%;
+
+   &:nth-child(2){
+     flex-direction:column-reverse;
+   }
+  }
 `
 
 const GroupInfo=styled.div`
@@ -114,6 +188,10 @@ flex:1;
 margin-right:${props=>props.right === 'true' ? '28px' : ''};
 margin-left:${props=>props.right !== 'true' ? '28px' : ''};
 z-index:99;
+
+@media screen and (max-width: 500px) {
+  margin:20px 0;
+  }
 `
 
 const GroupTitle=styled.h1`
@@ -121,6 +199,12 @@ font-size:45px;
 font-weight:700;
 margin-bottom:15px;
 z-index:99;
+text-align:center;
+
+@media screen and (max-width: 500px) {
+  font-size:24px;
+  margin:0 20px;
+  }
 `
 
 const GroupDesc=styled.p`
@@ -128,6 +212,10 @@ font-size:16px;
 font-weight:600;
 z-index:99;
 
+@media screen and (max-width: 500px) {
+  font-size:12px;
+  margin:0 20px;
+  }
 `
 
 const GroupImg=styled.div`
@@ -136,6 +224,13 @@ height:486px;
 border-radius:30px;
 background-color:#6B695E;
 z-index:99;
+margin:10px 0;
+
+
+@media screen and (max-width: 500px) {
+  width:300px;
+  height:300px;
+  }
 
 `
 const PartnerShipContainer=styled.div`
@@ -146,6 +241,11 @@ justify-content:center;
 align-items:center;
 margin-bottom:125px;
 position:relative; 
+
+
+@media screen and (max-width: 500px) {
+margin-bottom:20px;  
+  }
 `
 
 const PartnerShipTitle=styled.h1`
@@ -154,6 +254,10 @@ font-weight:700;
 margin-bottom:54px;
 z-index:99;
 
+@media screen and (max-width: 500px) {
+font-size:24px; 
+margin:20px 0;
+  }
 `
 
 const Partners=styled.div`
@@ -161,6 +265,10 @@ display:flex;
 align-items:center;
 z-index:99;
 
+@media screen and (max-width: 500px) {
+  width:100%;
+  flex-direction:column;  
+  }
 `
 
 const Partner=styled.div`
@@ -174,6 +282,16 @@ z-index:99;
 &:nth-child(4){
   margin:0px;
 }
+
+@media screen and (max-width: 500px) {
+    margin:20px 0;  
+
+    &:nth-child(4){
+      margin:20px;
+    }
+  }
+
+
 `
 const MaskContainer=styled.div`
 position:absolute;
@@ -187,6 +305,10 @@ const BarcodeDesc=styled.p`
 font-size:14px;
 font-weight:600;
 margin:10px;
+
+@media screen and (max-width:500px){
+  margin-bottom:100px;
+}
 `
 const FrameContainer=styled.div`
 width:100%;
@@ -217,9 +339,9 @@ const HomePage = () => {
           <MintContainer>
           <MintButton>Mint</MintButton>
           </MintContainer>
-      <SocialMedia />
-
         </TitleContainer>
+
+        <DiscordButton2>Join Discord </DiscordButton2>
       
       <RoadMapContainer>
         <RoadmapTitle>#TLAC ROADMAP</RoadmapTitle>
@@ -307,6 +429,8 @@ const HomePage = () => {
         <Frame />
       </FrameContainer>
 
+
+      <SocialMedia size="large"/>
     </Container>
   )
 }

@@ -246,6 +246,10 @@ font-size:12px;
 font-weight:bold;
 color:#000;
 margin:10px 0;
+
+@media screen and (max-width:500px){
+margin-bottom:100px;
+}
 `
 
 
@@ -256,6 +260,10 @@ height:100vh;
 position:absolute;
 top:22%;
 z-index:1;
+
+@media screen and (max-width:500px){
+    top:18%;
+}
 `
 
 const Frame=styled.div`
@@ -334,7 +342,7 @@ const UpdateRegisterPage = () => {
                     Join Discord
                 </DiscordButton2>
                 </Link2>
-                <SocialMedia />
+                
             </HeaderContainer>
 
             <Counter  />
@@ -373,6 +381,8 @@ const UpdateRegisterPage = () => {
             <Frame/>
             </FrameContainer>
 
+            <SocialMedia />
+            
         </Container>
 
 

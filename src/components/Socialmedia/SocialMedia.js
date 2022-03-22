@@ -8,8 +8,8 @@ import opensea from "../../assets/image 8.png"
 
 const SocialMedias=styled.div`
 position:absolute;
+bottom:calc(80% - 400px);
 right:0;
-top:0;
 background-color:#000;
 padding:10px;
 display:flex;
@@ -19,7 +19,7 @@ border-radius:10px 0 0 10px;
 z-index:99;
 
 @media screen and (max-width: 500px) {
-   position:relative;
+   bottom:0;
    flex-direction:row;
    width:100%;
    display:flex;

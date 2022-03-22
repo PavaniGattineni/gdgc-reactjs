@@ -7,7 +7,7 @@ import './RoadMap.scss'
 
 const RoadMap = () => {
   return (
-    <div className='MapContainer'>
+    <div className='MapContainer' id='roadmap'>
             {Data.length >0 &&  Data.map((item,idx)=>(
                <RoadMapItem  data={item} key={idx}/>
             ))}
