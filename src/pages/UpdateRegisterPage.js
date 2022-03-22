@@ -156,8 +156,13 @@ const Fail = styled.div`
 `
 const Info = styled.p`
 color: #fff;
-font-size: 12px;
-padding: 5px;
+font-size: 14px;
+padding: 10px;
+
+@media screen and (max-width: 500px) {
+   font-size:12px;
+   padding:5px;
+    }
 `
 
 
