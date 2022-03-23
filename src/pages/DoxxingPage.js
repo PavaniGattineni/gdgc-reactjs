@@ -196,7 +196,7 @@ const DoxxingPage = () => {
         <TitleContainer>
            <Title>The Doxxing</Title>
            <Desc>The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
-            <Link2>
+            <Link2 href='https://discord.gg/9BvBTyN2S7'>
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>
         </TitleContainer>

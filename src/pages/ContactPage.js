@@ -202,6 +202,30 @@ font-size: 12px;
 padding: 5px;
 `
 
+const Link=styled.a`
+
+text-decoration:none;
+font-size:14px;
+font-weight:700;
+z-index:999;
+color:#000;`
+
+const DiscordButton2=styled.button`
+background-color:#000;
+color:#fff;
+padding:10px 35px;
+border:none;
+border-radius:8px;
+font-size:18px;
+font-weight:700;
+text-align:center;
+margin-bottom:20px;
+
+@media screen and (min-width:800px){
+display:none;
+}
+`
+
 
 const ContactPage = () => {
    
@@ -264,6 +288,9 @@ const ContactPage = () => {
       <ContactDesc>
       The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br /> ownership of rare exclusive collectibles.
       </ContactDesc>
+      <Link href='https://discord.gg/9BvBTyN2S7'>
+        <DiscordButton2>Join Discord </DiscordButton2>
+      </Link>
       </TitleContainer>
 
       <ContactForm onSubmit={sendEmail}> 

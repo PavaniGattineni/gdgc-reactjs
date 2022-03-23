@@ -65,7 +65,7 @@ const SocialMedia = () => {
   return (
     <SocialMedias >
     <Box>
-    <Icon  href={"https://instagram.com/luxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></Icon>
+    <Icon  href={"https://instagram.com/theluxuryassetclub?utm_medium=copy_link"} ><FaInstagram /></Icon>
     </Box>
     <Box>
     <Icon  href="https://twitter.com/luxuryassetclub?s=21"> <FaTwitter  /></Icon>
@@ -74,7 +74,7 @@ const SocialMedia = () => {
     <Icon  href="http://www.tiktok.com/@theluxuryassetclub"> <FaTiktok  /></Icon>
      </Box>
      <Box>   
-    <Icon  href="https://discord.gg/8jfZP5TW"><FaDiscord  /></Icon>
+    <Icon  href="https://discord.gg/9BvBTyN2S7"><FaDiscord  /></Icon>
   </Box>
   <Box>
       <Open>

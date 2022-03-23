@@ -349,7 +349,7 @@ background:url(${frame}) top no-repeat;
 z-index:-99;
 `
 const Link=styled.a`
-margin-right:25px;
+
 text-decoration:none;
 font-size:14px;
 font-weight:700;
@@ -370,7 +370,7 @@ const HomePage = () => {
           <MintButton>Mint</MintButton>
           </MintContainer>
         </TitleContainer>
-        <Link href='https://discord.gg/8jfZP5TW'>
+        <Link href='https://discord.gg/9BvBTyN2S7'>
         <DiscordButton2>Join Discord </DiscordButton2>
         </Link>
       

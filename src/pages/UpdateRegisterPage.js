@@ -361,7 +361,7 @@ const UpdateRegisterPage = () => {
             <HeaderContainer>
                 <Title>Welcome to TLAC</Title>
                 <Subtitle>CREATORS OF THE WORLD'S FIRST META-RAFFLE</Subtitle>
-                <Link2>
+                <Link2 href='https://discord.gg/9BvBTyN2S7'>
                 <DiscordButton2>
                     Join Discord
                 </DiscordButton2>

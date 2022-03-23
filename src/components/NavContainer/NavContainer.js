@@ -151,7 +151,7 @@ const NavContainer = () => {
        </Menu>
        }
     <Right>
-      <Link discord="true">
+      <Link discord="true" href='https://discord.gg/9BvBTyN2S7'>
        <DiscordButton>Join Discord</DiscordButton>
       </Link>
     </Right>
