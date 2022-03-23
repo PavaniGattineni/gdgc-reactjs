@@ -175,7 +175,7 @@ font-size:14px;
 font-weight:600;
 margin:10px;
 
-@media screen and (max-width: 500px) { 
+@media screen and (max-width: 900px) { 
    margin-bottom:100px;
     }
 `

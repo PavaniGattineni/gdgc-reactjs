@@ -60,11 +60,16 @@ const ContactForm=styled.form`
 width: 1171px;
 display:flex;
 flex-direction:column;
+justify-content:center;
 align-items:center;
 
 @media screen and (max-width: 500px) {
  width:100%;
   }
+
+  @media (min-width: 501px) and (max-width: 1300px){  
+  width:50%;
+    }
 `
 
 
@@ -75,9 +80,11 @@ align-items:center;
 justify-content:space-between;
 margin-bottom:10px;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width:1300px) {
  flex-direction:column;
   }
+
+
 `
 const FormContainer=styled.div`
 width:100%;
@@ -85,10 +92,11 @@ display:flex;
 flex-direction:column;
 
 
-
 @media screen and (max-width: 500px) {
 padding:20px;
   }
+
+
 `
 
 const FormTitle=styled.p`
@@ -97,8 +105,8 @@ font-weight:700;
 text-align:left;
 padding-left:10px;
 
-@media screen and (max-width: 500px) {
-  margin:10px;
+@media screen and (max-width: 1300px) {
+  margin:10px 0;
   }
 `
 
@@ -116,6 +124,11 @@ margin-right:42px;
 
 @media screen and (max-width: 500px) {
   width:${props=>props.size === "large" ? "100%" : "350px"};
+  }
+
+  @media (min-width: 501px) and (max-width: 1300px){  
+    width:${props=>props.size === "large" ? "100%" : "100%"};
+
   }
 `
 const Form2=styled.div`
@@ -153,7 +166,7 @@ font-size:14px;
 font-weight:600;
 margin-top:10px;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
   margin-bottom:100px;
   }
 

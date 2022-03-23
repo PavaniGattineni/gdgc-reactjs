@@ -7,6 +7,11 @@ const Container=styled.div`
   height:155px;
   z-index:99;
 
+  @media (max-width: 500px){
+    width:100%;
+    disaply:flex;
+    padding:20px;
+  }
 
   `
 
@@ -28,13 +33,22 @@ const Container=styled.div`
   z-index:99;
 
 
-  @media screen and (max-width: 580px) {
-   height:60px;
-   width:60px;
+  @media screen and (max-width: 500px) {
+   height:65px;
+   width:65px;
    font-size:24px;
    border-radius:8px;
    margin:0 10px;
   }
+
+
+   @media (min-width: 501px) and (max-width: 767px){
+    height:80px;
+    width:80px;
+    font-size:50px;
+    border-radius:15px;
+    margin:0 10px;
+   }
 
   `
   const Word=styled.p`
@@ -49,6 +63,11 @@ const Container=styled.div`
    font-size:12px;
    padding:8px;
   }
+
+  @media (min-width: 501px) and (max-width: 767px){
+    font-size:14px;
+    padding:8px;
+   }
   `
 
   const Wordcontainer=styled.div`
@@ -64,10 +83,15 @@ const Container=styled.div`
 
   @media screen and (max-width: 500px) {
   border-radius: 0px 0px 10px 10px;
-   top:50px;
+   top:55px;
   z-index:99;
-
   }
+
+  @media (min-width: 501px) and (max-width: 767px){
+    border-radius: 0px 0px 10px 10px;
+    top:75px;
+     z-index:99;
+   }
   `
 
   const Colon=styled.h1`
@@ -80,6 +104,11 @@ const Container=styled.div`
   @media screen and (max-width: 580px) {
    font-size:30px;
   }
+
+  
+  @media (min-width: 501px) and (max-width: 767px){
+    font-size:40px;
+   }
   `
 
 const Counter = () => {

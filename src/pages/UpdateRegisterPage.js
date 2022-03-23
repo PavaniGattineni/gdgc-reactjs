@@ -53,7 +53,7 @@ position: absolute;
 top: 100px;
 right: 120px;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
 display:none;
 }
 `
@@ -91,8 +91,13 @@ const HeaderContainer = styled.div`
 const Title = styled.h1`
 font-size: 75px;
 font-weight:700;
+
 @media screen and (max-width: 500px) {
 font-size:40px;
+
+@media (min-width: 501px) and (max-width: 1300px){
+font-size:50px;
+   }
 }
 `
 
@@ -103,16 +108,21 @@ const Subtitle = styled.p`
     @media screen and (max-width: 500px) {
         font-size:14px;
         }
+
+    @media (min-width: 501px) and (max-width: 1300px){
+        font-size:18px;
+     }
 `
 const Link2=styled.a`
 link-decoration-style:none;
 display:none;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
 display:flex;
 align-items:center;
 margin:20px;
 }
+
 `
 const DiscordButton2 = styled.button`
 background-color: #000;
@@ -187,8 +197,10 @@ z-index:99;
 @media screen and (max-width: 580px) {
       flex-direction:column;
     }
-
-   
+  
+@media screen and (max-width: 1200px) {
+  flex-direction:column;
+   }
 `
 const WhitelistTitle = styled.h1`
 margin-right: 25px;
@@ -200,6 +212,10 @@ font-weight:700;
    margin:10px 0;
     }
  
+@media screen and (max-width: 1200px) {
+margin:20px;
+font-size:35px;
+}
 `
 
 const Input = styled.input`
@@ -220,7 +236,9 @@ font-weight: 700;
  margin:10px 0; 
     }
 
-       
+ @media screen and (max-width: 1200px) {
+margin:20px;
+ }    
 `
 
 const Submit = styled.button`
@@ -243,6 +261,7 @@ background-color:#000;
   font-size:14px;
   margin-top:10px;
     }
+
 `
 
 
@@ -252,7 +271,7 @@ font-weight:bold;
 color:#000;
 margin:10px 0;
 
-@media screen and (max-width:500px){
+@media screen and (max-width:900px){
 margin-bottom:100px;
 }
 `

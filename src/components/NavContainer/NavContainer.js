@@ -15,10 +15,14 @@ background-color:#fff;
 border-radius:14px;
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
  width:100%;
 background-color:rgba(0,0,0,0);
 }
+
+@media (min-width: 501px) and (max-width: 1300px){
+width:100%;
+ }
 `
 
 const Left=styled.div`
@@ -30,7 +34,7 @@ align-items:center;
 padding:25px;
 transition: all 1s ease;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   position:fixed;
   top:0;
   right:0;
@@ -58,7 +62,7 @@ font-weight:700;
 z-index:999;
 color:#000;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
  display:${props=>props.discord ==="true" ?"none" : ''};
  margin-bottom:${props=>props.discord ==="true" ?"" : '20px'};
  width:100%;
@@ -110,7 +114,7 @@ objet-fit:cover;
 const Menu=styled.a`
 display:none;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   display:flex;
   position:absolute;
   color: #1A132F;

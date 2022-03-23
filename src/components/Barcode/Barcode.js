@@ -4,8 +4,8 @@ import barcode from '../../assets/barcode.jpeg'
 
 
 const BarcodeContainer=styled.div`
-width:350px;
-height:350px;
+width:250px;
+height:250px;
 border:10px solid #000;
 border-radius:40px;
 
@@ -15,8 +15,14 @@ border-radius:40px;
     margin-top:20px;
     border-radius:20px;
     border:5px solid #000;
-
     }
+
+@media screen and (max-width: 1200px) {
+    width:150px;
+    height:150px;
+    border-radius:20px;
+    border:5px solid #000;
+       }
 `
 
 const BarcodeImg=styled.img`

@@ -12,9 +12,9 @@ function App() {
     <div className="App">
      <Router>
       <Routes>
-      <Route index  element={<HomePage/>} />
+      <Route path='/home' element={<HomePage/>} />
       <Route path='/contact' element={<ContactPage />} />
-      <Route path='/register' element={<UpdateRegisterPage/>}/>
+      <Route index element={<UpdateRegisterPage/>}/>
       <Route path='/doxxing' element={<DoxxingPage/>} />
     </Routes>
 

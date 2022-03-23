@@ -31,7 +31,7 @@ font-weight:700;
 text-align:center;
 margin-bottom:20px;
 
-@media screen and (min-width:500px){
+@media screen and (min-width:800px){
 display:none;
 }
 `
@@ -172,9 +172,11 @@ height:640px;
 width:100%;
 display:flex;
 align-items:center;
+justify-content:center;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1300px) {
   flex-direction:column;
+   width:100%;
    height:100%;
 
    &:nth-child(2){
@@ -184,6 +186,7 @@ align-items:center;
 `
 
 const GroupInfo=styled.div`
+width:100%;
 flex:1;
 margin-right:${props=>props.right === 'true' ? '28px' : ''};
 margin-left:${props=>props.right !== 'true' ? '28px' : ''};
@@ -192,6 +195,10 @@ z-index:99;
 @media screen and (max-width: 500px) {
   margin:20px 0;
   }
+  @media (min-width: 501px) and (max-width: 1300px){  
+    margin:10px;
+    }
+
 `
 
 const GroupTitle=styled.h1`
@@ -205,6 +212,8 @@ text-align:center;
   font-size:24px;
   margin:0 20px;
   }
+
+ 
 `
 
 const GroupDesc=styled.p`
@@ -216,6 +225,10 @@ z-index:99;
   font-size:12px;
   margin:0 20px;
   }
+
+  @media (min-width: 501px) and (max-width: 1300px){  
+    margin:0px 200px;
+    }
 `
 
 const GroupImg=styled.div`
@@ -227,11 +240,11 @@ z-index:99;
 margin:10px 0;
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1300px) {
   width:300px;
   height:300px;
+  margin:10px;
   }
-
 `
 const PartnerShipContainer=styled.div`
 width:100%;
@@ -245,7 +258,12 @@ position:relative;
 
 @media screen and (max-width: 500px) {
 margin-bottom:20px;  
-  }
+  } 
+
+  @media (min-width: 501px) and (max-width: 1300px){  
+    margin-bottom:50px;
+    }
+  
 `
 
 const PartnerShipTitle=styled.h1`
@@ -258,17 +276,25 @@ z-index:99;
 font-size:24px; 
 margin:20px 0;
   }
+
+  @media (min-width: 501px) and (max-width: 1300px){  
+    margin-bottom:20px;
+    }
 `
 
 const Partners=styled.div`
+width:100%;
 display:flex;
 align-items:center;
+justify-content:center;
 z-index:99;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1300px) {
   width:100%;
   flex-direction:column;  
   }
+
+
 `
 
 const Partner=styled.div`
@@ -283,15 +309,13 @@ z-index:99;
   margin:0px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1300px) {
     margin:20px 0;  
 
     &:nth-child(4){
       margin:20px;
     }
   }
-
-
 `
 const MaskContainer=styled.div`
 position:absolute;
@@ -306,7 +330,7 @@ font-size:14px;
 font-weight:600;
 margin:10px;
 
-@media screen and (max-width:500px){
+@media screen and (max-width:900px){
   margin-bottom:100px;
 }
 `
@@ -324,7 +348,13 @@ mix-blend-mode: darken;
 background:url(${frame}) top no-repeat;
 z-index:-99;
 `
-
+const Link=styled.a`
+margin-right:25px;
+text-decoration:none;
+font-size:14px;
+font-weight:700;
+z-index:999;
+color:#000;`
 
 
 const HomePage = () => {
@@ -340,8 +370,9 @@ const HomePage = () => {
           <MintButton>Mint</MintButton>
           </MintContainer>
         </TitleContainer>
-
+        <Link href='https://discord.gg/8jfZP5TW'>
         <DiscordButton2>Join Discord </DiscordButton2>
+        </Link>
       
       <RoadMapContainer>
         <RoadmapTitle>#TLAC ROADMAP</RoadmapTitle>

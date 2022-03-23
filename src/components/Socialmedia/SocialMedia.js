@@ -18,7 +18,7 @@ align-items:center;
 border-radius:10px 0 0 10px; 
 z-index:99;
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
    bottom:0;
    flex-direction:row;
    width:100%;

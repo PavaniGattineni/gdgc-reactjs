@@ -17,6 +17,9 @@
   @media screen and (max-width: 500px) {
     width: 100%;
   }
+  @media (min-width: 501px) and (max-width: 1200px) {
+    width: 70%;
+  }
 }
 
 .ItemContainer {
@@ -93,25 +96,71 @@
     h1 {
       font-size: 18px;
       right: 10px;
-      top: calc(50% - 30px);
+      top: calc(50% - 40px);
     }
 
     h4 {
       font-size: 12px;
       padding-right: 80px;
+      padding-left: 20px;
     }
     .Circle {
-      border: 2px solid rgb(170, 170, 170);
-      width: 20px;
-      height: 20px;
+      border: 5px solid rgb(170, 170, 170);
+      width: 35px;
+      height: 35px;
       font-size: 12px;
       font-weight: 600;
       right: 45px;
-      top: calc(50% - 10px);
+      top: calc(50% - 17.5px);
     }
     &:nth-child(even) {
       h1 {
         left: -100px;
+        top: calc(50% - 40px);
+      }
+
+      h4 {
+        padding-left: 90px;
+        padding-right: 10px;
+      }
+      .Circle {
+        left: 45px;
+      }
+    }
+  }
+
+  @media (min-width: 501px) and (max-width: 1200px) {
+    &::after {
+      width: 120px;
+      height: 4px;
+      position: absolute;
+      top: calc(50% - 2px);
+      right: 0;
+      z-index: 99;
+    }
+
+    h1 {
+      font-size: 20px;
+      right: 10px;
+      top: calc(50% - 30px);
+    }
+
+    h4 {
+      font-size: 18px;
+      padding-right: 80px;
+    }
+    .Circle {
+      border: 8px solid rgb(170, 170, 170);
+      width: 80px;
+      height: 80px;
+      font-size: 24px;
+      font-weight: 600;
+      right: 90px;
+      top: calc(50% - 40px);
+    }
+    &:nth-child(even) {
+      h1 {
+        left: -265px;
         top: calc(50% - 30px);
       }
 
@@ -120,7 +169,7 @@
         padding-right: 10px;
       }
       .Circle {
-        left: 45px;
+        left: 90px;
       }
     }
   }
