@@ -250,7 +250,7 @@ const ContactPage = () => {
   const [message,setMessage]=useState('');
 
   const [emailSent, setEmailSent] = useState(false)
-  const [error, setError] = useState(true)
+  const [error, setError] = useState(false)
   const [invalid, setInvalid] = useState(false)
 
   const dispatch=useDispatch()
