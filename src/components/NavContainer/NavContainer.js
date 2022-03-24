@@ -134,7 +134,7 @@ const NavContainer = () => {
 <>
     <Container>
     <Left open={isOpen}>
-       <Link href='/'>TLAC</Link>
+       <Link href='/home'>TLAC</Link>
        <Link href='#roadmap'>Roadmap</Link>
        <Link href='/doxxing'>The Doxxing</Link>
        <Link href='/contact'>Contact Us</Link>

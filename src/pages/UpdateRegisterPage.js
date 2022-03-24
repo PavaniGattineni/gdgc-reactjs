@@ -354,7 +354,7 @@ const UpdateRegisterPage = () => {
                     <Logo src={logo} />
                 </LogoContainer> 
             </TitleContainer>
-                <Link href='https://discord.com/invite/8jfZP5TW'>
+                <Link href='https://discord.gg/9BvBTyN2S7'>
                 <DiscordButton >Join Discord</DiscordButton>
                 </Link>
             

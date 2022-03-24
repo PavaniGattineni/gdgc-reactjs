@@ -48,7 +48,7 @@ justify-content:center;
 position:relative;
 
 @media screen and (max-width:500px){
-  margin-top:100px;
+  margin-top:25px;
   }
 `
 const Title=styled.h1`
@@ -364,8 +364,8 @@ const HomePage = () => {
        <NavContainer />
 
         <TitleContainer>
-          <Title>The Luxury Asset Club</Title>
-          <Desc>The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
+          <Title>TLAC</Title>
+          <Desc>TLAC is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
           <MintContainer>
           <MintButton>Mint</MintButton>
           </MintContainer>
@@ -389,7 +389,7 @@ const HomePage = () => {
         <Group>
           <GroupInfo right="true">
               <GroupTitle>
-              The Luxury Asset Club
+              TLAC
               </GroupTitle>
               <GroupDesc>
               We at TLAC have created a community for avid

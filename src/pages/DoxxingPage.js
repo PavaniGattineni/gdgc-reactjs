@@ -26,7 +26,7 @@ align-items:center;
 position:relative;
 
 @media screen and (max-width: 500px) {
-  margin-top:50px;
+  margin-top:25px;
   margin-bottom:20px;
    }
 `

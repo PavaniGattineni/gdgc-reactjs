@@ -31,7 +31,7 @@ align-items:center;
 position:relative;
 
 @media screen and (max-width: 500px) {
-margin-top:100px;
+margin-top:25px;
 }
 `
 
@@ -82,6 +82,7 @@ margin-bottom:10px;
 
 @media screen and (max-width:1300px) {
  flex-direction:column;
+
   }
 
 
@@ -93,7 +94,7 @@ flex-direction:column;
 
 
 @media screen and (max-width: 500px) {
-padding:20px;
+padding:0 20px;
   }
 
 
@@ -121,9 +122,11 @@ margin-right:42px;
 &:nth-last-child(){
   margin:0;
 }
+padding:0 10px;
 
 @media screen and (max-width: 500px) {
   width:${props=>props.size === "large" ? "100%" : "350px"};
+ 
   }
 
   @media (min-width: 501px) and (max-width: 1300px){  
@@ -178,9 +181,16 @@ margin: 10px 0;
 width:50%;
 border-radius: 5px;
 text-align:center;
+margin-bottom:20px;
+
+
 @media screen and (max-width: 500px) {
-    width:100%;
+    width:90%;
     margin:10px;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:20px;
+
     }
 `
 const Fail = styled.div`
@@ -190,15 +200,20 @@ const Fail = styled.div`
   border-radius: 5px;
   text-align:center;
 
+
   @media screen and (max-width: 500px) {
-    width:100%;
+    width:90%;
     margin:10px;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:20px;
+  
     }
 
 `
 const Info = styled.p`
 color: #fff;
-font-size: 12px;
+font-size: 14px;
 padding: 5px;
 `
 
@@ -235,7 +250,7 @@ const ContactPage = () => {
   const [message,setMessage]=useState('');
 
   const [emailSent, setEmailSent] = useState(false)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(true)
   const [invalid, setInvalid] = useState(false)
 
   const dispatch=useDispatch()
@@ -245,8 +260,8 @@ const ContactPage = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    if (e.target.email.value !== '') {
-        emailjs.sendForm('service_vgh1cao', 'template_6ypaj0m', e.target,
+    if (e.target.email.value !== '' && e.target.name.value !== '' && e.target.contactnumber.value !== '') {
+        emailjs.sendForm('service_vgh1cao', 'template_ty59tua', e.target,
             'd1yMbjx7hhKgbin29').then((result) => {
                 console.log(result.text)
                 setEmailSent(true)
@@ -316,13 +331,13 @@ const ContactPage = () => {
       </Form2>
       {emailSent &&
                     <Success>
-                        <Info className='info'>Your requested has been sucessfully submitted</Info>
+                        <Info className='info'>Your request has been sucessfully submitted</Info>
                     </Success>
                 }
                 {
                     invalid &&
                     <Fail>
-                        <Info className='info'>Please enter the Email Address</Info>
+                        <Info className='info'>Please enter all the details</Info>
                     </Fail>
                 }
                 {
@@ -345,4 +360,3 @@ const ContactPage = () => {
 }
 
 export default ContactPage
-
