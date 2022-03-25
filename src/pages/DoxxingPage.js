@@ -4,6 +4,8 @@ import Barcode from '../components/Barcode/Barcode'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Mask from '../assets/Mask.png'
+import Footer from '../components/Footer/Footer'
+import video1 from '../assets/TheDoxxing.mp4'
 
 const Container=styled.div`
 width:100%;
@@ -75,7 +77,7 @@ cursor:pointer;
     color:#f6f6f6;
 }
 `
-const VideoContainer=styled.div`
+const VideoContainer=styled.video`
 width: 1290px;
 height: 486px;
 border-radius:30px;
@@ -85,7 +87,7 @@ justify-content:center;
 background-color:#6B695E;
 margin-bottom:64px;
 
-@media screen and (max-width: 500px) { 
+@media screen and (max-width: 1200px) { 
   width:90%;
   padding:20px;
   height:250px;
@@ -98,6 +100,7 @@ border-radius:9px;
 border-top: 65px solid transparent;
 border-bottom: 65px solid transparent;
 border-left: 65px solid rgba(196, 196, 196, 0.6);
+z-index:999;
 
 @media screen and (max-width: 500px) {
   border-radius:5px;
@@ -116,10 +119,10 @@ border-left: 65px solid rgba(196, 196, 196, 0.6);
  margin-bottom:100px;
  z-index:99;
 
- @media screen and (max-width: 500px) { 
+ @media screen and (max-width: 1200px) { 
   width:100%;
   flex-direction:column;
-  margin-bottom:50px;
+  margin-bottom:0px;
     }
  `
  const Partner=styled.div`
@@ -200,7 +203,7 @@ const DoxxingPage = () => {
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>
         </TitleContainer>
-        <VideoContainer>
+        <VideoContainer src={video1} type='video/mp4' controls >
            <Arrow />
         </VideoContainer>
         <PartnersContainer>
@@ -237,8 +240,7 @@ const DoxxingPage = () => {
               <Position>Consultants</Position>
            </Partner>
         </PartnersContainer>
-        <Barcode />
-        <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
+        <Footer />
         <MaskContainer></MaskContainer>
         <SocialMedia />
 

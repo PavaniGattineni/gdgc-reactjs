@@ -34,11 +34,11 @@ const Container=styled.div`
 
 
   @media screen and (max-width: 500px) {
-   height:65px;
-   width:65px;
-   font-size:24px;
+   height:70px;
+   width:80px;
+   font-size:20px;
    border-radius:8px;
-   margin:0 10px;
+   margin:0 5px;
   }
 
 
@@ -61,7 +61,7 @@ const Container=styled.div`
 
   @media screen and (max-width: 500px) {
    font-size:12px;
-   padding:8px;
+   padding:5px;
   }
 
   @media (min-width: 501px) and (max-width: 767px){
@@ -83,8 +83,8 @@ const Container=styled.div`
 
   @media screen and (max-width: 500px) {
   border-radius: 0px 0px 10px 10px;
-   top:55px;
-  z-index:99;
+   top:65px;
+   z-index:99;
   }
 
   @media (min-width: 501px) and (max-width: 767px){
@@ -102,7 +102,7 @@ const Container=styled.div`
 
 
   @media screen and (max-width: 580px) {
-   font-size:30px;
+   font-size:26px;
   }
 
   

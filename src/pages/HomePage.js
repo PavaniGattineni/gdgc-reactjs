@@ -7,6 +7,17 @@ import Mask from '../assets/Mask.png'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Barcode from '../components/Barcode/Barcode'
+import Footer from '../components/Footer/Footer';
+
+import SuperWorld from '../assets/Superworld LOGO.png'
+import Enforceable from '../assets/EnforceableNFT LOGO.png'
+import Makeawish from '../assets/Make-A-Wish Logo.png'
+import woodlawn from '../assets/Woodlawn Media Logo.PNG'
+
+
+import video1 from '../assets/Kobe.MOV'
+import video2 from '../assets/Makeawish.MOV'
+import video3 from '../assets/Pressvideo.mp4'
 
 
 const Container=styled.div`
@@ -48,13 +59,14 @@ justify-content:center;
 position:relative;
 
 @media screen and (max-width:500px){
+  width:100%;
   margin-top:25px;
   }
 `
 const Title=styled.h1`
 font-size:75px;
 font-weight:700;
-margin:12px;
+margin:12px 0;
 
 @media screen and (max-width: 500px) {
 font-size:40px;
@@ -65,6 +77,7 @@ font-size:24px;
 font-weight:600;
 @media screen and (max-width: 500px) {
   font-size:18px;
+  padding:0 25px;
   }
 `
 const MintContainer=styled.div`
@@ -134,6 +147,7 @@ margin-bottom:43px;
 
 const CountDownContainer=styled.div`
 margin-top:97px;
+width:100%;
 display:flex;
 align-items:center;
 flex-direction:column;
@@ -176,7 +190,6 @@ justify-content:center;
 
 @media screen and (max-width: 1300px) {
   flex-direction:column;
-   width:100%;
    height:100%;
 
    &:nth-child(2){
@@ -210,7 +223,7 @@ text-align:center;
 
 @media screen and (max-width: 500px) {
   font-size:24px;
-  margin:0 20px;
+  padding:0 10px;
   }
 
  
@@ -222,8 +235,8 @@ font-weight:600;
 z-index:99;
 
 @media screen and (max-width: 500px) {
-  font-size:12px;
-  margin:0 20px;
+  font-size:14px;
+  padding:0 20px;
   }
 
   @media (min-width: 501px) and (max-width: 1300px){  
@@ -231,19 +244,18 @@ z-index:99;
     }
 `
 
-const GroupImg=styled.div`
+
+const GroupVideo=styled.video`
 width:640px;
 height:486px;
 border-radius:30px;
-background-color:#6B695E;
 z-index:99;
-margin:10px 0;
+background-color:#6B695E;
 
 
 @media screen and (max-width: 1300px) {
-  width:300px;
-  height:300px;
-  margin:10px;
+  width:340px;
+  height:250px;
   }
 `
 const PartnerShipContainer=styled.div`
@@ -257,7 +269,8 @@ position:relative;
 
 
 @media screen and (max-width: 500px) {
-margin-bottom:20px;  
+margin-bottom:20px;
+margin:0 20px;  
   } 
 
   @media (min-width: 501px) and (max-width: 1300px){  
@@ -294,13 +307,11 @@ z-index:99;
   flex-direction:column;  
   }
 
-
 `
 
 const Partner=styled.div`
 width:273px;
 height:104px;
-background-color: #6B695E;
 margin-right:67px;
 border-radius:20px;
 z-index:99;
@@ -310,13 +321,19 @@ z-index:99;
 }
 
 @media screen and (max-width: 1300px) {
-    margin:20px 0;  
+    margin:10px 0;  
 
     &:nth-child(4){
-      margin:20px;
+      margin:10px;
     }
   }
 `
+const PartnerImg=styled.img`
+width:100%;
+height:100%;
+object-fit:${props=>props.cover ==="true" ? 'cover' :'contain'};
+`
+
 const MaskContainer=styled.div`
 position:absolute;
 width: 100%;
@@ -392,35 +409,36 @@ const HomePage = () => {
               TLAC
               </GroupTitle>
               <GroupDesc>
-              We at TLAC have created a community for avid
-              collectors of one of a kind luxury assets. By
-              combining the underlying technology of smart
-              contracts and NFT’s with the gamified model of a
-              raffle, to create the world’s first Meta-Raffle. Each
-              raffle will feature a new item that you as a member
-              will help choose.
-              <br/>
-              <br/>
-              How do I join this exclusive community? By
-              purchasing an exclusive TLAC raffle ticket not only
-              have you entered for a chance to win the featured
-              asset, but it also gives you access to our exclusive,
-              token locked Tellie. Ownership of the NFT is the
-              only way to unlock the gate. Here is where you will
-              have a chance to vote on future offerings, charity
-              partnerships, as well as merchandise and exclusive
-              content. Members will also have access to attend
-              item release parties
+              The Luxury Asset Club is an exclusive online community of owners pushing the digital
+              collectible world into new territory. TLAC uses group economics & the community model to help
+              liquidate extremely collectible physical assets. It starts with the private mint of the Luxury Asset
+              Club's blue-chip offering on 4/13/2022, the anniversary of Kobe’s final NBA game. There will be
+              3 randomly generated winning tickets, and each NFT will be a digital replica of the 18K Rose
+              Gold Kobe Bryant signed Hublot (DYOR) delivered as 8,024 digital twins. The physical watch, of
+              which there are only three in the world and holds an estimated value of $3,000,000. Upon
+              sellout, one club member will win the watch.
+              <br />
+              <br />
+
+              As our community develops, TLAC will forever change the process in which ultra-luxury assets
+              are sold and held. The Luxury Asset Club will be stored and minted on the Polygon Network.
               </GroupDesc>
           </GroupInfo>
-          <GroupImg></GroupImg>
+          <GroupVideo src={video1} controls  type="video/mp4"></GroupVideo>
         </Group>
 
         <Group>
-          <GroupImg></GroupImg>
+          <GroupVideo src={video2} controls  type="video/mp4"></GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
-           <GroupDesc>As an NFT project, we feel it is our obligation to use this technology as means of helping those that are less fortunate. Our model allows us to connect and reach a multitude of different charities and organizations and reward them with not onlya platform but state of the art methods ofraising funds. Because of this, every raffle, we as a community will choose a charity to partner with.
+           <GroupDesc>
+           It is our obligation as an NFT project to use web3 technology to help the less fortunate. Our
+          business model allows us to bridge innovation with impact. Every raffle we run will be partnered
+          with a charity the community chooses. Charitable donations will be made from the proceeds of
+          each raffle. We believe that doing so will help different charitable organizations with their current
+          objectives while serving them a revolutionary platform with innovative methods for fundraising.
+          For The Luxury Asset Club’s first meta-raffle, a percentage of proceeds have been arranged to
+          be donated to the Make-A-Wish foundation, Greater LA Chapter.
            </GroupDesc>
           </GroupInfo>
         </Group>
@@ -430,31 +448,34 @@ const HomePage = () => {
           <GroupInfo right="true">
             <GroupTitle>Tokenizing Select Luxury Assets</GroupTitle>
               <GroupDesc>
-                    Interested in raffling off your own one of a kind
-                    asset? Contact our team and let us know about
-                    your item. Our in house art curator will then
-                    authenticate and validate your item while
-                    determining if its fits TLAC select criteria.
+                Over the last nine months of putting together this project, we have been fortunate enough to be
+              featured in over 200 publications around the globe and seen in Times Square..Twice!
             </GroupDesc>
           </GroupInfo>
-          <GroupImg></GroupImg>
+          <GroupVideo src={video3} controls  type="video/mp4"></GroupVideo>
         </Group>  
         
         <PartnerShipContainer>
           <PartnerShipTitle>PARTNERSHIPS</PartnerShipTitle>
           <Partners>
-            <Partner></Partner>
-            <Partner></Partner>
-            <Partner></Partner>
-            <Partner></Partner>
+            <Partner>
+              <PartnerImg src={SuperWorld}/>
+            </Partner>
+            <Partner>
+            <PartnerImg src={Makeawish}/>
+            </Partner>
+            <Partner>
+            <PartnerImg src={Enforceable} cover="true"/>
+            </Partner>
+            <Partner>
+            <PartnerImg src={woodlawn}/>
+            </Partner>
           </Partners>
          <MaskContainer></MaskContainer>
         </PartnerShipContainer>
 
       </AboutContainer>
-
-      <Barcode />
-      <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
+      <Footer />
 
       <FrameContainer>
         <Frame />

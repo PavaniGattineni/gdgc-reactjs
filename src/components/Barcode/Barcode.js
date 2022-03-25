@@ -4,32 +4,29 @@ import barcode from '../../assets/barcode.jpeg'
 
 
 const BarcodeContainer=styled.div`
-width:250px;
-height:250px;
+width:350px;
+height:350px;
+background-color:#fff;
 border:10px solid #000;
 border-radius:40px;
+padding:30px;
 
-@media screen and (max-width: 500px) {
-    width:150px;
-    height:150px;
+@media screen and (max-width: 1200px) {
+    width:200px;
+    height:200px;
     margin-top:20px;
     border-radius:20px;
     border:5px solid #000;
+    padding:0px;
     }
 
-@media screen and (max-width: 1200px) {
-    width:150px;
-    height:150px;
-    border-radius:20px;
-    border:5px solid #000;
-       }
+
 `
 
 const BarcodeImg=styled.img`
 height:100%;
 width:100%;
-border-radius:20px;
-object-fit:cover;
+border-radius:10px;
 `
 
 const Barcode = () => {

@@ -25,6 +25,7 @@ z-index:99;
    display:flex;
    align-items:center;
    justify-content:space-between;
+   bored-radius:0;
     }
 `
 const Box=styled.div`

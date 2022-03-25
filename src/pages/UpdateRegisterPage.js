@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Barcode from '../components/Barcode/Barcode'
+import Footer from '../components/Footer/Footer'
 
 
 
@@ -398,8 +399,7 @@ const UpdateRegisterPage = () => {
                 </Whitelist>
             </Form>
             
-            <Barcode />
-            <Desc>TLAC 2022 All rights reserved</Desc> 
+            <Footer />
             
             <FrameContainer>
             <Frame/>
