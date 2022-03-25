@@ -1,0 +1,204 @@
+.MapContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  &::after {
+    background-color: #000;
+    content: "";
+    width: 6px;
+    position: absolute;
+    height: 740px;
+    top: 0;
+    left: calc(50% - 3px);
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+  @media (min-width: 501px) and (max-width: 1200px) {
+    width: 70%;
+  }
+}
+
+.ItemContainer {
+  height: 110px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 27px;
+  position: relative;
+
+  &::after {
+    content: "";
+    background-color: #000;
+    width: 226px;
+    height: 6px;
+    position: absolute;
+    top: calc(50% - 3px);
+    right: -3px;
+    z-index: 99;
+  }
+
+  h1 {
+    position: absolute;
+    font-size: 24px;
+    right: 40px;
+    top: calc(50% - 40px);
+  }
+
+  .Circle {
+    position: absolute;
+    border: 9px solid rgb(170, 170, 170);
+    width: 92px;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #000;
+    border-radius: 50%;
+    top: calc(50% - 46px);
+    right: 200px;
+  }
+
+  &:nth-child(even) {
+    align-self: flex-end;
+    justify-content: flex-end;
+
+    &::after {
+      left: -3px;
+    }
+
+    h1 {
+      left: -330px;
+      top: calc(50% - 40px);
+    }
+    .Circle {
+      left: 200px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    &::after {
+      width: 50px;
+      height: 4px;
+      position: absolute;
+      top: calc(50% - 2px);
+      right: 0;
+      z-index: 99;
+    }
+
+    h1 {
+      font-size: 18px;
+      right: 10px;
+      top: calc(50% - 40px);
+    }
+
+    h4 {
+      font-size: 12px;
+      padding-right: 80px;
+      padding-left: 20px;
+    }
+    .Circle {
+      border: 5px solid rgb(170, 170, 170);
+      width: 35px;
+      height: 35px;
+      font-size: 12px;
+      font-weight: 600;
+      right: 45px;
+      top: calc(50% - 17.5px);
+    }
+    &:nth-child(even) {
+      h1 {
+        left: -100px;
+        top: calc(50% - 40px);
+      }
+
+      h4 {
+        padding-left: 90px;
+        padding-right: 10px;
+      }
+      .Circle {
+        left: 45px;
+      }
+    }
+  }
+
+  @media (min-width: 501px) and (max-width: 1200px) {
+    &::after {
+      width: 120px;
+      height: 4px;
+      position: absolute;
+      top: calc(50% - 2px);
+      right: 0;
+      z-index: 99;
+    }
+
+    h1 {
+      font-size: 20px;
+      right: 10px;
+      top: calc(50% - 30px);
+    }
+
+    h4 {
+      font-size: 18px;
+      padding-right: 80px;
+    }
+    .Circle {
+      border: 8px solid rgb(170, 170, 170);
+      width: 80px;
+      height: 80px;
+      font-size: 24px;
+      font-weight: 600;
+      right: 90px;
+      top: calc(50% - 40px);
+    }
+    &:nth-child(even) {
+      h1 {
+        left: -265px;
+        top: calc(50% - 30px);
+      }
+
+      h4 {
+        padding-left: 80px;
+        padding-right: 10px;
+      }
+      .Circle {
+        left: 90px;
+      }
+    }
+  }
+}
+
+.inner {
+  width: 220px;
+}
+
+.Desc {
+  font-size: 16px;
+  font-weight: 600;
+}
+.CircleContainer {
+  border-radius: 50%;
+  width: 33px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 16.5px);
+}
+
+.smallcircle {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: #000;
+}
