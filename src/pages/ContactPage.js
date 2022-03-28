@@ -4,10 +4,10 @@ import NavContainer from '../components/NavContainer/NavContainer'
 import emailjs from 'emailjs-com'
 
 
-import Barcode from '../components/Barcode/Barcode'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import { useDispatch } from 'react-redux'
 import SubmitForm from '../redux/Actions/Contacts/Submit'
+import Footer from '../components/Footer/Footer'
 
 
 const Container=styled.div`
@@ -82,7 +82,7 @@ margin-bottom:10px;
 
 @media screen and (max-width:1300px) {
  flex-direction:column;
-
+ justify-content:center;
   }
 
 
@@ -122,11 +122,10 @@ margin-right:42px;
 &:nth-last-child(){
   margin:0;
 }
-padding:0 10px;
+
 
 @media screen and (max-width: 500px) {
-  width:${props=>props.size === "large" ? "100%" : "350px"};
- 
+  width:100%;
   }
 
   @media (min-width: 501px) and (max-width: 1300px){  
@@ -152,7 +151,6 @@ font-weight:700;
 border:none;
 padding:10px 75px;
 border-radius:10px;
-margin-bottom:115px;
 
 &:hover{
     background-color:#444;
@@ -160,20 +158,10 @@ margin-bottom:115px;
 
 @media screen and (max-width: 500px) {
   font-size:24px;
-  margin-bottom:30px;
   }
 `
 
-const BarcodeDesc=styled.p`
-font-size:14px;
-font-weight:600;
-margin-top:10px;
 
-@media screen and (max-width: 900px) {
-  margin-bottom:100px;
-  }
-
-`
 
 const Success = styled.div`
 background-color: #62a762;
@@ -218,11 +206,10 @@ padding: 5px;
 `
 
 const Link=styled.a`
-
 text-decoration:none;
 font-size:14px;
 font-weight:700;
-z-index:999;
+z-index:99;
 color:#000;`
 
 const DiscordButton2=styled.button`
@@ -239,6 +226,10 @@ margin-bottom:20px;
 @media screen and (min-width:800px){
 display:none;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ff05b265de491990818c2251cdd92d44db20fbc
 `
 
 
@@ -349,9 +340,8 @@ const ContactPage = () => {
       <Submit type='submit'>Submit</Submit>
       </ContactForm>      
 
-       <Barcode />
-      <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
 
+      <Footer />
       <SocialMedia />
     </Container>
   

@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Barcode from '../components/Barcode/Barcode'
+import Footer from '../components/Footer/Footer'
 
 
 
@@ -368,6 +369,7 @@ const UpdateRegisterPage = () => {
                 </Whitelist>
             </Form>
             
+            <Footer />
             
             <FrameContainer>
             <Frame/>
