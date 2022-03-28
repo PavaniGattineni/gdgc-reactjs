@@ -2,26 +2,25 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
+import Barcode from '../components/Barcode/Barcode'
 
 import frame from '../assets/Frame.png'
 import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
-import Barcode from '../components/Barcode/Barcode'
-import Footer from '../components/Footer/Footer'
-
 
 
 
 
 const Container = styled.div`
 position:relative;
-height: 100%;
 width: 100%;
+height:100%;
 display:flex;
 flex-direction:column;
 align-items:center;
 background: linear-gradient(90.13deg, #efe9ce 0.15%, #cfdbd9 99.93%);
+
 `
 const TitleContainer = styled.div`
 display: flex;
@@ -30,10 +29,13 @@ position: relative;
 margin-bottom:50px;
 flex-direction:column;
 z-index:99;
+
 `
 const LogoContainer = styled.div`
 height: 250px;
 width: 250px;
+
+
 @media screen and (max-width: 580px) {
       height:150px;
       width:150px;
@@ -50,6 +52,7 @@ link-decoration-style:none;
 position: absolute;
 top: 100px;
 right: 120px;
+
 @media screen and (max-width: 700px) {
 display:none;
 }
@@ -64,6 +67,7 @@ border-radius: 10px;
 font-size:18px;
 font-weight: 700;
 cursor:pointer;
+
 &:hover{
     background-color:#444;
     color:#f6f6f6;
@@ -78,15 +82,19 @@ const HeaderContainer = styled.div`
     margin-bottom:50px;
     z-index:99;
     position:relative;
+
     @media screen and (max-width: 500px) {
         margin:0;
         }
+
 `
 const Title = styled.h1`
 font-size: 75px;
 font-weight:700;
+
 @media screen and (max-width: 500px) {
 font-size:40px;
+
 @media (min-width: 501px) and (max-width: 1300px){
 font-size:50px;
    }
@@ -96,9 +104,11 @@ font-size:50px;
 const Subtitle = styled.p`
     font-size: 24px;
     font-weight: 600;
+
     @media screen and (max-width: 500px) {
         font-size:14px;
         }
+
     @media (min-width: 501px) and (max-width: 1300px){
         font-size:18px;
      }
@@ -106,11 +116,13 @@ const Subtitle = styled.p`
 const Link2=styled.a`
 link-decoration-style:none;
 display:none;
+
 @media screen and (max-width: 700px) {
 display:flex;
 align-items:center;
 margin:20px;
 }
+
 `
 const DiscordButton2 = styled.button`
 background-color: #000;
@@ -122,6 +134,7 @@ border-radius: 10px;
 font-size:14px;
 font-weight: 700;
 cursor:pointer;
+
 &:hover{
     background-color:#444;
     color:#f6f6f6;
@@ -144,15 +157,18 @@ const Fail = styled.div`
   margin: 10px 0;
   border-radius: 5px;
   text-align:center;
+
   @media screen and (max-width: 500px) {
     width:100%;
     margin:10px;
     }
+
 `
 const Info = styled.p`
 color: #fff;
 font-size: 14px;
 padding: 10px;
+
 @media screen and (max-width: 500px) {
    font-size:12px;
    padding:5px;
@@ -161,38 +177,43 @@ padding: 10px;
 
 
 const Form = styled.form`
+width:100%;
 display:flex;
 align-items:center;
 flex-direction:column;
-margin:60px 0;
+margin:60px;
+
 @media screen and (max-width: 500px) {
-   margin:30px;
+   width:100%; 
+   margin:20px;
     }
 `
 
 const Whitelist = styled.div`
+width:100%;
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content:center;
 z-index:99;
-@media screen and (max-width: 580px) {
-      flex-direction:column;
-    }
-  
+padding:30px;
+
+
 @media screen and (max-width: 1200px) {
   flex-direction:column;
+  padding:10px;
    }
 `
 const WhitelistTitle = styled.h1`
 margin-right: 25px;
 font-size:35px;
 font-weight:700;
+
 @media screen and (max-width: 500px) {
  font-size:24px;
    margin:10px 0;
     }
  
-@media screen and (max-width: 1200px) {
+@media (min-width:501px) and (max-width: 1200px) {
 margin:20px;
 font-size:35px;
 }
@@ -207,12 +228,17 @@ background-color: #f3f3f3;
 border-radius: 10px;
 font-size: 15px;
 font-weight: 700;
+width:362px;
+
 &::placeholder {
   color: #000;
 }
+
 @media screen and (max-width: 500px) {
  margin:10px 0; 
+ width:300px;
     }
+
  @media screen and (max-width: 1200px) {
 margin:20px;
  }    
@@ -227,27 +253,26 @@ border-radius:10px;
 font-size:20px;
 font-weight:700;
 background-color:#000;
+
 &:hover{
     background-color:#444;
     color:#f6f6f6;
 }
+
 @media screen and (max-width: 500px) {
   padding:10px 20px;
   font-size:14px;
   margin-top:10px;
+  margin-bottom:20px;
+
     }
-`
 
-
-const Desc=styled.p`
-font-size:12px;
-font-weight:bold;
-color:#000;
-margin:10px 0;
-@media screen and (max-width:900px){
-margin-bottom:100px;
+@media (min-width:501px) and (max-width: 1200px) {
+margin-bottom:50px;
 }
+
 `
+
 
 
 
@@ -257,6 +282,7 @@ height:100vh;
 position:absolute;
 top:22%;
 z-index:1;
+
 @media screen and (max-width:500px){
     top:18%;
 }
@@ -268,7 +294,21 @@ height:100%;
 mix-blend-mode: darken;
 background:url(${frame}) top no-repeat;
 z-index:1;
+
 `
+
+const BarcodeDesc=styled.p`
+font-size:14px;
+font-weight:600;
+margin:10px;
+
+
+@media screen and (max-width:500px){
+font-size:12px;
+margin-bottom:100px;
+}
+`
+
 
 const UpdateRegisterPage = () => {
 
@@ -369,7 +409,8 @@ const UpdateRegisterPage = () => {
                 </Whitelist>
             </Form>
             
-            <Footer />
+            <Barcode />
+            <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
             
             <FrameContainer>
             <Frame/>
@@ -385,3 +426,5 @@ const UpdateRegisterPage = () => {
 }
 
 export default UpdateRegisterPage
+
+ 
