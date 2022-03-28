@@ -8,12 +8,14 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import FaqsPage from './pages/FaqsPage';
 import AboutPage from './pages/AboutPage';
 import TermsPage from './pages/TermsPage';
+import ScrollToTop from './ScrollToTop';
 
 
 function App() {
   return (
     <div className="App">
      <Router>
+     <ScrollToTop>
       <Routes>
       <Route index element={<UpdateRegisterPage/>}/>
       <Route path='/home' element={<HomePage/>} />
@@ -24,7 +26,7 @@ function App() {
       <Route path='/terms' element={<TermsPage />} />
 
     </Routes>
-
+    </ScrollToTop>
     </Router>
     </div>
   
