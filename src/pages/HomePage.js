@@ -438,10 +438,10 @@ const HomePage = () => {
         <Group>
         
           <GroupInfo right="true">
-            <GroupTitle>Tokenizing Select Luxury Assets</GroupTitle>
+            <GroupTitle>In the Press</GroupTitle>
               <GroupDesc>
-                Over the last nine months of putting together this project, we have been fortunate enough to be
-              featured in over 200 publications around the globe and seen in Times Square..Twice!
+              Over the last nine months of putting together this project, we have been fortunate enough to be
+featured in over 200 publications around the globe and seen in Times Square..Twice!
             </GroupDesc>
           </GroupInfo>
           <GroupVideo src={video3} controls  type="video/mp4"></GroupVideo>
