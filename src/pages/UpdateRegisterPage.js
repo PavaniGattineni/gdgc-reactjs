@@ -305,7 +305,7 @@ margin:10px;
 
 @media screen and (max-width:500px){
 font-size:12px;
-margin-bottom:100px;
+
 }
 `
 
@@ -409,13 +409,14 @@ const UpdateRegisterPage = () => {
                 </Whitelist>
             </Form>
             
-            <Barcode />
-            <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
+          
             
             <FrameContainer>
             <Frame/>
             </FrameContainer>
-
+    
+            <Barcode />
+            <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
             <SocialMedia />
             
         </Container>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Data from '../../data'
+//import Data from '../../data'
 import RoadMapItem from './RoadMapItem'
 import './RoadMap.scss'
 
@@ -8,9 +8,7 @@ import './RoadMap.scss'
 const RoadMap = () => {
   return (
     <div className='MapContainer' id='roadmap'>
-            {Data.length >0 &&  Data.map((item,idx)=>(
-               <RoadMapItem  data={item} key={idx}/>
-            ))}
+            <RoadMapItem />
             <div className='CircleContainer'>
               <div className='smallcircle'></div>
             </div>

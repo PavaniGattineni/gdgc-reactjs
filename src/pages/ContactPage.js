@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import NavContainer from '../components/NavContainer/NavContainer'
 import emailjs from 'emailjs-com'
 
-
+import Footer from '../components/Footer/Footer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import { useDispatch } from 'react-redux'
 import SubmitForm from '../redux/Actions/Contacts/Submit'
-import Footer from '../components/Footer/Footer'
+
 
 
 const Container=styled.div`
@@ -340,8 +340,7 @@ const ContactPage = () => {
       <Submit type='submit'>Submit</Submit>
       </ContactForm>      
 
-
-      <Footer />
+     <Footer />
       <SocialMedia />
     </Container>
   

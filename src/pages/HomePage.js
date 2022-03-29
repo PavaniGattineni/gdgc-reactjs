@@ -6,7 +6,6 @@ import frame from '../assets/Frame.png';
 import Mask from '../assets/Mask.png'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
-import Barcode from '../components/Barcode/Barcode'
 import Footer from '../components/Footer/Footer';
 
 import SuperWorld from '../assets/Superworld LOGO.png'
@@ -138,10 +137,11 @@ margin-bottom:40px;
 font-size:18px;
 font-weight:600;
 color:rgba(0, 0, 0, 0.6);
-margin-bottom:43px;
+margin-bottom:60px;
 
 @media screen and (max-width: 500px) {
   font-size:14px;
+  margin-bottom:90px;
   }
 `
 
@@ -342,15 +342,7 @@ background:url(${Mask}) center no-repeat;
 top:-150px;
 `
 
-const BarcodeDesc=styled.p`
-font-size:14px;
-font-weight:600;
-margin:10px;
 
-@media screen and (max-width:900px){
-  margin-bottom:100px;
-}
-`
 const FrameContainer=styled.div`
 width:100%;
 height:100vh;

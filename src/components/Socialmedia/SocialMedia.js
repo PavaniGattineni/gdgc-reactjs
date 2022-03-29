@@ -7,7 +7,7 @@ import { FaDiscord } from '@react-icons/all-files/fa/FaDiscord'
 import opensea from "../../assets/image 8.png"
 
 const SocialMedias=styled.div`
-position:absolute;
+position:fixed;
 bottom:calc(80% - 400px);
 right:0;
 background-color:#000;
@@ -18,14 +18,8 @@ align-items:center;
 border-radius:10px 0 0 10px; 
 z-index:99;
 
-@media screen and (max-width: 900px) {
-   bottom:0;
-   flex-direction:row;
-   width:100%;
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-   bored-radius:0;
+@media screen and (max-width: 500px) {
+padding:5px;
     }
 `
 const Box=styled.div`
@@ -38,8 +32,9 @@ display:flex;
 justify-content:center;
 
 @media screen and (max-width: 500px) {
-    width:35px;
-    height:35px;
+    width:30px;
+    height:30px;
+    margin:7px 5px;
     }
 `
 

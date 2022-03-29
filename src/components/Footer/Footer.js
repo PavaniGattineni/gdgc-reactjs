@@ -27,7 +27,7 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
-
+z-index:999;
 
 
 .link{
@@ -109,7 +109,7 @@ const Footer = () => {
         </Left>
 
         <Right>
-            <Link to={'/'} className='link'>Team</Link>
+            <Link to={'/doxxing'} className='link'>Team</Link>
             <Link to={'/'} className='link'>LinkTree</Link>
             <Link to={'/faqs'} className='link'>FAQS</Link>
         </Right>    

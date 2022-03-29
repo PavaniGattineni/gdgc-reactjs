@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Barcode from '../components/Barcode/Barcode'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Mask from '../assets/Mask.png'
@@ -118,7 +117,7 @@ z-index:999;
  flex-wrap:wrap;
  margin-bottom:100px;
  z-index:99;
-
+ gap:52.68px;
  @media screen and (max-width: 1200px) { 
   width:100%;
   flex-direction:column;
@@ -128,8 +127,6 @@ z-index:999;
  const Partner=styled.div`
  width: 333.65px;
 height: 421.45px;
-margin-right:52.68px;
-margin-bottom:52.68px;
 background-color:rgba(0, 0, 0, 0.1);
 border-radius:30px;
 z-index:99;
@@ -173,15 +170,7 @@ font-size:12px;
     }
 `
 
-const BarcodeDesc=styled.p`
-font-size:14px;
-font-weight:600;
-margin:10px;
 
-@media screen and (max-width: 900px) { 
-   margin-bottom:100px;
-    }
-`
 const MaskContainer=styled.div`
 width:100%;
 height:663px;

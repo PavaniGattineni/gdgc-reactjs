@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Footer from '../components/Footer/Footer'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
+import frame from '../assets/Frame.png'
 
 const Container=styled.div`
 width:100%;
@@ -65,6 +66,26 @@ line-height:36px;
 }
 `
 
+const FrameContainer=styled.div`
+width:100%;
+height:100vh;
+position:absolute;
+top:22%;
+z-index:1;
+
+@media screen and (max-width:500px){
+    top:18%;
+}
+`
+
+const Frame=styled.div`
+width:100%;
+height:100%;
+mix-blend-mode: darken;
+background:url(${frame}) top no-repeat;
+z-index:1;
+
+`
 
 const AboutPage = () => {
   return (
@@ -82,7 +103,11 @@ const AboutPage = () => {
           As our community develops, TLAC will forever change the process in which ultra-luxury assets are authenticated, sold, and owned within this Web 3.0 world.  
            </Info>
            </DetailsContainer>
-
+          
+           <FrameContainer>
+           <Frame />
+          </FrameContainer>
+           
           <Footer />
           <SocialMedia />
     </Container>

@@ -85,6 +85,11 @@ border-radius:8px;
 font-size:18px;
 font-weight:700;
 text-align:center;
+
+:hover{
+  background-color:#444;
+  color:#f6f6f6;
+}
 `
 
 
@@ -135,7 +140,7 @@ const NavContainer = () => {
     <Container>
     <Left open={isOpen}>
        <Link href='/home'>TLAC</Link>
-       <Link href='#roadmap'>Roadmap</Link>
+       <Link href='/home#roadmap'>Roadmap</Link>
        <Link href='/doxxing'>The Doxxing</Link>
        <Link href='/contact'>Contact Us</Link>
       
