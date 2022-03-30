@@ -49,10 +49,12 @@ margin-bottom:10px;
 const ContactDesc=styled.h4`
 font-size:24px;
 font-weight:600;
+margin:0 200px;
 margin-bottom:60px;
 
 @media screen and (max-width: 500px) {
   font-size:14px;
+  margin:0 20px;
   margin-bottom:20px;
   }
 `
@@ -292,7 +294,8 @@ const ContactPage = () => {
       <TitleContainer>
       <ContactTitle>Contact Us</ContactTitle>    
       <ContactDesc>
-      The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br /> ownership of rare exclusive collectibles.
+      The Luxury Asset Club is revolutionizing the ownership of select ultra-luxury assets
+    For press or media inquiries, please email us directly at team@theluxuryassetclub.xyz
       </ContactDesc>
       <Link href='https://discord.gg/9BvBTyN2S7'>
         <DiscordButton2>Join Discord </DiscordButton2>

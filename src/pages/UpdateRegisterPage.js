@@ -2,12 +2,14 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
+import goldbrick from '../assets/Goldbrick.gif'
 import Barcode from '../components/Barcode/Barcode'
 
 import frame from '../assets/Frame.png'
 import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
+import { MdClose } from 'react-icons/md';
 
 
 
@@ -20,7 +22,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 background: linear-gradient(90.13deg, #efe9ce 0.15%, #cfdbd9 99.93%);
-
+filter:${props=>props.popup ?'blur(10px)':''};
 `
 const TitleContainer = styled.div`
 display: flex;
@@ -309,6 +311,73 @@ font-size:12px;
 }
 `
 
+const PopupContainer=styled.div`
+position:absolute;
+width:800px;
+height:360px;
+background-color:#f6f6f6;
+z-index:999;
+top:30%;
+right:calc(50% - 400px);
+border-radius:20px;
+`
+
+const PopupTitle=styled.h4`
+font-size:30px;
+font-weight:700;
+`
+
+const PopupForm=styled.form`
+display:flex;
+flex-direction:column;
+align-items:center;
+position:relative;
+padding-top:20px;
+`
+
+const PopupInput=styled.input`
+margin:20px;
+border:none;
+font-size:18px;
+background-color: #EFEFEF;
+color:#000;
+padding:10px 5px;
+border-radius:10px;
+
+`
+
+const PopupSubmit=styled.button`
+margin-top:10px;
+padding:10px;
+width:150px;
+background-color:#000;
+color:#fff;
+border:none;
+border-radius:10px;
+
+
+:hover{
+    background-color:#444;
+}
+`
+
+const CloseButton=styled.button`
+position:absolute;
+top:5px;
+right:5px;
+background-color:#DC143C;
+border:none;
+padding:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:5px;
+
+:hover{
+    background-color:red;
+    transform:scale(1.2);
+}
+`
 
 const UpdateRegisterPage = () => {
 
@@ -316,13 +385,14 @@ const UpdateRegisterPage = () => {
     const [emailSent, setEmailSent] = useState(false)
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
-
+    const [popup,setPopup]=useState(true)
 
  
 
 
     const sendEmail = (e) => {
         e.preventDefault();
+        
         if (e.target.email.value !== '') {
             emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
                 'd1yMbjx7hhKgbin29').then((result) => {
@@ -331,6 +401,7 @@ const UpdateRegisterPage = () => {
                     setTimeout(
                         () => {
                             setEmailSent(false)
+                            closeModal();
                         },
                         3000
                     )
@@ -356,13 +427,18 @@ const UpdateRegisterPage = () => {
 
     }
 
-    return (
+    const closeModal=(e)=>{
+        e.preventDefault();
+        setPopup(false)
+    }
 
-        <Container>
+    return (
+<>
+        <Container popup={popup}>
 
             <TitleContainer>
                 <LogoContainer>
-                    <Logo src={logo} />
+                    <Logo src={goldbrick} />
                 </LogoContainer> 
             </TitleContainer>
                 <Link href='https://discord.gg/9BvBTyN2S7'>
@@ -421,7 +497,45 @@ const UpdateRegisterPage = () => {
             
         </Container>
 
+        {
+            popup ?
+            (
+                <PopupContainer>
+                <PopupForm onSubmit={sendEmail}>
+                <PopupTitle>Whitelist User</PopupTitle>
+                <PopupInput className='input' type={"text"} placeholder="Email..." name='email' />
+                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
+                {emailSent &&
+                    <Success>
+                        <Info className='info'>Your requested has been sucessfully submitted</Info>
+                    </Success>
+                }
+                {
+                    invalid &&
+                    <Fail>
+                        <Info className='info'>Please enter the Email Address</Info>
+                    </Fail>
+                }
+                {
+                    error &&
+                    <Fail>
+                        <Info>Something went wrong. Please try again </Info>
+                    </Fail>
+                }
+                <PopupSubmit className='submit' type='submit'>Submit</PopupSubmit>
+                <CloseButton onClick={closeModal}><MdClose color='white' size={'20px'}/></CloseButton>
+                </PopupForm>
+            </PopupContainer>
+            )
+            :
+            ""
 
+        }
+        
+
+            </>
+
+          
 
     )
 }

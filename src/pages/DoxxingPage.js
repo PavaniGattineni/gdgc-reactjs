@@ -43,10 +43,11 @@ margin-bottom:10px;
 const Desc=styled.p`
 font-size:24px;
 font-weight:600;
+padding:0 200px;
 
 @media screen and (max-width: 500px) {
    font-size:14px;
-
+   padding:0 20px;
    }
 `
 
@@ -77,18 +78,17 @@ cursor:pointer;
 }
 `
 const VideoContainer=styled.video`
-width: 1290px;
+width: 750px;
 height: 486px;
-border-radius:30px;
+border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
-background-color:#6B695E;
+
 margin-bottom:64px;
 
 @media screen and (max-width: 1200px) { 
   width:90%;
-  padding:20px;
   height:250px;
    }
 `
@@ -115,13 +115,15 @@ z-index:999;
  align-items:center;
  justify-content:center;
  flex-wrap:wrap;
+ gap:52.68px;
  margin-bottom:100px;
  z-index:99;
- gap:52.68px;
+
  @media screen and (max-width: 1200px) { 
   width:100%;
   flex-direction:column;
   margin-bottom:0px;
+  gap:20px;
     }
  `
  const Partner=styled.div`
@@ -131,10 +133,10 @@ background-color:rgba(0, 0, 0, 0.1);
 border-radius:30px;
 z-index:99;
 
+
 @media screen and (max-width: 500px) { 
   width:250px;
   height:300px;
-  margin:20px;
     }
 
 `
@@ -187,7 +189,9 @@ const DoxxingPage = () => {
 
         <TitleContainer>
            <Title>The Doxxing</Title>
-           <Desc>The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
+           <Desc>
+           The TLAC team aims to give club members the same security that comes with authenticating the team as we do with our luxury assets. As procurers of Luxury Assets, we believe authenticating the team secures the credibility and value of both the project and the community.
+           </Desc>
             <Link2 href='https://discord.gg/9BvBTyN2S7'>
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>

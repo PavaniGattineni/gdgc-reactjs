@@ -67,6 +67,8 @@ align-items:center;
 }
 `
 
+const Link2=styled.a``
+
 const BarcodeContainer=styled.div`
 position:absolute;
 display:flex;
@@ -109,8 +111,8 @@ const Footer = () => {
         </Left>
 
         <Right>
-            <Link to={'/doxxing'} className='link'>Team</Link>
-            <Link to={'/'} className='link'>LinkTree</Link>
+            <Link to={'/doxxing'} className='link'>The Doxxing</Link>
+            <Link2 href='https://linktr.ee/theluxuryassetclub' className='link'>LinkTree</Link2>
             <Link to={'/faqs'} className='link'>FAQS</Link>
         </Right>    
 

@@ -245,12 +245,15 @@ z-index:99;
 `
 
 
-const GroupVideo=styled.video`
+const GroupVideo=styled.div`
 width:640px;
 height:486px;
 border-radius:30px;
 z-index:99;
-background-color:#6B695E;
+display:flex;
+align-items:center;
+justify-content:center;
+
 
 
 @media screen and (max-width: 1300px) {
@@ -258,13 +261,19 @@ background-color:#6B695E;
   height:250px;
   }
 `
+const Video=styled.video`
+width:${props=>props.potrait==="true"? "250px" : "100%"};
+height:100%;
+border-radius:${props=>props.potrait==="true"? "20px" : "30px"};
+`
+
 const PartnerShipContainer=styled.div`
 width:100%;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-margin-bottom:125px;
+margin-bottom:100px;
 position:relative; 
 
 
@@ -309,29 +318,23 @@ z-index:99;
 
 `
 
-const Partner=styled.div`
+
+const PartnerImg=styled.img`
 width:273px;
 height:104px;
 margin-right:67px;
-border-radius:20px;
-z-index:99;
+object-fit:contain;
 
 &:nth-child(4){
   margin:0px;
 }
-
 @media screen and (max-width: 1300px) {
-    margin:10px 0;  
+  margin:10px 0;  
 
-    &:nth-child(4){
-      margin:10px;
-    }
+  &:nth-child(4){
+    margin:10px;
   }
-`
-const PartnerImg=styled.img`
-width:100%;
-height:100%;
-object-fit:${props=>props.cover ==="true" ? 'cover' :'contain'};
+}
 `
 
 const MaskContainer=styled.div`
@@ -416,11 +419,15 @@ const HomePage = () => {
               are sold and held. The Luxury Asset Club will be stored and minted on the Polygon Network.
               </GroupDesc>
           </GroupInfo>
-          <GroupVideo src={video1} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video src={video1} controls  type="video/mp4"/>
+          </GroupVideo>
         </Group>
 
         <Group>
-          <GroupVideo src={video2} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video src={video2} controls  type="video/mp4" potrait="true"/>
+          </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
            <GroupDesc>
@@ -438,30 +445,25 @@ const HomePage = () => {
         <Group>
         
           <GroupInfo right="true">
-            <GroupTitle>In the Press</GroupTitle>
+            <GroupTitle>In The Press</GroupTitle>
               <GroupDesc>
-              Over the last nine months of putting together this project, we have been fortunate enough to be
-featured in over 200 publications around the globe and seen in Times Square..Twice!
+                Over the last nine months of putting together this project, we have been fortunate enough to be
+              featured in over 200 publications around the globe and seen in Times Square..Twice!
             </GroupDesc>
           </GroupInfo>
-          <GroupVideo src={video3} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video src={video3} controls  type="video/mp4" potrait="true"/>
+          </GroupVideo>
         </Group>  
         
         <PartnerShipContainer>
           <PartnerShipTitle>PARTNERSHIPS</PartnerShipTitle>
           <Partners>
-            <Partner>
-              <PartnerImg src={SuperWorld}/>
-            </Partner>
-            <Partner>
+           
+            <PartnerImg src={SuperWorld}/>
             <PartnerImg src={Makeawish}/>
-            </Partner>
-            <Partner>
             <PartnerImg src={Enforceable} cover="true"/>
-            </Partner>
-            <Partner>
             <PartnerImg src={woodlawn}/>
-            </Partner>
           </Partners>
          <MaskContainer></MaskContainer>
         </PartnerShipContainer>

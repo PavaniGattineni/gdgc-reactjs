@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/static/css/main.75bfdc6a.css",
-    "main.js": "/static/js/main.c70a4a25.js",
+    "main.js": "/static/js/main.938e66c6.js",
     "static/media/TheDoxxing.mp4": "/static/media/TheDoxxing.c0526fab9c1f6b5fb108.mp4",
     "static/media/Kobe.MOV": "/static/media/Kobe.346f19188b89b46903c0.MOV",
+    "static/media/Goldbrick.gif": "/static/media/Goldbrick.e436df2b7369e33267cc.gif",
     "static/media/Pressvideo.mp4": "/static/media/Pressvideo.7628ef8f05c7318f0ae8.mp4",
     "static/media/Makeawish.MOV": "/static/media/Makeawish.a4379b29a42217b60c1f.MOV",
     "static/media/Woodlawn Media Logo.PNG": "/static/media/Woodlawn Media Logo.44f028648c3a0d1e2acb.PNG",
@@ -12,13 +13,13 @@
     "static/media/Mask.png": "/static/media/Mask.bfb96e1ed38d3c689660.png",
     "static/media/logo.png": "/static/media/logo.bb6a2492d0de189eb2db.png",
     "static/media/Superworld LOGO.png": "/static/media/Superworld LOGO.6005d6aad652dbc17e01.png",
-    "static/media/EnforceableNFT LOGO.png": "/static/media/EnforceableNFT LOGO.c6e85ad888da80147274.png",
+    "static/media/EnforceableNFT LOGO.png": "/static/media/EnforceableNFT LOGO.351cf73ed6aaeb27b71b.png",
     "index.html": "/index.html",
     "main.75bfdc6a.css.map": "/static/css/main.75bfdc6a.css.map",
-    "main.c70a4a25.js.map": "/static/js/main.c70a4a25.js.map"
+    "main.938e66c6.js.map": "/static/js/main.938e66c6.js.map"
   },
   "entrypoints": [
     "static/css/main.75bfdc6a.css",
-    "static/js/main.c70a4a25.js"
+    "static/js/main.938e66c6.js"
   ]
 }
