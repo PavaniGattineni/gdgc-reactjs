@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.75bfdc6a.css",
-    "main.js": "/static/js/main.a5351ce1.js",
+    "main.js": "/static/js/main.0b5a934a.js",
     "static/media/TheDoxxing.mp4": "/static/media/TheDoxxing.c0526fab9c1f6b5fb108.mp4",
     "static/media/Kobe.MOV": "/static/media/Kobe.346f19188b89b46903c0.MOV",
     "static/media/Pressvideo.mp4": "/static/media/Pressvideo.7628ef8f05c7318f0ae8.mp4",
@@ -16,10 +16,10 @@
     "static/media/EnforceableNFT LOGO.png": "/static/media/EnforceableNFT LOGO.351cf73ed6aaeb27b71b.png",
     "index.html": "/index.html",
     "main.75bfdc6a.css.map": "/static/css/main.75bfdc6a.css.map",
-    "main.a5351ce1.js.map": "/static/js/main.a5351ce1.js.map"
+    "main.0b5a934a.js.map": "/static/js/main.0b5a934a.js.map"
   },
   "entrypoints": [
     "static/css/main.75bfdc6a.css",
-    "static/js/main.a5351ce1.js"
+    "static/js/main.0b5a934a.js"
   ]
 }

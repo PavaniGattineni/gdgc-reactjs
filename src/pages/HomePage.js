@@ -14,6 +14,7 @@ import Makeawish from '../assets/Make-A-Wish Logo.png'
 import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 
 
+
 import video1 from '../assets/Kobe.MOV'
 import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
@@ -420,17 +421,19 @@ const HomePage = () => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
+            <Video controls autoplay loop muted playsinline>
            <source src={video1} type='video/mp4'/>
            <source src={video1} type='video/quicktime'/>
-           <source src={video1} type='video/webm'/>
-              </Video>
+            </Video>
           </GroupVideo>
         </Group>
-        
+
         <Group>
           <GroupVideo >
-            <Video src={video2} controls autoplay loop muted playsinline type="video/quicktime" potrait="true"/>
+          <Video controls autoplay loop muted playsinline>
+           <source src={video2} type='video/mp4'/>
+           <source src={video2} type='video/quicktime'/>
+            </Video>
           </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
@@ -456,7 +459,10 @@ const HomePage = () => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video src={video3} controls  playsInline type='video/mp4; codecs="avc1.4d002a"' potrait="true"/>
+          <Video controls autoplay loop muted playsinline>
+           <source src={video3} type='video/mp4'/>
+           <source src={video3} type='video/quicktime'/>
+            </Video>
           </GroupVideo>
         </Group>  
         
