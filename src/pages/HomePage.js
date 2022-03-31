@@ -420,13 +420,17 @@ const HomePage = () => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video src={video1} controls autoplay loop muted  playsInline type="video/quicktime"/>
+          <Video controls autoplay loop muted playsinline>
+           <source src={video1} type='video/mp4'/>
+           <source src={video1} type='video/quicktime'/>
+           <source src={video1} type='video/webm'/>
+              </Video>
           </GroupVideo>
         </Group>
-
+        
         <Group>
           <GroupVideo >
-            <Video src={video2} controls autoplay loop muted playsInline type="video/quicktime" potrait="true"/>
+            <Video src={video2} controls autoplay loop muted playsinline type="video/quicktime" potrait="true"/>
           </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>

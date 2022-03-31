@@ -196,7 +196,7 @@ const DoxxingPage = () => {
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>
         </TitleContainer>
-        <VideoContainer src={video1} type='video/mp4' controls >
+        <VideoContainer src={video1} type='video/mp4' controls="true" muted>
            <Arrow />
         </VideoContainer>
         <PartnersContainer>
@@ -233,8 +233,8 @@ const DoxxingPage = () => {
               <Position>Consultants</Position>
            </Partner>
         </PartnersContainer>
-        <Footer />
         <MaskContainer></MaskContainer>
+        <Footer />
         <SocialMedia />
 
      </Container>

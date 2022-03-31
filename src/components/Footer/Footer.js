@@ -14,6 +14,7 @@ position:relative;
 margin-top:295px;
 color:#fff;
 text-align:center;
+z-index:99;
 
 @media screen and (max-width:500px){
   padding-top:70px;
@@ -27,7 +28,8 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
-z-index:999;
+z-index:99;
+
 
 
 .link{
@@ -47,10 +49,9 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
+z-index:99;
 
-@media screen and (max-width:500px){
- 
-}
+
 
 
 .link{
@@ -67,7 +68,9 @@ align-items:center;
 }
 `
 
-const Link2=styled.a``
+const Link2=styled.a`
+cursor:pointer;
+`
 
 const BarcodeContainer=styled.div`
 position:absolute;
@@ -77,6 +80,9 @@ align-items:center;
 left:calc(50% - 175px);
 top:-200px;
 text-align:center;
+z-index:99;
+
+
 
 
 @media screen and (max-width:1200px){
@@ -90,6 +96,7 @@ const BarcodeDesc=styled.p`
 font-size:14px;
 font-weight:600;
 margin-top:10px;
+
 
 
 @media screen and (max-width:500px){
