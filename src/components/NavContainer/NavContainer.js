@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/Goldbrick.gif'
 import {MdMenu} from 'react-icons/md'
 import { MdClose } from 'react-icons/md'
 

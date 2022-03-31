@@ -320,11 +320,23 @@ z-index:999;
 top:30%;
 right:calc(50% - 400px);
 border-radius:20px;
+display:flex;
+flex-direction:column;
+
+@media screen and (max-width:500px){
+   width:90%;
+   left:0;
+   margin:0 20px;
+    }
 `
 
 const PopupTitle=styled.h4`
 font-size:30px;
 font-weight:700;
+
+@media screen and (max-width:500px){
+   font-size:24px;
+     }
 `
 
 const PopupForm=styled.form`
@@ -333,6 +345,10 @@ flex-direction:column;
 align-items:center;
 position:relative;
 padding-top:20px;
+
+@media screen and (max-width:500px){
+ 
+      }
 `
 
 const PopupInput=styled.input`
@@ -344,6 +360,10 @@ color:#000;
 padding:10px 5px;
 border-radius:10px;
 
+@media screen and (max-width:500px){
+      width:320px;
+      margin:20px 0px;
+      }
 `
 
 const PopupSubmit=styled.button`
@@ -458,35 +478,6 @@ const UpdateRegisterPage = () => {
 
             <Counter  />
 
-
-            <Form onSubmit={sendEmail}>
-                {emailSent &&
-                    <Success>
-                        <Info className='info'>Your requested has been sucessfully submitted</Info>
-                    </Success>
-                }
-                {
-                    invalid &&
-                    <Fail>
-                        <Info className='info'>Please enter the Email Address</Info>
-                    </Fail>
-                }
-                {
-                    error &&
-                    <Fail>
-                        <Info>Something went wrong. Please try again </Info>
-                    </Fail>
-                }
-                <Whitelist>
-                    <WhitelistTitle>Whitelist Mint</WhitelistTitle>
-                    <Input className='input' type={"text"} placeholder="Email..." name='email' />
-                    <Input className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
-                    <Submit className='submit' type='submit'>Notify Me</Submit>
-                </Whitelist>
-            </Form>
-            
-          
-            
             <FrameContainer>
             <Frame/>
             </FrameContainer>

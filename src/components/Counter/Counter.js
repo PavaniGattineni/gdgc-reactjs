@@ -6,11 +6,13 @@ const Container=styled.div`
   align-items:center;
   height:155px;
   z-index:99;
+  margin-bottom:150px;
 
   @media (max-width: 500px){
     width:100%;
     disaply:flex;
     padding:20px;
+    margin-bottom:75px;
   }
 
   `
@@ -146,8 +148,9 @@ const Counter = () => {
 
   useEffect(() => {
       startTimer();
+      const cleanUp=interval.current;
       return () => {
-          clearInterval(interval.current)
+          clearInterval(cleanUp)
       }
   })
   return (
