@@ -420,13 +420,13 @@ const HomePage = () => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video src={video1} controls muted  type="video/mov"/>
+            <Video src={video1} controls muted  type="video/quicktime"/>
           </GroupVideo>
         </Group>
 
         <Group>
           <GroupVideo >
-            <Video src={video2} controls muted  type="video/mov" potrait="true"/>
+            <Video src={video2} controls muted  type="video/quicktime" potrait="true"/>
           </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
@@ -452,7 +452,7 @@ const HomePage = () => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video src={video3} controls  type="video/mp4" potrait="true"/>
+            <Video src={video3} controls  type='video/mp4; codecs="avc1.4d002a"' potrait="true"/>
           </GroupVideo>
         </Group>  
         
