@@ -460,7 +460,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
          
-            <video src="/assets/Pressvideo.mp4" controls muted autoPlay={"autoplay"}  preLoad="auto" loop></video>
+            <Video src="/assets/Pressvideo.mp4" controls muted autoPlay={"autoplay"}  preLoad="auto" loop></Video>
           </GroupVideo>
         </Group>  
         
