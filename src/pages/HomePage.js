@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Counter from '../components/Counter/Counter'
 import RoadMap from '../components/RoadMap/RoadMap'
@@ -7,6 +7,7 @@ import Mask from '../assets/Mask.png'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Footer from '../components/Footer/Footer';
+import {MdPlayArrow} from 'react-icons/md'
 
 import SuperWorld from '../assets/Superworld LOGO.png'
 import Enforceable from '../assets/EnforceableNFT LOGO.png'
@@ -254,6 +255,7 @@ z-index:99;
 display:flex;
 align-items:center;
 justify-content:center;
+position:relative;
 
 
 
@@ -266,6 +268,23 @@ const Video=styled.video`
 width:${props=>props.potrait==="true"? "250px" : "100%"};
 height:100%;
 border-radius:${props=>props.potrait==="true"? "20px" : "30px"};
+
+`
+const VideoButton=styled.button`
+position:absolute;
+z-index:99;
+top:50%;
+left:calc(50% - 25px);
+height:50px;
+width:50px;
+display:flex;
+align-items:center;
+border-radius:50%;
+
+display:${props=>props.play1 ? 'none':'' };
+display:${props=>props.play2 ? 'none':'' }
+display:${props=>props.play3 ? 'none':'' }
+
 `
 
 const PartnerShipContainer=styled.div`
@@ -371,6 +390,22 @@ color:#000;`
 
 
 const HomePage = () => {
+  const videos1=useRef(); 
+  const videos2=useRef(); 
+  const videos3=useRef(); 
+
+const [play1,setplay1]=useState(false);
+const [play2,setplay2]=useState(false);
+const [play3,setplay3]=useState(false);
+
+
+useLayoutEffect(() => {
+  if (play1) videos1.current.play();
+  if (play2) videos2.current.play();
+  if (play3) videos3.current.play();
+
+}, [play1,play2,play3])
+  
   return (
     <Container>
 
@@ -421,19 +456,20 @@ const HomePage = () => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video controls autoplay loop muted playsinline>
-           <source src={video1} type='video/mp4'/>
-           <source src={video1} type='video/quicktime'/>
+            <Video controls muted  src={video1} type='video/quicktime' ref={videos1}> 
             </Video>
+            <VideoButton onClick={()=>setplay1(true)} play1={play1}>
+               <MdPlayArrow  size={'50px'} />
+            </VideoButton>
           </GroupVideo>
         </Group>
-
+=
         <Group>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
-           <source src={video2} type='video/mp4'/>
-           <source src={video2} type='video/quicktime'/>
-            </Video>
+            <Video src={video2} controls muted   type="video/quicktime" potrait="true"   ref={videos2}/>
+            <VideoButton onClick={()=>setplay2(true)} play2={play2}>
+               <MdPlayArrow  size={'50px'} />
+            </VideoButton>
           </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
@@ -459,10 +495,10 @@ const HomePage = () => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
-           <source src={video3}type='video/mp4'/>
-           <source src="../assets/Pressvideo.mp4" type='video/quicktime'/>
-            </Video>
+            <Video src={video3} controls playsInline  type='video/mp4' potrait="true" ref={videos3}/>
+            <VideoButton onClick={()=>setplay3(true)} play3={play3}>
+               <MdPlayArrow  size={'50px'} />
+            </VideoButton>
           </GroupVideo>
         </Group>  
         
