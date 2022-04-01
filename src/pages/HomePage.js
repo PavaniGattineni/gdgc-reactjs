@@ -422,6 +422,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video controls autoplay loop muted playsinline>
+           <source src={video1} type='video/mp4'/>
            <source src={video1} type='video/quicktime'/>
             </Video>
           </GroupVideo>
@@ -430,6 +431,7 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
           <Video controls autoplay loop muted playsinline>
+           <source src={video2} type='video/mp4'/>
            <source src={video2} type='video/quicktime'/>
             </Video>
           </GroupVideo>
@@ -457,9 +459,8 @@ const HomePage = () => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
-           <source src={video3} type='video/mp4'/>
-            </Video>
+         
+            <video src="/assets/Pressvideo.mp4" controls muted autoPlay={"autoplay"}  preLoad="auto" loop></video>
           </GroupVideo>
         </Group>  
         
