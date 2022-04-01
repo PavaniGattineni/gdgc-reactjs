@@ -16,8 +16,8 @@ import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 
 
 
-import video1 from '../assets/Kobe.MOV'
-import video2 from '../assets/Makeawish.MOV'
+import video1 from '../assets/small.mp4'
+// import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
 
 
@@ -456,7 +456,8 @@ useLayoutEffect(() => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video controls muted  src={video1} type='video/quicktime' ref={videos1}> 
+            <Video controls muted playsInline ref={videos1}>
+              <source src={video1} type='video/mp4' /> 
             </Video>
             <VideoButton onClick={()=>setplay1(true)} play1={play1}>
                <MdPlayArrow  size={'50px'} />
@@ -466,10 +467,10 @@ useLayoutEffect(() => {
 =
         <Group>
           <GroupVideo >
-            <Video src={video2} controls muted   type="video/quicktime" potrait="true"   ref={videos2}/>
+            {/* <Video src={video2} controls muted   potrait="true"   ref={videos2}/>
             <VideoButton onClick={()=>setplay2(true)} play2={play2}>
                <MdPlayArrow  size={'50px'} />
-            </VideoButton>
+            </VideoButton> */}
           </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
@@ -495,7 +496,7 @@ useLayoutEffect(() => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video src={video3} controls playsInline  type='video/mp4' potrait="true" ref={videos3}/>
+            <Video src={video3} controls playsInline   potrait="true" ref={videos3}/>
             <VideoButton onClick={()=>setplay3(true)} play3={play3}>
                <MdPlayArrow  size={'50px'} />
             </VideoButton>
