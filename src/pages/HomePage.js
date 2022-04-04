@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,  useState } from 'react'
 import styled from 'styled-components'
 import Counter from '../components/Counter/Counter'
 import RoadMap from '../components/RoadMap/RoadMap'
@@ -8,6 +8,7 @@ import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Footer from '../components/Footer/Footer';
 
+
 import SuperWorld from '../assets/Superworld LOGO.png'
 import Enforceable from '../assets/EnforceableNFT LOGO.png'
 import Makeawish from '../assets/Make-A-Wish Logo.png'
@@ -15,9 +16,13 @@ import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 
 
 
-import video1 from '../assets/Kobe.MOV'
+import video1 from '../assets/small.mp4'
 import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
+import { Player ,BigPlayButton} from 'video-react';
+import "../../node_modules/video-react/dist/video-react.css"
+// import { useDispatch ,useSelector} from 'react-redux';
+// import { fetchData } from '../redux/Actions/Data/data';
 
 
 const Container=styled.div`
@@ -41,6 +46,7 @@ font-size:18px;
 font-weight:700;
 text-align:center;
 margin-bottom:20px;
+
 
 @media screen and (min-width:800px){
 display:none;
@@ -254,6 +260,7 @@ z-index:99;
 display:flex;
 align-items:center;
 justify-content:center;
+position:relative;
 
 
 
@@ -262,7 +269,7 @@ justify-content:center;
   height:250px;
   }
 `
-const Video=styled.video`
+const Video=styled.div`
 width:${props=>props.potrait==="true"? "250px" : "100%"};
 height:100%;
 border-radius:${props=>props.potrait==="true"? "20px" : "30px"};
@@ -366,11 +373,59 @@ const Link=styled.a`
 text-decoration:none;
 font-size:14px;
 font-weight:700;
-z-index:999;
+z-index:99;
 color:#000;`
 
 
 const HomePage = () => {
+  //  const dispatch=useDispatch();
+  //  const blockchain=useSelector((state)=>state.blockchain);
+  //  const data=useSelector((state)=>state.data);
+    
+
+  //  const [CONFIG, SET_CONFIG] = useState({
+  //   CONTRACT_ADDRESS: "",
+  //   SCAN_LINK: "",
+  //   NETWORK: {
+  //     NAME: "",
+  //     SYMBOL: "",
+  //     ID: 0,
+  //   },
+  //   NFT_NAME: "",
+  //   SYMBOL: "",
+  //   MAX_SUPPLY: 1,
+  //   WEI_COST: 0,
+  //   DISPLAY_COST: 0,
+  //   GAS_LIMIT: 0,
+  //   MARKETPLACE: "",
+  //   MARKETPLACE_LINK: ""
+  // });
+
+  // const getData = () => {
+  //   if (blockchain.account !== "" && blockchain.smartContract !== null) {
+  //     dispatch(fetchData(blockchain.account));
+  //   }
+  // };
+
+  // const getConfig = async () => {
+  //   const configResponse = await fetch("/config/config.json", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   });
+  //   const config = await configResponse.json();
+  //   SET_CONFIG(config);
+  // };
+
+  // useEffect(()=>{
+  //   getData();
+  // },[]);
+
+  // useEffect(()=>{
+  //  getConfig();
+  // },[]);
+
   return (
     <Container>
 
@@ -421,18 +476,23 @@ const HomePage = () => {
               </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-            <Video controls autoplay loop muted playsinline>
-           <source src={video1} type='video/mp4'/>
-           <source src={video1} type='video/quicktime'/>
+            <Video>
+            <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+            <BigPlayButton position="center" />
+              <source src={video1} /> 
+            </Player>
             </Video>
+   
           </GroupVideo>
         </Group>
 
         <Group>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
-           <source src={video2} type='video/mp4'/>
-           <source src={video2} type='video/quicktime'/>
+            <Video potrait="true">
+          <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+            <BigPlayButton position="center" />
+              <source src={video2} /> 
+            </Player>
             </Video>
           </GroupVideo>
           <GroupInfo right="false">
@@ -459,9 +519,11 @@ const HomePage = () => {
             </GroupDesc>
           </GroupInfo>
           <GroupVideo >
-          <Video controls autoplay loop muted playsinline>
-           <source src={video3} type='video/mp4'/>
-           <source src={video3} type='video/quicktime'/>
+            <Video potrait="true">
+          <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+            <BigPlayButton position="center" />
+              <source src={video3} /> 
+            </Player>
             </Video>
           </GroupVideo>
         </Group>  
