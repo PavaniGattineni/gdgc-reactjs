@@ -420,7 +420,7 @@ const HomePage = () => {
 
   // useEffect(()=>{
   //   getData();
-  // },[]);
+  // },[blockchain.account ]);
 
   // useEffect(()=>{
   //  getConfig();
@@ -477,7 +477,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video>
-            <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+            <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'} >
             <BigPlayButton position="center" />
               <source src={video1} /> 
             </Player>
@@ -489,7 +489,7 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
-          <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+          <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
               <source src={video2} /> 
             </Player>
@@ -520,7 +520,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-          <Player playsInline fluid={false} width={'100%'} height={'100%'}>
+          <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
               <source src={video3} /> 
             </Player>
