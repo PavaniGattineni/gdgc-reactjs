@@ -9,7 +9,7 @@
     content: "";
     width: 6px;
     position: absolute;
-    height: 960px;
+    height: 1235px;
     top: 0;
     left: calc(50% - 3px);
   }
@@ -27,7 +27,7 @@
 }
 
 .ItemContainer {
-  height: 150px;
+  height: 200px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -52,8 +52,12 @@
     right: 15px;
     top: calc(50% - 40px);
   }
+  .Header1 {
+    top: calc(50% - 140px);
+  }
+
   h4 {
-    text-align: center;
+    text-align: left;
     font-size: 16px;
   }
   .Circle {
@@ -100,11 +104,13 @@
       right: 0;
       z-index: 99;
     }
-
+    .Header1 {
+      top: calc(50% - 95px);
+    }
     h1 {
       font-size: 14px;
       right: 10px;
-      top: calc(50% - 50px);
+      top: calc(50% - 40px);
     }
 
     h4 {

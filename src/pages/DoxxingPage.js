@@ -196,42 +196,37 @@ const DoxxingPage = () => {
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>
         </TitleContainer>
-        <VideoContainer src={video1} type='video/mp4' controls="true" muted>
+        <VideoContainer src={video1} type='video/mp4' controls={true} muted>
            <Arrow />
         </VideoContainer>
         <PartnersContainer>
 
            <Partner> 
              <PartnerImg /> 
-             <Name>@Zarba.Eth</Name>
-              <Position>Marketing Director</Position>
+             <Name>Zarba.eth</Name>
+              <Position>Creator</Position>
            </Partner>
            <Partner>
               <PartnerImg />
-              <Name>@Gadzzz.Eth</Name>
-              <Position>Technical Director</Position>
+              <Name>Gadzzz.eth</Name>
+              <Position>Creator</Position>
            </Partner>
            <Partner> 
             <PartnerImg />  
-            <Name>@Calabrese.Eth</Name>
-              <Position>Business Director</Position>
+            <Name>Bulolo.eth</Name>
+              <Position>Community Manager</Position>
             </Partner>
            <Partner>
               <PartnerImg />
-              <Name>@.Eth</Name>
-              <Position>Developer</Position>
+              <Name>Moshe.eth</Name>
+              <Position>In-House Curator</Position>
            </Partner>
            <Partner> 
               <PartnerImg />
-              <Name>@Alexei.Eth</Name>
-              <Position>Artist</Position>
+              <Name>Siraj.eth</Name>
+              <Position>Head Developer</Position>
            </Partner>
-      
-             <Partner> 
-              <PartnerImg/>
-              <Name>  @Studio90s</Name>
-              <Position>Consultants</Position>
-           </Partner>
+
         </PartnersContainer>
         <MaskContainer></MaskContainer>
         <Footer />

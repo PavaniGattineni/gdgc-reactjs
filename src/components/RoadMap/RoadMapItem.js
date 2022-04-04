@@ -13,7 +13,7 @@ artist and designer Moshe Douglas<br/>
 -Available to those who enter contact
 form through the website.</h4>
             <div className='Circle'>1</div>
-            <h1 className='Header'>Whitelist</h1>
+            <h1 className='Header1'>Whitelist <br/> (4/13/2022,<br/>Kobe’s Farewell<br/>  Game)</h1>
             </div>
             </div>
 
@@ -43,7 +43,16 @@ form through the website.</h4>
     I. 1 of 3 Rose Gold Kobe Bryant Signed Hublot and signed Nike Kobe Zoom VIII
     (Previously appraised at $2.6m+)<br/>
     II. Signed Kobe Bryant Jersey<br/>
-    III. Front Row Tickets to Laker game</h4>
+    III. Front Row Tickets to Laker game <br />
+    <b>
+      V1.5 Announcement<br/>
+    </b>
+    With our newly formed partnership with SuperWorldApp, we will release Version 1.5
+    which will allow for the digital version of the watch to have VR and wearable capabilities.
+    Officially taking one of the most rare sports memorabilia items in history, into the
+    metaverse.
+
+    </h4>
             <div className='Circle'>4</div>
             <h1 className='Header'>Reveal</h1>
             </div>
@@ -51,7 +60,8 @@ form through the website.</h4>
 
 <div className='ItemContainer'>
             <div className='inner'>
-            <h4 className='Desc'>The project founders have arranged for a charitable donation from the project to Make-a-Wish Foundation</h4>
+            <h4 className='Desc'>Community managers will donate a percentage of proceeds to the Make-a-Wish
+Foundation Greater LA, a Kobe Bryant favorite.</h4>
             <div className='Circle'>5</div>
             <h1 className='Header'>Donation</h1>
             </div>
@@ -60,7 +70,8 @@ form through the website.</h4>
 <div className='ItemContainer'>
 
             <div className='inner'>
-            <h4 className='Desc'>Club members will receive early access to future TLAC drops</h4>
+            <h4 className='Desc'>The ONE single Black Mamba Watch NFT holder will have the watch personally
+delivered, allowing for significant content and promo opportunities.</h4>
             <div className='Circle'>6</div>
             <h1 className='Header'>Asset Delivery</h1>
             </div>
