@@ -18,7 +18,6 @@ z-index:99;
 
 @media screen and (max-width:500px){
   padding-top:70px;
-  margin-bottom:50px;
   margin-top:200px;
 }
 

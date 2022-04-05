@@ -1,5 +1,4 @@
 import React from 'react'
-//import Data from '../../data'
 import RoadMapItem from './RoadMapItem'
 import './RoadMap.scss'
 

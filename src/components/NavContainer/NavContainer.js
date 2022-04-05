@@ -95,11 +95,12 @@ text-align:center;
 
 
 const LogoContainer=styled.div`
-width:250px;
-height:250px;
+width:300px;
+height:300px;
 position:absolute;
-top:0;
-left:calc(50% - 126.5px);
+top:-30px;
+left:calc(50% - 150px);
+
 
 @media screen and (max-width: 500px) {
   height:150px;

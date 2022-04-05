@@ -5,6 +5,9 @@ import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Mask from '../assets/Mask.png'
 import Footer from '../components/Footer/Footer'
 import video1 from '../assets/TheDoxxing.mp4'
+import Ixiono from '../assets/Ixiono.jpeg';
+import bulolo from '../assets/Bulolo.JPG'
+import Moshe from '../assets/Moshe.png'
 
 const Container=styled.div`
 width:100%;
@@ -141,8 +144,7 @@ z-index:99;
 
 `
 
- const PartnerImg=styled.div`
- background-color:#6B695E;
+ const PartnerImg=styled.img`
  width:100%;
  border-radius:30px;
  height:333.65px;
@@ -212,17 +214,17 @@ const DoxxingPage = () => {
               <Position>Creator</Position>
            </Partner>
            <Partner> 
-            <PartnerImg />  
+            <PartnerImg src={bulolo}/>  
             <Name>Bulolo.eth</Name>
               <Position>Community Manager</Position>
             </Partner>
            <Partner>
-              <PartnerImg />
+              <PartnerImg src={Moshe}/>
               <Name>Moshe.eth</Name>
               <Position>In-House Curator</Position>
            </Partner>
            <Partner> 
-              <PartnerImg />
+              <PartnerImg src={Ixiono}/>
               <Name>Siraj.eth</Name>
               <Position>Head Developer</Position>
            </Partner>

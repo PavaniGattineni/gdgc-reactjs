@@ -21,9 +21,9 @@ import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
 import { Player ,BigPlayButton} from 'video-react';
 import "../../node_modules/video-react/dist/video-react.css"
-//import { useDispatch ,useSelector} from 'react-redux';
-//import { fetchData } from '../redux/Actions/Data/data';
-//import { connect } from '../redux/Actions/blockchain/Blockchain';
+import { useDispatch ,useSelector} from 'react-redux';
+import { fetchData } from '../redux/Actions/Data/data';
+import { connect } from '../redux/Actions/blockchain/Blockchain';
 
 
 const Container=styled.div`
@@ -388,94 +388,89 @@ color:#000;`
 
 
 const HomePage = () => {
-  //  const dispatch=useDispatch();
-  //  const blockchain=useSelector((state)=>state.blockchain);
-  //  const data=useSelector((state)=>state.data);
-  //  const [claimingNft, setClaimingNft] = useState(false);
-  //  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
-  //  const [mintAmount, setMintAmount] = useState(1);
+   const dispatch=useDispatch();
+   const blockchain=useSelector((state)=>state.blockchain);
+   const data=useSelector((state)=>state.data);
+   const [claimingNft, setClaimingNft] = useState(false);
+   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+   const [mintAmount,setMintAmout]=useState(1)
     
 
-  //  const [CONFIG, SET_CONFIG] = useState({
-  //   CONTRACT_ADDRESS: "",
-  //   SCAN_LINK: "",
-  //   NETWORK: {
-  //     NAME: "",
-  //     SYMBOL: "",
-  //     ID: 0,
-  //   },
-  //   NFT_NAME: "",
-  //   SYMBOL: "",
-  //   MAX_SUPPLY: 1,
-  //   WEI_COST: 0,
-  //   DISPLAY_COST: 0,
-  //   GAS_LIMIT: 0,
-  //   MARKETPLACE: "",
-  //   MARKETPLACE_LINK: ""
-  // });
+   const [CONFIG, SET_CONFIG] = useState({
+    CONTRACT_ADDRESS: "",
+    SCAN_LINK: "",
+    NETWORK: {
+      NAME: "",
+      SYMBOL: "",
+      ID: 0,
+    },
+    NFT_NAME: "",
+    SYMBOL: "",
+    MAX_SUPPLY: 1,
+    WEI_COST: 0,
+    DISPLAY_COST: 0,
+    GAS_LIMIT: 0,
+    MARKETPLACE: "",
+    MARKETPLACE_LINK: ""
+  });
 
-  // const getData = () => {
-  //   if (blockchain.account !== "" && blockchain.smartContract !== null) {
-  //     dispatch(fetchData(blockchain.account));
-  //   }
-  // };
+  const getData = () => {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
 
-  // const getConfig = async () => {
-  //   const configResponse = await fetch("/config/config.json", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   });
-  //   const config = await configResponse.json();
-  //   SET_CONFIG(config);
-  // };
+  const getConfig = async () => {
+    const configResponse = await fetch("/config/config.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const config = await configResponse.json();
+    SET_CONFIG(config);
+  };
 
-  // const mintNFTs = () => {
-  //   let cost = CONFIG.WEI_COST;
-  //   let gasLimit = CONFIG.GAS_LIMIT;
-  //   let totalCostWei = String(cost * mintAmount);
-  //   let totalGasLimit = String(gasLimit * mintAmount);
-  //   console.log("Cost: ", totalCostWei);
-  //   console.log("Gas limit: ", totalGasLimit);
-  //   setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-  //   setClaimingNft(true);
-  //   blockchain.smartContract.methods
-  //     .mint(blockchain.account, mintAmount)
-  //     .send({
-  //       gasLimit: String(totalGasLimit),
-  //       to: CONFIG.CONTRACT_ADDRESS,
-  //       from: blockchain.account,
-  //       value: totalCostWei,
-  //     })
-  //     .once("error", (err) => {
-  //       console.log(err);
-  //       setFeedback("Sorry, something went wrong please try again later.");
-  //       setClaimingNft(false);
-  //     })
-  //     .then((receipt) => {
-  //       console.log(receipt);
-  //       setFeedback(
-  //         `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
-  //       );
-  //       setClaimingNft(false);
-  //       dispatch(fetchData(blockchain.account));
-  //     });
-  // };
+  const mintNFTs = () => {
+    let cost = CONFIG.WEI_COST;
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost * mintAmount);
+    let totalGasLimit = String(gasLimit * mintAmount);
+    console.log("Cost: ", totalCostWei);
+    console.log("Gas limit: ", totalGasLimit);
+    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setClaimingNft(true);
+    blockchain.smartContract.methods
+      .mint(blockchain.account,mintAmount)
+      .send({
+        gasLimit: String(totalGasLimit),
+        to: CONFIG.CONTRACT_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback(
+          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+        );
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
+  };
 
-  // useEffect(()=>{
-  //   getData();
-  // },[blockchain.account]);
+  useEffect(()=>{
+    getData();
+  },[blockchain.account]);
 
-  // useEffect(()=>{
-  //  getConfig();
-  // },[]);
+  useEffect(()=>{
+   getConfig();
+  },[]);
 
-  // useEffect(()=>{
-  //   if(blockchain.account === null){
-  //     dispatch(connect())
-  //   }
-  // },[])
 
   return (
     <Container>
@@ -484,19 +479,27 @@ const HomePage = () => {
 
         <TitleContainer>
           <Title>TLAC</Title>
-          <Desc>TLAC is revolutionizing the ownership of select ultra-luxury assets.</Desc>
+          <Desc>TLAC is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
           <MintContainer>
+            {
+              (blockchain.account === '' || blockchain.smartContract === null) ?
+              <MintButton onClick={(e)=>{
+                e.preventDefault();
+                dispatch(connect());
+                getData();
+              }}>
+                Mint
+              </MintButton>
+              :         
           <MintButton  
-          //  claimingNft={claimingNft}
-          //   disabled={claimingNft ? 1 : 0}
+           claimingNft={claimingNft}
+            disabled={claimingNft ? 1 : 0}
               onClick={(e) => {
               e.preventDefault();
-              // if(blockchain.account === null){
-              //   dispatch(connect());
-              // }
-              // mintNFTs();
-              // getData();
+              mintNFTs();
+              getData();
              }}>Mint</MintButton>
+            }
           </MintContainer>
         </TitleContainer>
         <Link href='https://discord.gg/9BvBTyN2S7'>
@@ -538,9 +541,8 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video>
-            <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'} >
+            <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline muted fluid={false} width={'100%'} height={'100%'} >
             <BigPlayButton position="center" />
-              <source src={video1} /> 
             </Player>
             </Video>
    
@@ -550,9 +552,9 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
-          <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'}>
+          <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" playsInline muted fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
-              <source src={video2} /> 
+    
             </Player>
             </Video>
           </GroupVideo>
@@ -581,9 +583,9 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-          <Player playsInline={true} muted={true} fluid={false} width={'100%'} height={'100%'}>
+          <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
-              <source src={video3} /> 
+          
             </Player>
             </Video>
           </GroupVideo>
