@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,  useState } from 'react'
 import styled from 'styled-components'
 import Counter from '../components/Counter/Counter'
 import RoadMap from '../components/RoadMap/RoadMap'
@@ -6,8 +6,8 @@ import frame from '../assets/Frame.png';
 import Mask from '../assets/Mask.png'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
-import Barcode from '../components/Barcode/Barcode'
 import Footer from '../components/Footer/Footer';
+
 
 import SuperWorld from '../assets/Superworld LOGO.png'
 import Enforceable from '../assets/EnforceableNFT LOGO.png'
@@ -15,9 +15,15 @@ import Makeawish from '../assets/Make-A-Wish Logo.png'
 import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 
 
+
 import video1 from '../assets/Kobe.MOV'
 import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
+import { Player ,BigPlayButton} from 'video-react';
+import "../../node_modules/video-react/dist/video-react.css"
+import { useDispatch ,useSelector} from 'react-redux';
+import { fetchData } from '../redux/Actions/Data/data';
+import { connect } from '../redux/Actions/blockchain/Blockchain';
 
 
 const Container=styled.div`
@@ -41,6 +47,7 @@ font-size:18px;
 font-weight:700;
 text-align:center;
 margin-bottom:20px;
+
 
 @media screen and (min-width:800px){
 display:none;
@@ -87,6 +94,11 @@ margin-top:35px;
 padding:10px;
 border-radius:14px;
 margin-bottom:120px;
+z-index:99;
+
+:hover{
+  background-color:#444;
+}
 
 @media screen and (max-width: 500px) {
   width:130px;
@@ -103,6 +115,10 @@ border:none;
 background-color:#000;
 color:#fff;
 border-radius:8px;
+cursor:pointer;
+z-index:99;
+
+
 
 @media screen and (max-width: 500px) {
   padding:10px 35px;
@@ -138,10 +154,11 @@ margin-bottom:40px;
 font-size:18px;
 font-weight:600;
 color:rgba(0, 0, 0, 0.6);
-margin-bottom:43px;
+margin-bottom:60px;
 
 @media screen and (max-width: 500px) {
   font-size:14px;
+  margin-bottom:90px;
   }
 `
 
@@ -245,12 +262,16 @@ z-index:99;
 `
 
 
-const GroupVideo=styled.video`
+const GroupVideo=styled.div`
 width:640px;
 height:486px;
 border-radius:30px;
 z-index:99;
-background-color:#6B695E;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+
 
 
 @media screen and (max-width: 1300px) {
@@ -258,13 +279,19 @@ background-color:#6B695E;
   height:250px;
   }
 `
+const Video=styled.div`
+width:${props=>props.potrait==="true"? "250px" : "100%"};
+height:100%;
+border-radius:${props=>props.potrait==="true"? "20px" : "30px"};
+`
+
 const PartnerShipContainer=styled.div`
 width:100%;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-margin-bottom:125px;
+margin-bottom:100px;
 position:relative; 
 
 
@@ -309,29 +336,23 @@ z-index:99;
 
 `
 
-const Partner=styled.div`
+
+const PartnerImg=styled.img`
 width:273px;
 height:104px;
 margin-right:67px;
-border-radius:20px;
-z-index:99;
+object-fit:contain;
 
 &:nth-child(4){
   margin:0px;
 }
-
 @media screen and (max-width: 1300px) {
-    margin:10px 0;  
+  margin:10px 0;  
 
-    &:nth-child(4){
-      margin:10px;
-    }
+  &:nth-child(4){
+    margin:10px;
   }
-`
-const PartnerImg=styled.img`
-width:100%;
-height:100%;
-object-fit:${props=>props.cover ==="true" ? 'cover' :'contain'};
+}
 `
 
 const MaskContainer=styled.div`
@@ -342,15 +363,7 @@ background:url(${Mask}) center no-repeat;
 top:-150px;
 `
 
-const BarcodeDesc=styled.p`
-font-size:14px;
-font-weight:600;
-margin:10px;
 
-@media screen and (max-width:900px){
-  margin-bottom:100px;
-}
-`
 const FrameContainer=styled.div`
 width:100%;
 height:100vh;
@@ -370,11 +383,95 @@ const Link=styled.a`
 text-decoration:none;
 font-size:14px;
 font-weight:700;
-z-index:999;
+z-index:99;
 color:#000;`
 
 
 const HomePage = () => {
+   const dispatch=useDispatch();
+   const blockchain=useSelector((state)=>state.blockchain);
+   const data=useSelector((state)=>state.data);
+   const [claimingNft, setClaimingNft] = useState(false);
+   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+   const [mintAmount,setMintAmout]=useState(1)
+    
+
+   const [CONFIG, SET_CONFIG] = useState({
+    CONTRACT_ADDRESS: "",
+    SCAN_LINK: "",
+    NETWORK: {
+      NAME: "",
+      SYMBOL: "",
+      ID: 0,
+    },
+    NFT_NAME: "",
+    SYMBOL: "",
+    MAX_SUPPLY: 1,
+    WEI_COST: 0,
+    DISPLAY_COST: 0,
+    GAS_LIMIT: 0,
+    MARKETPLACE: "",
+    MARKETPLACE_LINK: ""
+  });
+
+  const getData = () => {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
+    }
+  };
+
+  const getConfig = async () => {
+    const configResponse = await fetch("/config/config.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const config = await configResponse.json();
+    SET_CONFIG(config);
+  };
+
+  const mintNFTs = () => {
+    let cost = CONFIG.WEI_COST;
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost * mintAmount);
+    let totalGasLimit = String(gasLimit * mintAmount);
+    console.log("Cost: ", totalCostWei);
+    console.log("Gas limit: ", totalGasLimit);
+    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setClaimingNft(true);
+    blockchain.smartContract.methods
+      .mint(blockchain.account,mintAmount)
+      .send({
+        gasLimit: String(totalGasLimit),
+        to: CONFIG.CONTRACT_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback(
+          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+        );
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
+  };
+
+  useEffect(()=>{
+    getData();
+  },[blockchain.account]);
+
+  useEffect(()=>{
+   getConfig();
+  },[]);
+
+
   return (
     <Container>
 
@@ -384,7 +481,25 @@ const HomePage = () => {
           <Title>TLAC</Title>
           <Desc>TLAC is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
           <MintContainer>
-          <MintButton>Mint</MintButton>
+            {
+              (blockchain.account === '' || blockchain.smartContract === null) ?
+              <MintButton onClick={(e)=>{
+                e.preventDefault();
+                dispatch(connect());
+                getData();
+              }}>
+                Mint
+              </MintButton>
+              :         
+          <MintButton  
+           claimingNft={claimingNft}
+            disabled={claimingNft ? 1 : 0}
+              onClick={(e) => {
+              e.preventDefault();
+              mintNFTs();
+              getData();
+             }}>Mint</MintButton>
+            }
           </MintContainer>
         </TitleContainer>
         <Link href='https://discord.gg/9BvBTyN2S7'>
@@ -424,11 +539,25 @@ const HomePage = () => {
               are sold and held. The Luxury Asset Club will be stored and minted on the Polygon Network.
               </GroupDesc>
           </GroupInfo>
-          <GroupVideo src={video1} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video>
+            <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline muted fluid={false} width={'100%'} height={'100%'} >
+            <BigPlayButton position="center" />
+            </Player>
+            </Video>
+   
+          </GroupVideo>
         </Group>
 
         <Group>
-          <GroupVideo src={video2} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video potrait="true">
+          <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" playsInline muted fluid={false} width={'100%'} height={'100%'}>
+            <BigPlayButton position="center" />
+    
+            </Player>
+            </Video>
+          </GroupVideo>
           <GroupInfo right="false">
            <GroupTitle>Philanthropy</GroupTitle>
            <GroupDesc>
@@ -446,30 +575,30 @@ const HomePage = () => {
         <Group>
         
           <GroupInfo right="true">
-            <GroupTitle>Tokenizing Select Luxury Assets</GroupTitle>
+            <GroupTitle>In The Press</GroupTitle>
               <GroupDesc>
                 Over the last nine months of putting together this project, we have been fortunate enough to be
               featured in over 200 publications around the globe and seen in Times Square..Twice!
             </GroupDesc>
           </GroupInfo>
-          <GroupVideo src={video3} controls  type="video/mp4"></GroupVideo>
+          <GroupVideo >
+            <Video potrait="true">
+          <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline fluid={false} width={'100%'} height={'100%'}>
+            <BigPlayButton position="center" />
+          
+            </Player>
+            </Video>
+          </GroupVideo>
         </Group>  
         
         <PartnerShipContainer>
           <PartnerShipTitle>PARTNERSHIPS</PartnerShipTitle>
           <Partners>
-            <Partner>
-              <PartnerImg src={SuperWorld}/>
-            </Partner>
-            <Partner>
+           
+            <PartnerImg src={SuperWorld}/>
             <PartnerImg src={Makeawish}/>
-            </Partner>
-            <Partner>
             <PartnerImg src={Enforceable} cover="true"/>
-            </Partner>
-            <Partner>
             <PartnerImg src={woodlawn}/>
-            </Partner>
           </Partners>
          <MaskContainer></MaskContainer>
         </PartnerShipContainer>

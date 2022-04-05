@@ -14,10 +14,10 @@ position:relative;
 margin-top:295px;
 color:#fff;
 text-align:center;
+z-index:99;
 
 @media screen and (max-width:500px){
   padding-top:70px;
-  margin-bottom:50px;
   margin-top:200px;
 }
 
@@ -27,6 +27,7 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
+z-index:99;
 
 
 
@@ -47,10 +48,9 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
+z-index:99;
 
-@media screen and (max-width:500px){
- 
-}
+
 
 
 .link{
@@ -67,6 +67,10 @@ align-items:center;
 }
 `
 
+const Link2=styled.a`
+cursor:pointer;
+`
+
 const BarcodeContainer=styled.div`
 position:absolute;
 display:flex;
@@ -75,6 +79,9 @@ align-items:center;
 left:calc(50% - 175px);
 top:-200px;
 text-align:center;
+z-index:99;
+
+
 
 
 @media screen and (max-width:1200px){
@@ -88,6 +95,7 @@ const BarcodeDesc=styled.p`
 font-size:14px;
 font-weight:600;
 margin-top:10px;
+
 
 
 @media screen and (max-width:500px){
@@ -109,8 +117,8 @@ const Footer = () => {
         </Left>
 
         <Right>
-            <Link to={'/'} className='link'>Team</Link>
-            <Link to={'/'} className='link'>LinkTree</Link>
+            <Link to={'/doxxing'} className='link'>The Doxxing</Link>
+            <Link2 href='https://linktr.ee/theluxuryassetclub' className='link'>LinkTree</Link2>
             <Link to={'/faqs'} className='link'>FAQS</Link>
         </Right>    
 

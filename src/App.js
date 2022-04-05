@@ -8,12 +8,17 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import FaqsPage from './pages/FaqsPage';
 import AboutPage from './pages/AboutPage';
 import TermsPage from './pages/TermsPage';
+import ScrollToTop from './ScrollToTop';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 function App() {
   return (
     <div className="App">
-     <Router>
+   
+      <Router>
+       <ScrollToTop>
       <Routes>
       <Route index element={<UpdateRegisterPage/>}/>
       <Route path='/home' element={<HomePage/>} />
@@ -22,10 +27,9 @@ function App() {
       <Route path='/faqs' element={<FaqsPage />} />
       <Route path='/about' element={<AboutPage />} />
       <Route path='/terms' element={<TermsPage />} />
-
-    </Routes>
-
-    </Router>
+      </Routes>
+      </ScrollToTop>
+      </Router>
     </div>
   
 

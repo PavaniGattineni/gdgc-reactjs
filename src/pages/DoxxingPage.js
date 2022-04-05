@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import Barcode from '../components/Barcode/Barcode'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Mask from '../assets/Mask.png'
 import Footer from '../components/Footer/Footer'
 import video1 from '../assets/TheDoxxing.mp4'
+import Ixiono from '../assets/Ixiono.jpeg';
+import bulolo from '../assets/Bulolo.JPG'
+import Moshe from '../assets/Moshe.png'
 
 const Container=styled.div`
 width:100%;
@@ -44,10 +46,11 @@ margin-bottom:10px;
 const Desc=styled.p`
 font-size:24px;
 font-weight:600;
+padding:0 200px;
 
 @media screen and (max-width: 500px) {
    font-size:14px;
-
+   padding:0 20px;
    }
 `
 
@@ -78,18 +81,17 @@ cursor:pointer;
 }
 `
 const VideoContainer=styled.video`
-width: 1290px;
+width: 750px;
 height: 486px;
-border-radius:30px;
+border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
-background-color:#6B695E;
+
 margin-bottom:64px;
 
 @media screen and (max-width: 1200px) { 
   width:90%;
-  padding:20px;
   height:250px;
    }
 `
@@ -116,6 +118,7 @@ z-index:999;
  align-items:center;
  justify-content:center;
  flex-wrap:wrap;
+ gap:52.68px;
  margin-bottom:100px;
  z-index:99;
 
@@ -123,27 +126,25 @@ z-index:999;
   width:100%;
   flex-direction:column;
   margin-bottom:0px;
+  gap:20px;
     }
  `
  const Partner=styled.div`
  width: 333.65px;
 height: 421.45px;
-margin-right:52.68px;
-margin-bottom:52.68px;
 background-color:rgba(0, 0, 0, 0.1);
 border-radius:30px;
 z-index:99;
 
+
 @media screen and (max-width: 500px) { 
   width:250px;
   height:300px;
-  margin:20px;
     }
 
 `
 
- const PartnerImg=styled.div`
- background-color:#6B695E;
+ const PartnerImg=styled.img`
  width:100%;
  border-radius:30px;
  height:333.65px;
@@ -173,15 +174,7 @@ font-size:12px;
     }
 `
 
-const BarcodeDesc=styled.p`
-font-size:14px;
-font-weight:600;
-margin:10px;
 
-@media screen and (max-width: 900px) { 
-   margin-bottom:100px;
-    }
-`
 const MaskContainer=styled.div`
 width:100%;
 height:663px;
@@ -198,50 +191,47 @@ const DoxxingPage = () => {
 
         <TitleContainer>
            <Title>The Doxxing</Title>
-           <Desc>The Luxury Asset Club is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
+           <Desc>
+           The TLAC team aims to give club members the same security that comes with authenticating the team as we do with our luxury assets. As procurers of Luxury Assets, we believe authenticating the team secures the credibility and value of both the project and the community.
+           </Desc>
             <Link2 href='https://discord.gg/9BvBTyN2S7'>
             <DiscordButton2>Join Discord</DiscordButton2>
             </Link2>
         </TitleContainer>
-        <VideoContainer src={video1} type='video/mp4' controls >
+        <VideoContainer src={video1} type='video/mp4' controls={true} muted>
            <Arrow />
         </VideoContainer>
         <PartnersContainer>
 
            <Partner> 
              <PartnerImg /> 
-             <Name>@Zarba.Eth</Name>
-              <Position>Marketing Director</Position>
+             <Name>Zarba.eth</Name>
+              <Position>Creator</Position>
            </Partner>
            <Partner>
               <PartnerImg />
-              <Name>@Gadzzz.Eth</Name>
-              <Position>Technical Director</Position>
+              <Name>Gadzzz.eth</Name>
+              <Position>Creator</Position>
            </Partner>
            <Partner> 
-            <PartnerImg />  
-            <Name>@Calabrese.Eth</Name>
-              <Position>Business Director</Position>
+            <PartnerImg src={bulolo}/>  
+            <Name>Bulolo.eth</Name>
+              <Position>Community Manager</Position>
             </Partner>
            <Partner>
-              <PartnerImg />
-              <Name>@.Eth</Name>
-              <Position>Developer</Position>
+              <PartnerImg src={Moshe}/>
+              <Name>Moshe.eth</Name>
+              <Position>In-House Curator</Position>
            </Partner>
            <Partner> 
-              <PartnerImg />
-              <Name>@Alexei.Eth</Name>
-              <Position>Artist</Position>
+              <PartnerImg src={Ixiono}/>
+              <Name>Siraj.eth</Name>
+              <Position>Head Developer</Position>
            </Partner>
-      
-             <Partner> 
-              <PartnerImg/>
-              <Name>  @Studio90s</Name>
-              <Position>Consultants</Position>
-           </Partner>
+
         </PartnersContainer>
-        <Footer />
         <MaskContainer></MaskContainer>
+        <Footer />
         <SocialMedia />
 
      </Container>

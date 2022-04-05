@@ -2,26 +2,27 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
+import goldbrick from '../assets/Goldbrick.gif'
+import Barcode from '../components/Barcode/Barcode'
 
 import frame from '../assets/Frame.png'
 import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
-import Barcode from '../components/Barcode/Barcode'
-import Footer from '../components/Footer/Footer'
+import { MdClose } from 'react-icons/md';
 
 
 
 
 const Container = styled.div`
 position:relative;
-height: 100%;
 width: 100%;
+height:100%;
 display:flex;
 flex-direction:column;
 align-items:center;
 background: linear-gradient(90.13deg, #efe9ce 0.15%, #cfdbd9 99.93%);
-
+filter:${props=>props.popup ?'blur(10px)':''};
 `
 const TitleContainer = styled.div`
 display: flex;
@@ -178,29 +179,30 @@ padding: 10px;
 
 
 const Form = styled.form`
+width:100%;
 display:flex;
 align-items:center;
 flex-direction:column;
-margin:60px 0;
+margin:60px;
 
 @media screen and (max-width: 500px) {
-   margin:30px;
-
+   width:100%; 
+   margin:20px;
     }
 `
 
 const Whitelist = styled.div`
+width:100%;
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content:center;
 z-index:99;
+padding:30px;
 
-@media screen and (max-width: 580px) {
-      flex-direction:column;
-    }
-  
+
 @media screen and (max-width: 1200px) {
   flex-direction:column;
+  padding:10px;
    }
 `
 const WhitelistTitle = styled.h1`
@@ -213,7 +215,7 @@ font-weight:700;
    margin:10px 0;
     }
  
-@media screen and (max-width: 1200px) {
+@media (min-width:501px) and (max-width: 1200px) {
 margin:20px;
 font-size:35px;
 }
@@ -228,6 +230,7 @@ background-color: #f3f3f3;
 border-radius: 10px;
 font-size: 15px;
 font-weight: 700;
+width:362px;
 
 &::placeholder {
   color: #000;
@@ -235,6 +238,7 @@ font-weight: 700;
 
 @media screen and (max-width: 500px) {
  margin:10px 0; 
+ width:300px;
     }
 
  @media screen and (max-width: 1200px) {
@@ -261,21 +265,16 @@ background-color:#000;
   padding:10px 20px;
   font-size:14px;
   margin-top:10px;
+  margin-bottom:20px;
+
     }
 
-`
-
-
-const Desc=styled.p`
-font-size:12px;
-font-weight:bold;
-color:#000;
-margin:10px 0;
-
-@media screen and (max-width:900px){
-margin-bottom:100px;
+@media (min-width:501px) and (max-width: 1200px) {
+margin-bottom:50px;
 }
+
 `
+
 
 
 
@@ -300,19 +299,120 @@ z-index:1;
 
 `
 
+const BarcodeDesc=styled.p`
+font-size:14px;
+font-weight:600;
+margin:10px;
+
+
+@media screen and (max-width:500px){
+font-size:12px;
+
+}
+`
+
+const PopupContainer=styled.div`
+position:absolute;
+width:800px;
+height:360px;
+background-color:#f6f6f6;
+z-index:999;
+top:30%;
+right:calc(50% - 400px);
+border-radius:20px;
+display:flex;
+flex-direction:column;
+
+@media screen and (max-width:500px){
+   width:90%;
+   left:0;
+   margin:0 20px;
+    }
+`
+
+const PopupTitle=styled.h4`
+font-size:30px;
+font-weight:700;
+
+@media screen and (max-width:500px){
+   font-size:24px;
+     }
+`
+
+const PopupForm=styled.form`
+display:flex;
+flex-direction:column;
+align-items:center;
+position:relative;
+padding-top:20px;
+
+@media screen and (max-width:500px){
+ 
+      }
+`
+
+const PopupInput=styled.input`
+margin:20px;
+border:none;
+font-size:18px;
+background-color: #EFEFEF;
+color:#000;
+padding:10px 5px;
+border-radius:10px;
+
+@media screen and (max-width:500px){
+      width:320px;
+      margin:20px 0px;
+      }
+`
+
+const PopupSubmit=styled.button`
+margin-top:10px;
+padding:10px;
+width:150px;
+background-color:#000;
+color:#fff;
+border:none;
+border-radius:10px;
+
+
+:hover{
+    background-color:#444;
+}
+`
+
+const CloseButton=styled.button`
+position:absolute;
+top:5px;
+right:5px;
+background-color:#DC143C;
+border:none;
+padding:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:5px;
+
+:hover{
+    background-color:red;
+    transform:scale(1.2);
+}
+`
+
 const UpdateRegisterPage = () => {
 
 
     const [emailSent, setEmailSent] = useState(false)
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
-
+    const [popup,setPopup]=useState(true)
 
  
 
 
     const sendEmail = (e) => {
         e.preventDefault();
+        
         if (e.target.email.value !== '') {
             emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
                 'd1yMbjx7hhKgbin29').then((result) => {
@@ -321,6 +421,7 @@ const UpdateRegisterPage = () => {
                     setTimeout(
                         () => {
                             setEmailSent(false)
+                            closeModal();
                         },
                         3000
                     )
@@ -346,13 +447,18 @@ const UpdateRegisterPage = () => {
 
     }
 
-    return (
+    const closeModal=(e)=>{
+        e.preventDefault();
+        setPopup(false)
+    }
 
-        <Container>
+    return (
+<>
+        <Container popup={popup}>
 
             <TitleContainer>
                 <LogoContainer>
-                    <Logo src={logo} />
+                    <Logo src={goldbrick} />
                 </LogoContainer> 
             </TitleContainer>
                 <Link href='https://discord.gg/9BvBTyN2S7'>
@@ -372,8 +478,24 @@ const UpdateRegisterPage = () => {
 
             <Counter  />
 
+            <FrameContainer>
+            <Frame/>
+            </FrameContainer>
+    
+            <Barcode />
+            <BarcodeDesc>TLAC 2022. All Rights Reserved</BarcodeDesc>
+            <SocialMedia />
+            
+        </Container>
 
-            <Form onSubmit={sendEmail}>
+        {
+            popup ?
+            (
+                <PopupContainer>
+                <PopupForm onSubmit={sendEmail}>
+                <PopupTitle>Whitelist User</PopupTitle>
+                <PopupInput className='input' type={"text"} placeholder="Email..." name='email' />
+                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
                 {emailSent &&
                     <Success>
                         <Info className='info'>Your requested has been sucessfully submitted</Info>
@@ -391,25 +513,20 @@ const UpdateRegisterPage = () => {
                         <Info>Something went wrong. Please try again </Info>
                     </Fail>
                 }
-                <Whitelist>
-                    <WhitelistTitle>Whitelist Mint</WhitelistTitle>
-                    <Input className='input' type={"text"} placeholder="Email..." name='email' />
-                    <Input className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
-                    <Submit className='submit' type='submit'>Notify Me</Submit>
-                </Whitelist>
-            </Form>
-            
-            <Footer />
-            
-            <FrameContainer>
-            <Frame/>
-            </FrameContainer>
+                <PopupSubmit className='submit' type='submit'>Submit</PopupSubmit>
+                <CloseButton onClick={closeModal}><MdClose color='white' size={'20px'}/></CloseButton>
+                </PopupForm>
+            </PopupContainer>
+            )
+            :
+            ""
 
-            <SocialMedia />
-            
-        </Container>
+        }
+        
 
+            </>
 
+          
 
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/Goldbrick.gif'
 import {MdMenu} from 'react-icons/md'
 import { MdClose } from 'react-icons/md'
 
@@ -85,16 +85,22 @@ border-radius:8px;
 font-size:18px;
 font-weight:700;
 text-align:center;
+
+:hover{
+  background-color:#444;
+  color:#f6f6f6;
+}
 `
 
 
 
 const LogoContainer=styled.div`
-width:250px;
-height:250px;
+width:300px;
+height:300px;
 position:absolute;
-top:0;
-left:calc(50% - 126.5px);
+top:-30px;
+left:calc(50% - 150px);
+
 
 @media screen and (max-width: 500px) {
   height:150px;
@@ -135,7 +141,7 @@ const NavContainer = () => {
     <Container>
     <Left open={isOpen}>
        <Link href='/home'>TLAC</Link>
-       <Link href='#roadmap'>Roadmap</Link>
+       <Link href='/home#roadmap'>Roadmap</Link>
        <Link href='/doxxing'>The Doxxing</Link>
        <Link href='/contact'>Contact Us</Link>
       
