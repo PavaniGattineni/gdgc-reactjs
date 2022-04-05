@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.64900b05.css",
-    "main.js": "/static/js/main.02a1a101.js",
+    "main.js": "/static/js/main.83702fc9.js",
     "static/media/TheDoxxing.mp4": "/static/media/TheDoxxing.c0526fab9c1f6b5fb108.mp4",
     "static/media/Goldbrick.gif": "/static/media/Goldbrick.2d0d0f0498e5dc489ab0.gif",
     "static/media/Kobe.MOV": "/static/media/Kobe.346f19188b89b46903c0.MOV",
@@ -19,10 +19,10 @@
     "static/media/Ixiono.jpeg": "/static/media/Ixiono.ac587ff346b90a34d3ca.jpeg",
     "index.html": "/index.html",
     "main.64900b05.css.map": "/static/css/main.64900b05.css.map",
-    "main.02a1a101.js.map": "/static/js/main.02a1a101.js.map"
+    "main.83702fc9.js.map": "/static/js/main.83702fc9.js.map"
   },
   "entrypoints": [
     "static/css/main.64900b05.css",
-    "static/js/main.02a1a101.js"
+    "static/js/main.83702fc9.js"
   ]
 }

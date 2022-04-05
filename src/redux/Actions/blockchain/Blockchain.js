@@ -1,4 +1,4 @@
-import { web } from "synonyms/dictionary";
+
 import Web3 from "web3";
 import Web3EthContract from "web3-eth-contract";
 import { CONNECTION_FAILED, CONNECTION_REQUEST, CONNECTION_SUCCESS, UPDATE_ACCOUNT } from "../../Types/Blockchain/Blockchain";
