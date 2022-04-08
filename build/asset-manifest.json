@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.64900b05.css",
+    "main.js": "/static/js/main.fec72f2e.js",
+    "static/media/TheDoxxing.mp4": "/static/media/TheDoxxing.c0526fab9c1f6b5fb108.mp4",
+    "static/media/Goldbrick.gif": "/static/media/Goldbrick.2d0d0f0498e5dc489ab0.gif",
+    "static/media/Kobe.MOV": "/static/media/Kobe.346f19188b89b46903c0.MOV",
+    "static/media/Pressvideo.mp4": "/static/media/Pressvideo.7628ef8f05c7318f0ae8.mp4",
+    "static/media/Makeawish.MOV": "/static/media/Makeawish.a4379b29a42217b60c1f.MOV",
+    "static/media/GregPic.jpg": "/static/media/GregPic.b62176c8c4d866f8835d.jpg",
+    "static/media/Moshe.png": "/static/media/Moshe.605c7d8464edc5c0045c.png",
+    "static/media/AlexieyPic.png": "/static/media/AlexieyPic.3738f72e8768b6130149.png",
+    "static/media/Bulolo.JPG": "/static/media/Bulolo.6b724c926e9ed43a18fe.JPG",
+    "static/media/Woodlawn Media Logo.PNG": "/static/media/Woodlawn Media Logo.44f028648c3a0d1e2acb.PNG",
+    "static/media/Frame.png": "/static/media/Frame.99a449354026a837ab0a.png",
+    "static/media/Make-A-Wish Logo.png": "/static/media/Make-A-Wish Logo.edffd4911cc6b5c0b00b.png",
+    "static/media/Mask.png": "/static/media/Mask.bfb96e1ed38d3c689660.png",
+    "static/media/logo.png": "/static/media/logo.bb6a2492d0de189eb2db.png",
+    "static/media/Superworld LOGO.png": "/static/media/Superworld LOGO.6005d6aad652dbc17e01.png",
+    "static/media/EnforceableNFT LOGO.png": "/static/media/EnforceableNFT LOGO.351cf73ed6aaeb27b71b.png",
+    "static/media/Ixiono.jpeg": "/static/media/Ixiono.ac587ff346b90a34d3ca.jpeg",
+    "index.html": "/index.html",
+    "main.64900b05.css.map": "/static/css/main.64900b05.css.map",
+    "main.fec72f2e.js.map": "/static/js/main.fec72f2e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.64900b05.css",
+    "static/js/main.fec72f2e.js"
+  ]
+}
