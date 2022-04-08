@@ -95,17 +95,17 @@ text-align:center;
 
 
 const LogoContainer=styled.div`
-width:300px;
+width:400px;
 height:300px;
 position:absolute;
 top:-30px;
-left:calc(50% - 150px);
+left:calc(50% - 200px);
 
 
 @media screen and (max-width: 500px) {
   height:150px;
-  width:150px;
-  left:calc(50% - 75px);
+  width:200px;
+  left:calc(50% - 100px);
   top:0;
   }
 `

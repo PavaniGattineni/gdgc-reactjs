@@ -1,4 +1,3 @@
-
 import Web3 from "web3";
 import Web3EthContract from "web3-eth-contract";
 import { CONNECTION_FAILED, CONNECTION_REQUEST, CONNECTION_SUCCESS, UPDATE_ACCOUNT } from "../../Types/Blockchain/Blockchain";
@@ -79,7 +78,8 @@ export const connect = () => async (dispatch) => {
             );
             // Add listeners start
             ethereum.on("accountsChanged", (accounts) => {
-              dispatch(updateAccountRequest(accounts[0]));
+              dispatch(updateAccount(accounts[0]));
+      
             });
             ethereum.on("chainChanged", () => {
               window.location.reload();
@@ -97,9 +97,9 @@ export const connect = () => async (dispatch) => {
     };
 
   
-  export const updateAccount = (account) => async (dispatch) => {
-      dispatch(updateAccountRequest({ account: account }));
-      dispatch(fetchData(account));
-    };
- 
-  
+    export const updateAccount = (account) => {
+      return async (dispatch) => {
+        dispatch(updateAccountRequest({ account: account }));
+        dispatch(fetchData(account));
+      };
+    }

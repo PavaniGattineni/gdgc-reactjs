@@ -127,6 +127,28 @@ z-index:99;
   }
 `
 
+const Result=styled.div`
+background-color:#434343;
+display:flex;
+align-items:center;
+justify-content:center;
+width:800px;
+height:50px;
+padding:10px;
+margin-top:50px;
+border-radius:15px;
+color:#fff;
+font-size:18px;
+font-weight:600;
+
+
+@media screen and (max-width:500px){
+  width:95%;
+  font-size:14px;
+
+}
+`
+
 const RoadMapContainer=styled.div`
 width:1052px;
 display:flex;
@@ -191,11 +213,9 @@ height:100%;
 display:flex;
 align-items:center;
 flex-direction:column;
-margin-top:120px;
 
 @media screen and (max-width: 500px) {
   width:100%;
-  margin-top:20px;
   }
 `
 const Group=styled.div`
@@ -296,8 +316,7 @@ position:relative;
 
 
 @media screen and (max-width: 500px) {
-margin-bottom:20px;
-margin:0 20px;  
+margin:20px;  
   } 
 
   @media (min-width: 501px) and (max-width: 1300px){  
@@ -392,7 +411,7 @@ const HomePage = () => {
    const blockchain=useSelector((state)=>state.blockchain);
    const data=useSelector((state)=>state.data);
    const [claimingNft, setClaimingNft] = useState(false);
-   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+   const [feedback, setFeedback] = useState(``);
    const [mintAmount,setMintAmout]=useState(1)
     
 
@@ -409,9 +428,7 @@ const HomePage = () => {
     MAX_SUPPLY: 1,
     WEI_COST: 0,
     DISPLAY_COST: 0,
-    GAS_LIMIT: 0,
-    MARKETPLACE: "",
-    MARKETPLACE_LINK: ""
+    GAS_LIMIT: 0
   });
 
   const getData = () => {
@@ -436,9 +453,7 @@ const HomePage = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
-    console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+
     setClaimingNft(true);
     blockchain.smartContract.methods
       .mint(blockchain.account,mintAmount)
@@ -449,19 +464,30 @@ const HomePage = () => {
         value: totalCostWei,
       })
       .once("error", (err) => {
-        console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
         setClaimingNft(false);
+        setTimeout(()=>{
+          setFeedback('')
+        },3000)
       })
-      .then((receipt) => {
-        console.log(receipt);
+      .then(() => {
+  
         setFeedback(
           `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
         );
         setClaimingNft(false);
+        setTimeout(()=>{
+          setFeedback('')
+        },3000)
         dispatch(fetchData(blockchain.account));
       });
   };
+
+ const connectWallet=()=>{
+   if(blockchain.account === null){
+     dispatch(connect())
+   }
+ }
 
   useEffect(()=>{
     getData();
@@ -470,6 +496,14 @@ const HomePage = () => {
   useEffect(()=>{
    getConfig();
   },[]);
+
+  useEffect(()=>{
+     connectWallet()
+  },[])
+ 
+
+
+
 
 
   return (
@@ -480,6 +514,10 @@ const HomePage = () => {
         <TitleContainer>
           <Title>TLAC</Title>
           <Desc>TLAC is an exclusive online community of owners looking to revolutionize the <br/> ownership of rare exclusive collectibles.</Desc>
+          {
+             feedback.length > 0 &&
+               <Result>{feedback}</Result>
+           }
           <MintContainer>
             {
               (blockchain.account === '' || blockchain.smartContract === null) ?
@@ -499,8 +537,11 @@ const HomePage = () => {
               mintNFTs();
               getData();
              }}>Mint</MintButton>
+             
             }
           </MintContainer>
+
+         
         </TitleContainer>
         <Link href='https://discord.gg/9BvBTyN2S7'>
         <DiscordButton2>Join Discord </DiscordButton2>

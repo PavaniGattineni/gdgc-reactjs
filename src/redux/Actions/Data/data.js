@@ -31,15 +31,19 @@ export const fetchData  = () => async (dispatch) => {
       try {
         let totalSupply = await store.getState().blockchain.smartContract.methods.totalSupply().call();
         let cost = await store.getState().blockchain.smartContract.methods.cost().call();
+        let list=await store.getState().blockchain.smartContract.methods.getWhitelistUsers().call();
+        let whitelisted=await store.getState().blockchain.smartContract.methods.whitelisted(store.getState().blockchain.account).call();
+
   
         dispatch(fetchDataSuccess({
               totalSupply,
-              cost
+              cost,
+              list,
+              whitelisted
             }
         )
         );
       } catch (err) {
-        console.log(err);
         dispatch(
          fetchDataFailed(err.message)
        );

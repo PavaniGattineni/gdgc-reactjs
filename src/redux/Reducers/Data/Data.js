@@ -23,6 +23,8 @@ const initialState = {
           loading: false,
           totalSupply: action.payload.totalSupply,
           cost: action.payload.cost,
+          list:action.payload.list,
+          whitelisted:action.payload.whitelisted,
           error: false,
           errorMsg: "",
         };

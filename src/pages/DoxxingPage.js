@@ -8,6 +8,8 @@ import video1 from '../assets/TheDoxxing.mp4'
 import Ixiono from '../assets/Ixiono.jpeg';
 import bulolo from '../assets/Bulolo.JPG'
 import Moshe from '../assets/Moshe.png'
+import Alexiey from '../assets/AlexieyPic.png'
+import Greg from '../assets/GregPic.jpg'
 
 const Container=styled.div`
 width:100%;
@@ -181,7 +183,8 @@ height:663px;
 position:absolute;
 background:url(${Mask}) center no-repeat;
 bottom:100px;
-z-index:1;
+left:5%;
+
 `
 
 const DoxxingPage = () => {
@@ -204,12 +207,12 @@ const DoxxingPage = () => {
         <PartnersContainer>
 
            <Partner> 
-             <PartnerImg /> 
+             <PartnerImg src={Alexiey}/> 
              <Name>Zarba.eth</Name>
               <Position>Creator</Position>
            </Partner>
            <Partner>
-              <PartnerImg />
+              <PartnerImg src={Greg}/>
               <Name>Gadzzz.eth</Name>
               <Position>Creator</Position>
            </Partner>

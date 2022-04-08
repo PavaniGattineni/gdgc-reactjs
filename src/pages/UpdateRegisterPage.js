@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import emailjs from 'emailjs-com'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
@@ -10,6 +10,9 @@ import { useState } from 'react'
 import Counter from '../components/Counter/Counter'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import { MdClose } from 'react-icons/md';
+import {useDispatch,useSelector} from 'react-redux';
+import {fetchData} from '../redux/Actions/Data/data'
+import {connect} from '../redux/Actions/blockchain/Blockchain'
 
 
 
@@ -178,106 +181,6 @@ padding: 10px;
 `
 
 
-const Form = styled.form`
-width:100%;
-display:flex;
-align-items:center;
-flex-direction:column;
-margin:60px;
-
-@media screen and (max-width: 500px) {
-   width:100%; 
-   margin:20px;
-    }
-`
-
-const Whitelist = styled.div`
-width:100%;
-display: flex;
-align-items: center;
-justify-content:center;
-z-index:99;
-padding:30px;
-
-
-@media screen and (max-width: 1200px) {
-  flex-direction:column;
-  padding:10px;
-   }
-`
-const WhitelistTitle = styled.h1`
-margin-right: 25px;
-font-size:35px;
-font-weight:700;
-
-@media screen and (max-width: 500px) {
- font-size:24px;
-   margin:10px 0;
-    }
- 
-@media (min-width:501px) and (max-width: 1200px) {
-margin:20px;
-font-size:35px;
-}
-`
-
-const Input = styled.input`
-margin-right: 25px;
-outline: none;
-padding: 20px;
-border: none;
-background-color: #f3f3f3;
-border-radius: 10px;
-font-size: 15px;
-font-weight: 700;
-width:362px;
-
-&::placeholder {
-  color: #000;
-}
-
-@media screen and (max-width: 500px) {
- margin:10px 0; 
- width:300px;
-    }
-
- @media screen and (max-width: 1200px) {
-margin:20px;
- }    
-`
-
-const Submit = styled.button`
-color:#fff;
-padding:20px 40px;
-width:187px;
-border:none;
-border-radius:10px;
-font-size:20px;
-font-weight:700;
-background-color:#000;
-
-&:hover{
-    background-color:#444;
-    color:#f6f6f6;
-}
-
-@media screen and (max-width: 500px) {
-  padding:10px 20px;
-  font-size:14px;
-  margin-top:10px;
-  margin-bottom:20px;
-
-    }
-
-@media (min-width:501px) and (max-width: 1200px) {
-margin-bottom:50px;
-}
-
-`
-
-
-
-
 const FrameContainer=styled.div`
 width:100%;
 height:100vh;
@@ -286,7 +189,8 @@ top:22%;
 z-index:1;
 
 @media screen and (max-width:500px){
-    top:18%;
+top:20%;
+height:600px;
 }
 `
 
@@ -346,9 +250,6 @@ align-items:center;
 position:relative;
 padding-top:20px;
 
-@media screen and (max-width:500px){
- 
-      }
 `
 
 const PopupInput=styled.input`
@@ -357,7 +258,7 @@ border:none;
 font-size:18px;
 background-color: #EFEFEF;
 color:#000;
-padding:10px 5px;
+padding:10px 30px;
 border-radius:10px;
 
 @media screen and (max-width:500px){
@@ -399,6 +300,28 @@ border-radius:5px;
 }
 `
 
+const PopupInfo=styled.div`
+background-color:#434343;
+display:flex;
+align-items:center;
+justify-content:center;
+width:600px;
+height:30px;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+color:#fff;
+font-size:16px;
+font-weight:600;
+
+
+@media screen and (max-width:500px){
+  width:95%;
+  font-size:14px;
+
+}
+`
+
 const UpdateRegisterPage = () => {
 
 
@@ -406,14 +329,106 @@ const UpdateRegisterPage = () => {
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
     const [popup,setPopup]=useState(true)
+    const [list,setList]=useState();
+    const [listed,setListed]=useState(false)
+
+    const [CONFIG, SET_CONFIG] = useState({
+        CONTRACT_ADDRESS: "",
+        SCAN_LINK: "",
+        MAX_SUPPLY: 1,
+        WEI_COST: 0,
+        DISPLAY_COST: 0,
+        GAS_LIMIT: 0,
+      });
+
+
+    const dispatch=useDispatch();
+    const blockchain=useSelector((state)=>state.blockchain);
+    const data=useSelector((state)=>state.data);
+
+      
 
  
+    const getConfig = async () => {
+        const configResponse = await fetch("/config/config.json", {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const config = await configResponse.json();
+        SET_CONFIG(config);
+      };
 
+    const getData = () => {
+        if (blockchain.account !== "" && blockchain.smartContract !== null) {
+          dispatch(fetchData(blockchain.account));
+        }
+      };
+
+      const connectWallet=()=>{
+        if(blockchain.account === null){
+          dispatch(connect())
+        }
+      }
+
+  
+
+
+      useEffect(()=>{
+        getData();
+      },[blockchain.account]);
+
+      useEffect(()=>{
+        getConfig();
+       },[]);
+
+      useEffect(()=>{
+        connectWallet()
+     },[])
+      
+     useEffect(()=>{
+         setList(data.list)
+     },[data])
+
+      
+
+
+   
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalGasLimit = String(gasLimit);
+    
+    
+    const whiteList=()=>{
+          const whitelisted=data.whitelisted;
+            if(whitelisted){
+               setListed(true)
+            }
+            else{
+            blockchain.smartContract.methods.whitelistUser(blockchain.account).send({
+            gasLimit: String(totalGasLimit),
+             to: CONFIG.CONTRACT_ADDRESS,
+            from: blockchain.account,
+            }).then(()=>{
+                console.log('success');
+                getData();
+            })
+           }
+
+        // blockchain.smartContract.methods.removeWhitelistUser(blockchain.account).send({from:blockchain.account})
+
+      }
+    
 
     const sendEmail = (e) => {
         e.preventDefault();
+        if(blockchain.account === null){
+            dispatch(connect());
+        }else{
         
-        if (e.target.email.value !== '') {
+        if (e.target.email.value !== '' && e.target.walletAdd.value !== '') {
+            whiteList();
+            if(listed){
             emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
                 'd1yMbjx7hhKgbin29').then((result) => {
                     console.log(result.text)
@@ -434,6 +449,7 @@ const UpdateRegisterPage = () => {
                         3000
                     )
                 })
+            }
         } else {
             setInvalid(true)
             setTimeout(
@@ -444,7 +460,7 @@ const UpdateRegisterPage = () => {
             )
         }
 
-
+    }
     }
 
     const closeModal=(e)=>{
@@ -494,17 +510,27 @@ const UpdateRegisterPage = () => {
                 <PopupContainer>
                 <PopupForm onSubmit={sendEmail}>
                 <PopupTitle>Whitelist User</PopupTitle>
+                {
+                    blockchain.account === null &&
+                <PopupInfo>Please Connect your Wallet</PopupInfo>
+                }
                 <PopupInput className='input' type={"text"} placeholder="Email..." name='email' />
                 <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
                 {emailSent &&
                     <Success>
-                        <Info className='info'>Your requested has been sucessfully submitted</Info>
+                        <Info className='info'>You are whitelisted successfully</Info>
                     </Success>
+                }
+                {
+                    listed &&
+                    <Fail>
+                        <Info className='info' >You are already whitelisted</Info>
+                    </Fail>
                 }
                 {
                     invalid &&
                     <Fail>
-                        <Info className='info'>Please enter the Email Address</Info>
+                        <Info className='info'>Please enter the crendentials</Info>
                     </Fail>
                 }
                 {
@@ -513,7 +539,11 @@ const UpdateRegisterPage = () => {
                         <Info>Something went wrong. Please try again </Info>
                     </Fail>
                 }
+  
+                  
+             
                 <PopupSubmit className='submit' type='submit'>Submit</PopupSubmit>
+        
                 <CloseButton onClick={closeModal}><MdClose color='white' size={'20px'}/></CloseButton>
                 </PopupForm>
             </PopupContainer>
@@ -522,12 +552,7 @@ const UpdateRegisterPage = () => {
             ""
 
         }
-        
-
-            </>
-
-          
-
+  </>
     )
 }
 
