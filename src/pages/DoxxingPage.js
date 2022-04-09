@@ -10,6 +10,7 @@ import bulolo from '../assets/Bulolo.JPG'
 import Moshe from '../assets/Moshe.png'
 import Alexiey from '../assets/AlexieyPic.png'
 import Greg from '../assets/GregPic.jpg'
+import Juju from '../assets/Juju.jpeg'
 
 const Container=styled.div`
 width:100%;
@@ -230,6 +231,11 @@ const DoxxingPage = () => {
               <PartnerImg src={Ixiono}/>
               <Name>Siraj.eth</Name>
               <Position>Head Developer</Position>
+           </Partner>
+           <Partner> 
+              <PartnerImg src={Juju}/>
+              <Name>Juju.eth</Name>
+              <Position>Social Media Manager</Position>
            </Partner>
 
         </PartnersContainer>
