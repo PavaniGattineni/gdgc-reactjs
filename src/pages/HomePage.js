@@ -20,7 +20,7 @@ import video1 from '../assets/Kobe.MOV'
 import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
 import { Player ,BigPlayButton} from 'video-react';
-import "../../node_modules/video-react/dist/video-react.css"
+
 import { useDispatch ,useSelector} from 'react-redux';
 import { fetchData } from '../redux/Actions/Data/data';
 import { connect } from '../redux/Actions/blockchain/Blockchain';
