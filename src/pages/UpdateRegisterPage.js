@@ -331,6 +331,8 @@ const UpdateRegisterPage = () => {
     const [popup,setPopup]=useState(true)
     const [list,setList]=useState();
     const [listed,setListed]=useState(false)
+    const [email,setEmail]=useState('');
+    const [address,setAddress]=useState('');
 
     const [CONFIG, SET_CONFIG] = useState({
         CONTRACT_ADDRESS: "",
@@ -345,6 +347,7 @@ const UpdateRegisterPage = () => {
     const dispatch=useDispatch();
     const blockchain=useSelector((state)=>state.blockchain);
     const data=useSelector((state)=>state.data);
+    
 
       
 
@@ -399,26 +402,11 @@ const UpdateRegisterPage = () => {
     let totalGasLimit = String(gasLimit);
     
     
-    const whiteList=()=>{
-          const whitelisted=data.whitelisted;
-            if(whitelisted){
-               setListed(true)
-            }
-            else{
-            blockchain.smartContract.methods.whitelistUser(blockchain.account).send({
-            gasLimit: String(totalGasLimit),
-             to: CONFIG.CONTRACT_ADDRESS,
-            from: blockchain.account,
-            }).then(()=>{
-                console.log('success');
-                getData();
-            })
-           }
 
-        // blockchain.smartContract.methods.removeWhitelistUser(blockchain.account).send({from:blockchain.account})
+          
 
-      }
-    
+
+  
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -427,31 +415,54 @@ const UpdateRegisterPage = () => {
         }else{
         
         if (e.target.email.value !== '' && e.target.walletAdd.value !== '') {
-            whiteList();
-            if(listed){
-            emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
-                'd1yMbjx7hhKgbin29').then((result) => {
-                    console.log(result.text)
-                    setEmailSent(true)
-                    setTimeout(
-                        () => {
-                            setEmailSent(false)
-                            closeModal();
-                        },
-                        3000
-                    )
-                }, (error) => {
-                    setError(true)
-                    setTimeout(
-                        () => {
-                            setError(false)
-                        },
-                        3000
-                    )
-                })
+            const whitelisted=data.whitelisted;
+            if(whitelisted){
+               setListed(true)
+               setEmail('')
+               setAddress('')
+               setTimeout(
+                () => {
+               setListed(false);
+                },
+                3000
+            )
             }
-        } else {
+            else{
+            blockchain.smartContract.methods.whitelistUser(blockchain.account).send({
+            gasLimit: String(totalGasLimit),
+             to: CONFIG.CONTRACT_ADDRESS,
+            from: blockchain.account,
+            }).then(()=>{
+           getData();
+           emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
+           'd1yMbjx7hhKgbin29').then((result) => {
+               setEmailSent(true)
+               setEmail('')
+               setAddress('')
+               setTimeout(
+                   () => {
+                       setEmailSent(false)
+                       closeModal();
+                   },
+                   3000
+               )
+           }, (error) => {
+               setError(true)
+               setEmail('')
+               setAddress('')
+               setTimeout(
+                   () => {
+                       setError(false)
+                   },
+                   3000
+               )
+           })
+            })
+           }
+        } else{
             setInvalid(true)
+            setEmail('')
+            setAddress('')
             setTimeout(
                 () => {
                     setInvalid(false)
@@ -461,10 +472,13 @@ const UpdateRegisterPage = () => {
         }
 
     }
-    }
 
-    const closeModal=(e)=>{
-        e.preventDefault();
+    // blockchain.smartContract.methods.removeWhitelistUser(blockchain.account).send({from:blockchain.account})
+
+}
+    
+
+    const closeModal=()=>{
         setPopup(false)
     }
 
@@ -514,12 +528,14 @@ const UpdateRegisterPage = () => {
                     blockchain.account === null &&
                 <PopupInfo>Please Connect your Wallet</PopupInfo>
                 }
-                <PopupInput className='input' type={"text"} placeholder="Email..." name='email' />
-                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" />
-                {emailSent &&
+                <PopupInput className='input' type={"text"} placeholder="Email..." name='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" value={address} onChange={(e)=>setAddress(e.target.value)}/>
+                {emailSent &&  !listed ?
                     <Success>
                         <Info className='info'>You are whitelisted successfully</Info>
-                    </Success>
+                    </Success> 
+                    :
+                    ""
                 }
                 {
                     listed &&
