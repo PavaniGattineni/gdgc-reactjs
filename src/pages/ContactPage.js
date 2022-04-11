@@ -228,10 +228,6 @@ margin-bottom:20px;
 @media screen and (min-width:800px){
 display:none;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ff05b265de491990818c2251cdd92d44db20fbc
 `
 
 

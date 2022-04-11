@@ -10,7 +10,7 @@ const SubmitForm = (data) => async (dispatch) => {
   
   try {
     await axios.post(
-      `http://52.66.148.254/api/contact/contact-us`,data, {
+      `http://13.126.190.187/api/contact/contact-us`,data, {
         headers: {
           'content-type': 'application/json'
         }}

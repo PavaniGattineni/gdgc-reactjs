@@ -582,7 +582,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video>
-            <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline muted fluid={false} width={'100%'} height={'100%'} >
+            <Player src={video1} playsInline muted fluid={false} width={'100%'} height={'100%'} >
             <BigPlayButton position="center" />
             </Player>
             </Video>
@@ -593,7 +593,7 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
-          <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" playsInline muted fluid={false} width={'100%'} height={'100%'}>
+          <Player src={video2} playsInline muted fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
     
             </Player>
@@ -624,7 +624,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-          <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline fluid={false} width={'100%'} height={'100%'}>
+          <Player src={video3} playsInline fluid={false} width={'100%'} height={'100%'}>
             <BigPlayButton position="center" />
           
             </Player>
