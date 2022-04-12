@@ -33,13 +33,14 @@ export const fetchData  = () => async (dispatch) => {
         let cost = await store.getState().blockchain.smartContract.methods.cost().call();
         let list=await store.getState().blockchain.smartContract.methods.getWhitelistUsers().call();
         let whitelisted=await store.getState().blockchain.smartContract.methods.whitelisted(store.getState().blockchain.account).call();
-
+        let presale =await store.getState().blockchain.smartContract.methods.PresaleMint().call();
   
         dispatch(fetchDataSuccess({
               totalSupply,
               cost,
               list,
-              whitelisted
+              whitelisted,
+              presale
             }
         )
         );

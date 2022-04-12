@@ -412,7 +412,9 @@ const HomePage = () => {
    const data=useSelector((state)=>state.data);
    const [claimingNft, setClaimingNft] = useState(false);
    const [feedback, setFeedback] = useState(``);
-   const [mintAmount,setMintAmout]=useState(1)
+   const whitelisted=data.whitelisted;
+   const presale=data.presale;
+
     
 
    const [CONFIG, SET_CONFIG] = useState({
@@ -451,12 +453,12 @@ const HomePage = () => {
   const mintNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    let totalCostWei = String(cost);
+    let totalGasLimit = String(gasLimit);
 
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account,mintAmount)
+      .mint(blockchain.account)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -518,6 +520,10 @@ const HomePage = () => {
              feedback.length > 0 &&
                <Result>{feedback}</Result>
            }
+           {
+            presale && !whitelisted ?
+               <Result>You're not whitelisted for Presale Mint</Result> : '' 
+           }
           <MintContainer>
             {
               (blockchain.account === '' || blockchain.smartContract === null) ?
@@ -525,15 +531,17 @@ const HomePage = () => {
                 e.preventDefault();
                 dispatch(connect());
                 getData();
+
               }}>
                 Mint
               </MintButton>
               :         
           <MintButton  
            claimingNft={claimingNft}
-            disabled={claimingNft ? 1 : 0}
+            disabled={claimingNft || !whitelisted ? 1 : 0}
               onClick={(e) => {
               e.preventDefault();
+              console.log('hi')
               mintNFTs();
               getData();
              }}>Mint</MintButton>

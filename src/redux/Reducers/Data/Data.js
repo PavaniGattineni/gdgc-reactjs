@@ -25,6 +25,7 @@ const initialState = {
           cost: action.payload.cost,
           list:action.payload.list,
           whitelisted:action.payload.whitelisted,
+          presale:action.payload.presale,
           error: false,
           errorMsg: "",
         };
