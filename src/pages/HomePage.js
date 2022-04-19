@@ -623,27 +623,31 @@ const HomePage = () => {
                    {
            owner &&
            <OwnerContainer>
-             <ButtonContainer>
-             <Button onClick={publicsale}>PublicSale</Button>
-             <Button onClick={PickWinner}>PickWinner</Button>
-             <Button onClick={Reveal}>Reveal</Button>
-             </ButtonContainer>
+         
              {
-               totalsupply > CONFIG.MAX_SUPPLY ?
+               totalsupply < CONFIG.MAX_SUPPLY ?
 <>
+
 <WinnersTitle>Minted</WinnersTitle>
 <WinnersTitle>{totalsupply}/{CONFIG.MAX_SUPPLY}</WinnersTitle>
+<Button onClick={publicsale}>PublicSale</Button>
+
 </>
 
 :
 <>
-<WinnersTitle>NFT's are sold out</WinnersTitle>
+
 </>
 
              }
         
 
-             <WinnersTitle>WINNERS</WinnersTitle>
+        <WinnersTitle>NFT's are sold out</WinnersTitle>
+<ButtonContainer>
+             <Button onClick={PickWinner}>PickWinner</Button>
+             <Button onClick={Reveal}>Reveal</Button>
+ </ButtonContainer>
+ <WinnersTitle>WINNERS</WinnersTitle>
              <WinnerList>
                 {
                   winners.length === 0 ?
@@ -730,6 +734,8 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
+            <ReactPlayer height={'100%'} width={'100%'}  url={""} />
+
             </Video>
           </GroupVideo>
           <GroupInfo right="false">
@@ -757,7 +763,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-           
+            <ReactPlayer height={'100%'} width={'100%'}  url={"https://youtube.com/shorts/ToJPfixYY4Q?feature=share"} />    
             </Video>
           </GroupVideo>
         </Group>  
