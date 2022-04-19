@@ -9,8 +9,7 @@ import FaqsPage from './pages/FaqsPage';
 import AboutPage from './pages/AboutPage';
 import TermsPage from './pages/TermsPage';
 import ScrollToTop from './ScrollToTop';
-import { Provider } from 'react-redux';
-import store from './redux/store';
+
 
 
 function App() {

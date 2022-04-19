@@ -19,11 +19,11 @@ import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 import video1 from '../assets/Kobe.MOV'
 import video2 from '../assets/Makeawish.MOV'
 import video3 from '../assets/Pressvideo.mp4'
-import { Player ,BigPlayButton} from 'video-react';
-import "../../node_modules/video-react/dist/video-react.css"
+import ReactPlayer from 'react-player'
 import { useDispatch ,useSelector} from 'react-redux';
 import { fetchData } from '../redux/Actions/Data/data';
 import { connect } from '../redux/Actions/blockchain/Blockchain';
+import { winner } from 'synonyms/dictionary';
 
 
 const Container=styled.div`
@@ -303,6 +303,9 @@ const Video=styled.div`
 width:${props=>props.potrait==="true"? "250px" : "100%"};
 height:100%;
 border-radius:${props=>props.potrait==="true"? "20px" : "30px"};
+display:flex;
+align-items:center;
+justify-content:center;
 `
 
 const PartnerShipContainer=styled.div`
@@ -406,14 +409,82 @@ z-index:99;
 color:#000;`
 
 
+const OwnerContainer=styled.div`
+margin-top:25px;
+display:flex;
+align-items:center;
+flex-direction:column;
+z-index:999;
+`
+
+const ButtonContainer=styled.div`
+z-index:999;
+display:flex;
+align-items:center;
+
+@media screen and (max-width: 500px) {
+  flex-direction:column;
+    }
+`
+
+const Button=styled.button`
+padding:10px 20px;
+width:200px;
+border:none;
+background-color:#434343;
+margin:0 20px;
+color:#fff;
+border-radius:15px;
+font-size:18px;
+font-weight:600;
+z-index:99;
+
+:hover{
+  background-color:#000;
+  cursor:pointer;
+}
+`
+
+
+const WinnersTitle=styled.h1`
+font-weight:700;
+font-size:40px;
+
+`
+
+const WinnerList=styled.div`
+width:600px;
+height:200px;
+background-color:#434343;
+display:flex;
+flex-direction:column;
+align-itemms:center;
+justify-content:center;
+border-radius:10px;
+`
+const Winner=styled.p`
+color:#fff;
+font-size:18px;
+font-weight:600;
+margin:10px;
+`
+
+
 const HomePage = () => {
    const dispatch=useDispatch();
    const blockchain=useSelector((state)=>state.blockchain);
    const data=useSelector((state)=>state.data);
    const [claimingNft, setClaimingNft] = useState(false);
    const [feedback, setFeedback] = useState(``);
+
+
+
    const whitelisted=data.whitelisted;
    const presale=data.presale;
+   const owner=data.owner;
+   const winners=data.winners;
+   const totalsupply=data.totalSupply;
+
 
     
 
@@ -435,8 +506,8 @@ const HomePage = () => {
 
   const getData = () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
-    }
+      dispatch(fetchData(blockchain.account))
+     }
   };
 
   const getConfig = async () => {
@@ -458,7 +529,7 @@ const HomePage = () => {
 
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account)
+      .mint()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -491,8 +562,36 @@ const HomePage = () => {
    }
  }
 
+ const publicsale=()=>{
+  let gasLimit = CONFIG.GAS_LIMIT;
+  let totalGasLimit = String(gasLimit);
+   blockchain.smartContract.methods.setPublicMint().send({ gasLimit: String(totalGasLimit),
+    to: CONFIG.CONTRACT_ADDRESS,
+   from: blockchain.account})
+ }
+
+
+ const PickWinner=()=>{
+  let gasLimit = CONFIG.GAS_LIMIT;
+  let totalGasLimit = String(gasLimit);
+  blockchain.smartContract.methods.pickWinner().send({
+    gasLimit: String(totalGasLimit),
+    to: CONFIG.CONTRACT_ADDRESS,
+   from: blockchain.account
+  })
+ }
+
+ const Reveal=()=>{
+  let gasLimit = CONFIG.GAS_LIMIT;
+  let totalGasLimit = String(gasLimit);
+  blockchain.smartContract.methods.reveal().send({    gasLimit: String(totalGasLimit),
+    to: CONFIG.CONTRACT_ADDRESS,
+   from: blockchain.account})
+ }
+
+
   useEffect(()=>{
-    getData();
+    getData()
   },[blockchain.account]);
 
   useEffect(()=>{
@@ -502,9 +601,6 @@ const HomePage = () => {
   useEffect(()=>{
      connectWallet()
   },[])
- 
-
-
 
 
 
@@ -521,9 +617,46 @@ const HomePage = () => {
                <Result>{feedback}</Result>
            }
            {
-            presale && !whitelisted ?
+          presale &&  !whitelisted && !owner?  
                <Result>You're not whitelisted for Presale Mint</Result> : '' 
            }
+                   {
+           owner &&
+           <OwnerContainer>
+             <ButtonContainer>
+             <Button onClick={publicsale}>PublicSale</Button>
+             <Button onClick={PickWinner}>PickWinner</Button>
+             <Button onClick={Reveal}>Reveal</Button>
+             </ButtonContainer>
+             {
+               totalsupply > CONFIG.MAX_SUPPLY ?
+<>
+<WinnersTitle>Minted</WinnersTitle>
+<WinnersTitle>{totalsupply}/{CONFIG.MAX_SUPPLY}</WinnersTitle>
+</>
+
+:
+<>
+<WinnersTitle>NFT's are sold out</WinnersTitle>
+</>
+
+             }
+        
+
+             <WinnersTitle>WINNERS</WinnersTitle>
+             <WinnerList>
+                {
+                  winners.length === 0 ?
+                  <Winner>Yet to be Announced</Winner> 
+                  :
+                  winners.map((winner)=>(
+                    <Winner>{winner}</Winner>
+                  ))
+                }
+             </WinnerList>
+             
+           </OwnerContainer>
+         }
           <MintContainer>
             {
               (blockchain.account === '' || blockchain.smartContract === null) ?
@@ -538,18 +671,16 @@ const HomePage = () => {
               :         
           <MintButton  
            claimingNft={claimingNft}
-            disabled={claimingNft || !whitelisted ? 1 : 0}
+            disabled={claimingNft ? 1 : 0}
               onClick={(e) => {
               e.preventDefault();
-              console.log('hi')
               mintNFTs();
               getData();
              }}>Mint</MintButton>
              
             }
           </MintContainer>
-
-         
+  
         </TitleContainer>
         <Link href='https://discord.gg/9BvBTyN2S7'>
         <DiscordButton2>Join Discord </DiscordButton2>
@@ -590,9 +721,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video>
-            <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline muted fluid={false} width={'100%'} height={'100%'} >
-            <BigPlayButton position="center" />
-            </Player>
+            <ReactPlayer height={'100%'} width={'100%'}  url={"https://youtu.be/3dh1js1JcZ0"} />
             </Video>
    
           </GroupVideo>
@@ -601,10 +730,6 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
-          <Player src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" playsInline muted fluid={false} width={'100%'} height={'100%'}>
-            <BigPlayButton position="center" />
-    
-            </Player>
             </Video>
           </GroupVideo>
           <GroupInfo right="false">
@@ -632,10 +757,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-          <Player src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playsInline fluid={false} width={'100%'} height={'100%'}>
-            <BigPlayButton position="center" />
-          
-            </Player>
+           
             </Video>
           </GroupVideo>
         </Group>  

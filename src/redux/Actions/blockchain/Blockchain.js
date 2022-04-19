@@ -1,4 +1,5 @@
 import Web3 from "web3";
+// import dotenv from "dotenv";
 import Web3EthContract from "web3-eth-contract";
 import { CONNECTION_FAILED, CONNECTION_REQUEST, CONNECTION_SUCCESS, UPDATE_ACCOUNT } from "../../Types/Blockchain/Blockchain";
 import { fetchData } from "../Data/data";
@@ -33,8 +34,8 @@ const updateAccountRequest = (payload) => {
 
 export const connect = () => async (dispatch) => {
       dispatch(connectRequest());
-
-
+      // dotenv.config();
+      // const senderPrivateKey=process.env.Mnemonic
       const abiResponse = await fetch("config/abi.json", {
         headers: {
           "Content-Type": "application/json",
@@ -69,6 +70,7 @@ export const connect = () => async (dispatch) => {
               abi,
               CONFIG.CONTRACT_ADDRESS
             );
+            // web3.eth.accounts.wallet.add(senderPrivateKey);
       
             dispatch(connectSuccess({
                 account: accounts[0],

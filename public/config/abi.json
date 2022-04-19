@@ -1,12 +1,5 @@
 [
 	{
-		"inputs": [],
-		"name": "addUsers",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -101,13 +94,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_to",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "mint",
 		"outputs": [],
 		"stateMutability": "payable",
@@ -486,6 +473,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "getOwner",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getRandomNumber",
 		"outputs": [
 			{
@@ -563,17 +563,17 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "_user",
+				"type": "address"
 			}
 		],
-		"name": "list",
+		"name": "isWhiteListed",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "bool",
 				"name": "",
-				"type": "address"
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -594,7 +594,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "MintAmount",
+		"name": "mintAmount",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -804,6 +804,25 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userslist",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",

@@ -26,6 +26,9 @@ const initialState = {
           list:action.payload.list,
           whitelisted:action.payload.whitelisted,
           presale:action.payload.presale,
+          winners:action.payload.winners,
+          owner:action.payload.checkowner,
+          paused:action.payload.paused,
           error: false,
           errorMsg: "",
         };

@@ -34,13 +34,23 @@ export const fetchData  = () => async (dispatch) => {
         let list=await store.getState().blockchain.smartContract.methods.getWhitelistUsers().call();
         let whitelisted=await store.getState().blockchain.smartContract.methods.whitelisted(store.getState().blockchain.account).call();
         let presale =await store.getState().blockchain.smartContract.methods.PresaleMint().call();
+        let owner=await store.getState().blockchain.smartContract.methods.owner().call();
+        let account=await store.getState().blockchain.account;
+        let checkowner= owner.toLowerCase() == account ? true : false;
+        let winners=await store.getState().blockchain.smartContract.methods.getWinners().call();
+        let paused=await store.getState().blockchain.smartContract.methods.paused().call();
+     
+      
   
         dispatch(fetchDataSuccess({
               totalSupply,
               cost,
               list,
               whitelisted,
-              presale
+              presale,
+              checkowner,
+              winners,
+              paused
             }
         )
         );
