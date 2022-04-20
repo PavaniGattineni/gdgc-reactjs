@@ -7,6 +7,7 @@ import Mask from '../assets/Mask.png'
 import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Footer from '../components/Footer/Footer';
+import {TailSpin} from 'react-loading-icons'
 
 
 import SuperWorld from '../assets/Superworld LOGO.png'
@@ -601,7 +602,16 @@ const HomePage = () => {
   useEffect(()=>{
      connectWallet()
   },[])
+ 
+  const callFunct = () => { 
+   setTimeout(() => {
+     Reveal(); 
+     console.log('call')
+  }, 3000); 
+}; 
 
+
+  
 
 
   return (
@@ -624,30 +634,37 @@ const HomePage = () => {
            owner &&
            <OwnerContainer>
          
-             {
-               totalsupply < CONFIG.MAX_SUPPLY ?
-<>
+         {totalsupply < CONFIG.MAX_SUPPLY ? (
+              <>
+                <WinnersTitle>Minted</WinnersTitle>
+                <WinnersTitle>
+                  {totalsupply}/{CONFIG.MAX_SUPPLY}
+                </WinnersTitle>
+                <Button onClick={publicsale}>Public sale</Button>
+              </>
+            ) : (
+             <div>
+               {
+                 winners.length < 2 &&
+                 PickWinner()
+               }
+               {
+                 winners.length < 2 &&
+                  callFunct()
+               }
+               <WinnersTitle>Nfts are sold out</WinnersTitle>
+             </div>
+            )}
 
-<WinnersTitle>Minted</WinnersTitle>
-<WinnersTitle>{totalsupply}/{CONFIG.MAX_SUPPLY}</WinnersTitle>
-<Button onClick={publicsale}>PublicSale</Button>
-
-</>
-
-:
-<>
-
-</>
-
-             }
+            
         
 
-        <WinnersTitle>NFT's are sold out</WinnersTitle>
+        {/* <WinnersTitle>NFT's are sold out</WinnersTitle>
 <ButtonContainer>
              <Button onClick={PickWinner}>PickWinner</Button>
              <Button onClick={Reveal}>Reveal</Button>
  </ButtonContainer>
- <WinnersTitle>WINNERS</WinnersTitle>
+ <WinnersTitle>WINNERS</WinnersTitle> */}
              <WinnerList>
                 {
                   winners.length === 0 ?
@@ -680,7 +697,7 @@ const HomePage = () => {
               e.preventDefault();
               mintNFTs();
               getData();
-             }}>Mint</MintButton>
+             }}>{claimingNft ? <TailSpin /> : "Mint"}</MintButton>
              
             }
           </MintContainer>

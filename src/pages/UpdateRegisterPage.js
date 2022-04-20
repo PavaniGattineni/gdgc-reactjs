@@ -13,6 +13,7 @@ import { MdClose } from 'react-icons/md';
 import {useDispatch,useSelector} from 'react-redux';
 import {fetchData} from '../redux/Actions/Data/data'
 import {connect} from '../redux/Actions/blockchain/Blockchain'
+import TailSpin from 'react-loading-icons/dist/components/tail-spin'
 
 
 
@@ -333,6 +334,7 @@ const UpdateRegisterPage = () => {
     const [listed,setListed]=useState(false)
     const [email,setEmail]=useState('');
     const [address,setAddress]=useState('');
+    const [loading,setLoading]=useState(false)
 
     const [CONFIG, SET_CONFIG] = useState({
         CONTRACT_ADDRESS: "",
@@ -420,6 +422,7 @@ const UpdateRegisterPage = () => {
             )
             }
             else{
+                setLoading(true)
             blockchain.smartContract.methods.whitelistUser(blockchain.account).send({
             gasLimit: String(totalGasLimit),
              to: CONFIG.CONTRACT_ADDRESS,
@@ -431,6 +434,7 @@ const UpdateRegisterPage = () => {
                setEmailSent(true)
                setEmail('')
                setAddress('')
+               setLoading(false)
                setTimeout(
                    () => {
                        setEmailSent(false)
@@ -550,7 +554,7 @@ const UpdateRegisterPage = () => {
   
                   
              
-                <PopupSubmit className='submit' type='submit'>Submit</PopupSubmit>
+                <PopupSubmit className='submit' type='submit'>{loading ? <TailSpin/> : "Submit"}</PopupSubmit>
         
                 <CloseButton onClick={closeModal}><MdClose color='white' size={'20px'}/></CloseButton>
                 </PopupForm>
