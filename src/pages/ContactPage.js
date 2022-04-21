@@ -256,7 +256,6 @@ const ContactPage = () => {
     if (e.target.email.value !== '' && e.target.name.value !== '' && e.target.contactnumber.value !== '') {
         emailjs.sendForm('service_vgh1cao', 'template_ty59tua', e.target,
             'd1yMbjx7hhKgbin29').then((result) => {
-                console.log(result.text)
                 setEmailSent(true)
                 setTimeout(
                     () => {

@@ -19,13 +19,12 @@ const SubmitForm = (data) => async (dispatch) => {
     dispatch({
       type: SUBMIT_FORM_SUCCESS
     })
-    console.log('success')
+   
   } catch (error) {
     dispatch({
       type: SUBMIT_FORM_FAILED,
       payload: error.message,
     })
-    console.log('failure')
   }
 }
 
