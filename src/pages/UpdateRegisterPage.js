@@ -524,7 +524,8 @@ const UpdateRegisterPage = () => {
                     blockchain.account === null &&
                 <PopupInfo>Please Connect your Wallet</PopupInfo>
                 }
-                <PopupInput className='input' type={"text"} placeholder="Email..." name='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                
+                <PopupInput className='input' type={"email"} placeholder="Email..." name='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
                 <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" value={blockchain.account} onChange={(e)=>setAddress(e.target.value)}/>
                 {emailSent &&  !listed ?
                     <Success>

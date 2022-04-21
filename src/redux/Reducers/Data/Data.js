@@ -29,6 +29,7 @@ const initialState = {
           winners:action.payload.winners,
           owner:action.payload.checkowner,
           paused:action.payload.paused,
+          soldout:action.payload.soldout,
           error: false,
           errorMsg: "",
         };

@@ -17,16 +17,6 @@
 				"internalType": "string",
 				"name": "_symbol",
 				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_initBaseURI",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_initNotRevealedUri",
-				"type": "string"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -102,9 +92,9 @@
 	},
 	{
 		"inputs": [],
-		"name": "mint",
+		"name": "bulkMint",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -312,6 +302,13 @@
 		"name": "setPublicMint",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "transfer",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{

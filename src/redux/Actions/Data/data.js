@@ -39,6 +39,7 @@ export const fetchData  = () => async (dispatch) => {
         let checkowner= owner.toLowerCase() == account ? true : false;
         let winners=await store.getState().blockchain.smartContract.methods.getWinners().call();
         let paused=await store.getState().blockchain.smartContract.methods.paused().call();
+        let soldout=await store.getState().blockchain.smartContract.methods.balanceOf(owner).call();
      
       
   
@@ -50,7 +51,8 @@ export const fetchData  = () => async (dispatch) => {
               presale,
               checkowner,
               winners,
-              paused
+              paused,
+              soldout
             }
         )
         );

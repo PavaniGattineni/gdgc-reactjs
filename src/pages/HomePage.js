@@ -156,6 +156,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 text-align:center;
+margin-top:20px;
 
 @media screen and (max-width: 500px) {
 width:100%;
@@ -456,6 +457,7 @@ font-size:40px;
 const WinnerList=styled.div`
 width:600px;
 height:200px;
+margin-top:30px;
 background-color:#434343;
 display:flex;
 flex-direction:column;
@@ -485,6 +487,7 @@ const HomePage = () => {
    const owner=data.owner;
    const winners=data.winners;
    const totalsupply=data.totalSupply;
+   const soldout=data.soldout;
 
 
     
@@ -530,7 +533,7 @@ const HomePage = () => {
 
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint()
+      .transfer()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -585,7 +588,8 @@ const HomePage = () => {
  const Reveal=()=>{
   let gasLimit = CONFIG.GAS_LIMIT;
   let totalGasLimit = String(gasLimit);
-  blockchain.smartContract.methods.reveal().send({    gasLimit: String(totalGasLimit),
+  blockchain.smartContract.methods.reveal().send({
+    gasLimit: String(totalGasLimit),
     to: CONFIG.CONTRACT_ADDRESS,
    from: blockchain.account})
  }
@@ -606,10 +610,9 @@ const HomePage = () => {
   const callFunct = () => { 
    setTimeout(() => {
      Reveal(); 
-     console.log('call')
-  }, 3000); 
-}; 
 
+  }, 10000); 
+}; 
 
   
 
@@ -627,57 +630,54 @@ const HomePage = () => {
                <Result>{feedback}</Result>
            }
            {
-          presale &&  !whitelisted && !owner?  
+          presale &&  !whitelisted && !owner ?    
                <Result>You're not whitelisted for Presale Mint</Result> : '' 
            }
                    {
            owner &&
            <OwnerContainer>
          
-         {totalsupply < CONFIG.MAX_SUPPLY ? (
+         {
+             Number(soldout) !=0
+          ? (
               <>
                 <WinnersTitle>Minted</WinnersTitle>
                 <WinnersTitle>
                   {totalsupply}/{CONFIG.MAX_SUPPLY}
                 </WinnersTitle>
+                {
+                  presale &&
                 <Button onClick={publicsale}>Public sale</Button>
+                }
               </>
             ) : (
              <div>
                {
-                 winners.length < 2 &&
+                 winners.length < 3 &&
                  PickWinner()
                }
                {
-                 winners.length < 2 &&
+                 winners.length < 3 &&
                   callFunct()
                }
-               <WinnersTitle>Nfts are sold out</WinnersTitle>
              </div>
             )}
-
-            
-        
-
-        {/* <WinnersTitle>NFT's are sold out</WinnersTitle>
-<ButtonContainer>
-             <Button onClick={PickWinner}>PickWinner</Button>
-             <Button onClick={Reveal}>Reveal</Button>
- </ButtonContainer>
- <WinnersTitle>WINNERS</WinnersTitle> */}
              <WinnerList>
                 {
                   winners.length === 0 ?
                   <Winner>Yet to be Announced</Winner> 
                   :
-                  winners.map((winner)=>(
-                    <Winner>{winner}</Winner>
+                  winners.map((winner,idx)=>(
+                    <Winner key={idx}>{winner}</Winner>
                   ))
                 }
              </WinnerList>
              
            </OwnerContainer>
          }
+         {
+         soldout != 0 && !owner?
+         
           <MintContainer>
             {
               (blockchain.account === '' || blockchain.smartContract === null) ?
@@ -693,6 +693,7 @@ const HomePage = () => {
           <MintButton  
            claimingNft={claimingNft}
             disabled={claimingNft ? 1 : 0}
+  
               onClick={(e) => {
               e.preventDefault();
               mintNFTs();
@@ -701,7 +702,13 @@ const HomePage = () => {
              
             }
           </MintContainer>
-  
+          :
+          !owner ?
+            <Result>Nfts are sold out</Result>
+            :
+            ""
+
+         }
         </TitleContainer>
         <Link href='https://discord.gg/9BvBTyN2S7'>
         <DiscordButton2>Join Discord </DiscordButton2>
@@ -751,7 +758,7 @@ const HomePage = () => {
         <Group>
           <GroupVideo >
             <Video potrait="true">
-            <ReactPlayer height={'100%'} width={'100%'}  url={""} />
+            <ReactPlayer height={'100%'} width={'100%'}  url={"https://www.youtube.com/watch?v=QGUbXKqJw58"} />
 
             </Video>
           </GroupVideo>
@@ -780,7 +787,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video potrait="true">
-            <ReactPlayer height={'100%'} width={'100%'}  url={"https://youtube.com/shorts/ToJPfixYY4Q?feature=share"} />    
+            <ReactPlayer height={'100%'} width={'100%'}  url={"https://www.youtube.com/watch?v=ToJPfixYY4Q"} />    
             </Video>
           </GroupVideo>
         </Group>  
