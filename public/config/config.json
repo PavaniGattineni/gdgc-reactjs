@@ -1,6 +1,6 @@
 {
-    "CONTRACT_ADDRESS": "0x7d626057C1B86eb573F73f419c83b56457b905aD",
-    "SCAN_LINK": "https://mumbai.polygonscan.com/address/0x7d626057C1B86eb573F73f419c83b56457b905aD",
+    "CONTRACT_ADDRESS": "0x9Def91988F0c3f4ac84212764c2272fEBFE32aB2",
+    "SCAN_LINK": "https://mumbai.polygonscan.com/address/0x9Def91988F0c3f4ac84212764c2272fEBFE32aB2",
     "NETWORK": {
       "NAME": "Mumbai Testnet",
       "SYMBOL": "Matic",
@@ -8,7 +8,7 @@
     },
     "NFT_NAME": "Watch",
     "SYMBOL": "Wt",
-    "MAX_SUPPLY": 5,
+    "MAX_SUPPLY": 7,
     "WEI_COST": 10000000000000000,
     "GAS_LIMIT": 285000,
     "MARKETPLACE": "Opensea",

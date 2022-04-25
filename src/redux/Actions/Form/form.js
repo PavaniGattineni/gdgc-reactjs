@@ -6,7 +6,7 @@ const Submit=(data)=>async(dispatch)=>{
   
     try {
       await axios.post(
-        `http://52.66.148.254/api/whitelist/white-list`,data, {
+        `https://theluxuryassetclub.xyz/api/whitelist/white-list`,data, {
           headers: {
             'content-type': 'application/json'
           }}

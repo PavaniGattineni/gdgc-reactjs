@@ -141,6 +141,7 @@ border-radius:15px;
 color:#fff;
 font-size:18px;
 font-weight:600;
+margin-bottom:20px;
 
 
 @media screen and (max-width:500px){
@@ -156,7 +157,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 text-align:center;
-margin-top:20px;
+margin-top:40px;
 
 @media screen and (max-width: 500px) {
 width:100%;
@@ -479,6 +480,9 @@ const HomePage = () => {
    const data=useSelector((state)=>state.data);
    const [claimingNft, setClaimingNft] = useState(false);
    const [feedback, setFeedback] = useState(``);
+   const [sold,setSold]=useState(false)
+
+   const [revealed,setRevealed]=useState(false)
 
 
 
@@ -533,7 +537,7 @@ const HomePage = () => {
 
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .transfer()
+      .mint()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -566,33 +570,19 @@ const HomePage = () => {
    }
  }
 
- const publicsale=()=>{
-  let gasLimit = CONFIG.GAS_LIMIT;
-  let totalGasLimit = String(gasLimit);
-   blockchain.smartContract.methods.setPublicMint().send({ gasLimit: String(totalGasLimit),
-    to: CONFIG.CONTRACT_ADDRESS,
-   from: blockchain.account})
- }
 
 
- const PickWinner=()=>{
+ const FetchWinners=()=>{
   let gasLimit = CONFIG.GAS_LIMIT;
   let totalGasLimit = String(gasLimit);
-  blockchain.smartContract.methods.pickWinner().send({
+  blockchain.smartContract.methods.fetchWinners().send({
     gasLimit: String(totalGasLimit),
     to: CONFIG.CONTRACT_ADDRESS,
    from: blockchain.account
   })
  }
 
- const Reveal=()=>{
-  let gasLimit = CONFIG.GAS_LIMIT;
-  let totalGasLimit = String(gasLimit);
-  blockchain.smartContract.methods.reveal().send({
-    gasLimit: String(totalGasLimit),
-    to: CONFIG.CONTRACT_ADDRESS,
-   from: blockchain.account})
- }
+
 
 
   useEffect(()=>{
@@ -607,13 +597,12 @@ const HomePage = () => {
      connectWallet()
   },[])
  
-  const callFunct = () => { 
-   setTimeout(() => {
-     Reveal(); 
-
-  }, 10000); 
-}; 
-
+  useEffect(()=>{
+      if(soldout == 0 &&  !sold){
+        setSold(true);
+        FetchWinners();
+      }               
+  },[])
   
 
 
@@ -636,32 +625,9 @@ const HomePage = () => {
                    {
            owner &&
            <OwnerContainer>
-         
-         {
-             Number(soldout) !=0
-          ? (
-              <>
-                <WinnersTitle>Minted</WinnersTitle>
-                <WinnersTitle>
-                  {totalsupply}/{CONFIG.MAX_SUPPLY}
-                </WinnersTitle>
-                {
-                  presale &&
-                <Button onClick={publicsale}>Public sale</Button>
-                }
-              </>
-            ) : (
-             <div>
-               {
-                 winners.length < 3 &&
-                 PickWinner()
-               }
-               {
-                 winners.length < 3 &&
-                  callFunct()
-               }
-             </div>
-            )}
+            <WinnersTitle>
+               NFT Tickets left - {soldout}
+              </WinnersTitle>
              <WinnerList>
                 {
                   winners.length === 0 ?
@@ -676,7 +642,7 @@ const HomePage = () => {
            </OwnerContainer>
          }
          {
-         soldout != 0 && !owner?
+         soldout != 0 && !owner ?
          
           <MintContainer>
             {
@@ -698,6 +664,7 @@ const HomePage = () => {
               e.preventDefault();
               mintNFTs();
               getData();
+        
              }}>{claimingNft ? <TailSpin /> : "Mint"}</MintButton>
              
             }
@@ -734,8 +701,7 @@ const HomePage = () => {
               <GroupDesc>
               The Luxury Asset Club is an exclusive online community of owners pushing the digital
               collectible world into new territory. TLAC uses group economics & the community model to help
-              liquidate extremely collectible physical assets. It starts with the private mint of the Luxury Asset
-              Club's blue-chip offering on 4/13/2022, the anniversary of Kobe’s final NBA game. There will be
+              liquidate extremely collectible physical assets. It starts with the private mint of the Luxury Asset Club's blue-chip offering 18K Rose Gold Kobe Bryant signed Hublot watch.There will be
               3 randomly generated winning tickets, and each NFT will be a digital replica of the 18K Rose
               Gold Kobe Bryant signed Hublot (DYOR) delivered as 8,024 digital twins. The physical watch, of
               which there are only three in the world and holds an estimated value of $3,000,000. Upon
@@ -749,7 +715,7 @@ const HomePage = () => {
           </GroupInfo>
           <GroupVideo >
             <Video>
-            <ReactPlayer height={'100%'} width={'100%'}  url={"https://youtu.be/3dh1js1JcZ0"} />
+            <ReactPlayer height={'100%'} width={'100%'}  url={"https://www.youtube.com/watch?v=qOPGT1af7l0&t=11s"} />
             </Video>
    
           </GroupVideo>

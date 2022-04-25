@@ -97,7 +97,7 @@ const AboutPage = () => {
 
            <DetailsContainer>
            <Info>
-           The Luxury Asset Club is an exclusive online community of owners pushing the digital collectible world into new territory. It starts with the private mint of the Luxury Asset Club's blue-chip offering on 4/13/2022. Our goal is to use NFT’s and the underlying technology built upon smart contracts and combine them with the traditional odds associated with the raffle model. NFT’s allow for a transparent disbursement of tickets while allowing a fluid process of offering usually illiquid assets to a community of interested buyers.
+           The Luxury Asset Club is an exclusive online community of owners pushing the digital collectible world into new territory. It starts with the private mint of the Luxury Asset Club's blue-chip offering. Our goal is to use NFT’s and the underlying technology built upon smart contracts and combine them with the traditional odds associated with the raffle model. NFT’s allow for a transparent disbursement of tickets while allowing a fluid process of offering usually illiquid assets to a community of interested buyers.
             <br />
             <br />
           As our community develops, TLAC will forever change the process in which ultra-luxury assets are authenticated, sold, and owned within this Web 3.0 world.  

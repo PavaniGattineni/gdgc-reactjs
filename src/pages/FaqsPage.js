@@ -55,7 +55,7 @@ const FaqsPage = () => {
         <Title>FAQS</Title>
         <Info>
         How many tickets can I mint? <br />
-        In order to allow for fairness and an opportunity for the community to grow, we will limit it to five tickets per mint. Although you will be able to purchase more as they migrate to secondary marketplaces.
+        In order to allow for fairness and an opportunity for the community to grow, we will limit it to ten tickets per mint. Although you will be able to purchase more as they migrate to secondary marketplaces.
         <br />
         <br />
        
@@ -76,7 +76,7 @@ const FaqsPage = () => {
 
 
         When can we mint a TLAC NFT? <br />
-        The public launch will be held on April 21st, 2022, 8 days after the whitelist launch on April 13th, 2022 at 12AM EST. 
+        The public launch will be held shortly after the whitelist launch. 
         <br />
         <br />
         

@@ -14,6 +14,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {fetchData} from '../redux/Actions/Data/data'
 import {connect} from '../redux/Actions/blockchain/Blockchain'
 import TailSpin from 'react-loading-icons/dist/components/tail-spin'
+import Submit from '../redux/Actions/Form/form'
 
 
 
@@ -329,11 +330,12 @@ const UpdateRegisterPage = () => {
     const [emailSent, setEmailSent] = useState(false)
     const [error, setError] = useState(false)
     const [invalid, setInvalid] = useState(false)
-    const [popup,setPopup]=useState(true)
+    const [popup,setPopup]=useState(false);
     const [list,setList]=useState();
     const [listed,setListed]=useState(false)
     const [email,setEmail]=useState('');
-    const [address,setAddress]=useState('');
+    const [walletAddress,setwalletAddress]=useState('');
+    const [info,setInfo]=useState(false);
     const [loading,setLoading]=useState(false)
 
     const [CONFIG, SET_CONFIG] = useState({
@@ -352,7 +354,7 @@ const UpdateRegisterPage = () => {
     
 
       
-
+    console.log(info)
  
     const getConfig = async () => {
         const configResponse = await fetch("/config/config.json", {
@@ -367,7 +369,10 @@ const UpdateRegisterPage = () => {
 
     const getData = () => {
         if (blockchain.account !== "" && blockchain.smartContract !== null) {
-          dispatch(fetchData(blockchain.account));
+          dispatch(fetchData(blockchain.account)).then(()=>{
+        setInfo(true)
+        setPopup(true)
+          })
         }
       };
 
@@ -400,7 +405,8 @@ const UpdateRegisterPage = () => {
    
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
-   
+    
+    let formdata={email,walletAddress}
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -410,55 +416,57 @@ const UpdateRegisterPage = () => {
         
         if (e.target.email.value !== '' && e.target.walletAdd.value !== '') {
             const whitelisted=data.whitelisted;
-            if(whitelisted){
+            if(whitelisted && data){
                setListed(true)
                setEmail('')
-               setAddress('')
+               setwalletAddress('')
                setTimeout(
                 () => {
                setListed(false);
                 },
                 3000
             )
+
             }
             else{
-                setLoading(true)
-            blockchain.smartContract.methods.whitelistUser(blockchain.account).send({
+            setLoading(true)
+            blockchain.smartContract.methods.whitelistUser().send({
             gasLimit: String(totalGasLimit),
              to: CONFIG.CONTRACT_ADDRESS,
             from: blockchain.account,
             }).then(()=>{
-           getData();
-           emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
-           'd1yMbjx7hhKgbin29').then((result) => {
-               setEmailSent(true)
-               setEmail('')
-               setAddress('')
-               setLoading(false)
-               setTimeout(
-                   () => {
-                       setEmailSent(false)
-                       closeModal();
-                   },
-                   3000
-               )
-           }, (error) => {
-               setError(true)
-               setEmail('')
-               setAddress('')
-               setTimeout(
-                   () => {
-                       setError(false)
-                   },
-                   3000
-               )
-           })
-            })
-           }
-        } else{
+            getData();
+            }
+           )
+           dispatch(Submit(formdata)).then((result) => {
+            setEmailSent(true)
+            setEmail('')
+            setwalletAddress('')
+            setLoading(false)
+            setTimeout(
+                () => {
+                    setEmailSent(false)
+                    closeModal();
+                },
+                3000
+            )
+        }, (error) => {
+         setError(true)
+         setEmail('')
+         setwalletAddress('')
+         setTimeout(
+             () => {
+                 setError(false)
+             },
+             3000
+         )
+  })
+    }
+
+} else{
             setInvalid(true)
             setEmail('')
-            setAddress('')
+            setwalletAddress('')
             setTimeout(
                 () => {
                     setInvalid(false)
@@ -466,10 +474,8 @@ const UpdateRegisterPage = () => {
                 3000
             )
         }
-
     }
 
-    // blockchain.smartContract.methods.removeWhitelistUser(blockchain.account).send({from:blockchain.account})
 
 }
     
@@ -515,7 +521,7 @@ const UpdateRegisterPage = () => {
         </Container>
 
         {
-            popup ?
+            popup && info ?
             (
                 <PopupContainer>
                 <PopupForm onSubmit={sendEmail}>
@@ -525,7 +531,7 @@ const UpdateRegisterPage = () => {
                 <PopupInfo>Please Connect your Wallet</PopupInfo>
                 }
                 <PopupInput className='input' type={"email"} placeholder="Email..." name='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" value={blockchain.account} onChange={(e)=>setAddress(e.target.value)}/>
+                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" value={blockchain.account} onChange={(e)=>setwalletAddress(e.target.value)}/>
                 {emailSent &&  !listed ?
                     <Success>
                         <Info className='info'>You are whitelisted successfully</Info>
@@ -571,3 +577,34 @@ const UpdateRegisterPage = () => {
 export default UpdateRegisterPage
 
  
+
+
+
+// blockchain.smartContract.methods.removeWhitelistUser(blockchain.account).send({from:blockchain.account})
+
+
+
+        //    emailjs.sendForm('service_vgh1cao', 'template_uwhuqgl', e.target,
+        //    'd1yMbjx7hhKgbin29').then((result) => {
+        //        setEmailSent(true)
+        //        setEmail('')
+        //        setwalletAddress('')
+        //        setLoading(false)
+        //        setTimeout(
+        //            () => {
+        //                setEmailSent(false)
+        //                closeModal();
+        //            },
+        //            3000
+        //        )
+        //    }, (error) => {
+        //        setError(true)
+        //        setEmail('')
+        //        setAddress('')
+        //        setTimeout(
+        //            () => {
+        //                setError(false)
+        //            },
+        //            3000
+        //        )
+        //    })

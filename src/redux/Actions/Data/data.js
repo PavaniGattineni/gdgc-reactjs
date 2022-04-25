@@ -40,7 +40,6 @@ export const fetchData  = () => async (dispatch) => {
         let winners=await store.getState().blockchain.smartContract.methods.getWinners().call();
         let paused=await store.getState().blockchain.smartContract.methods.paused().call();
         let soldout=await store.getState().blockchain.smartContract.methods.balanceOf(owner).call();
-     
       
   
         dispatch(fetchDataSuccess({

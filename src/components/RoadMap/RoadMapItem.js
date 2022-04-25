@@ -6,14 +6,14 @@ const RoadMapItem = () => {
     <>
     <div className='ItemContainer'>
             <div className='inner'>
-            <h4 className='Desc'>-824 pieces presale midnight-EST <br />
+            <h4 className='Desc'>-824 Presale Mints made available <br />
 -Whitelist Presale will include exclusive
 artwork from New York based 
 artist and designer Moshe Douglas<br/>
 -Available to those who enter contact
 form through the website.</h4>
             <div className='Circle'>1</div>
-            <h1 className='Header1'>Whitelist <br/> (4/13/2022,<br/>Kobe’s Farewell<br/>  Game)</h1>
+            <h1 className='Header1'>Whitelist</h1>
             </div>
             </div>
 
