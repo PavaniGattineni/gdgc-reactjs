@@ -1,7 +1,7 @@
 
 import './App.css';
 import HomePage from './pages/HomePage';
-import UpdateRegisterPage from './pages/UpdateRegisterPage';
+// import UpdateRegisterPage from './pages/UpdateRegisterPage';
 import ContactPage from './pages/ContactPage';
 import DoxxingPage from './pages/DoxxingPage';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
@@ -19,8 +19,8 @@ function App() {
       <Router>
        <ScrollToTop>
       <Routes>
-      <Route index element={<UpdateRegisterPage/>}/>
-      <Route path='/home' element={<HomePage/>} />
+      {/* <Route index element={<UpdateRegisterPage/>}/> */}
+      <Route index element={<HomePage/>} />
       <Route path='/contact' element={<ContactPage />} />
       <Route path='/doxxing' element={<DoxxingPage/>} />
       <Route path='/faqs' element={<FaqsPage />} />

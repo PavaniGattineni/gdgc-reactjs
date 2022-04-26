@@ -8,6 +8,10 @@ import NavContainer from '../components/NavContainer/NavContainer'
 import SocialMedia from '../components/Socialmedia/SocialMedia'
 import Footer from '../components/Footer/Footer';
 import {TailSpin} from 'react-loading-icons'
+import { MdClose } from 'react-icons/md';
+import Submit from '../redux/Actions/Form/form'
+
+
 
 
 import SuperWorld from '../assets/Superworld LOGO.png'
@@ -16,15 +20,11 @@ import Makeawish from '../assets/Make-A-Wish Logo.png'
 import woodlawn from '../assets/Woodlawn Media Logo.PNG'
 
 
-
-import video1 from '../assets/Kobe.MOV'
-import video2 from '../assets/Makeawish.MOV'
-import video3 from '../assets/Pressvideo.mp4'
 import ReactPlayer from 'react-player'
 import { useDispatch ,useSelector} from 'react-redux';
 import { fetchData } from '../redux/Actions/Data/data';
 import { connect } from '../redux/Actions/blockchain/Blockchain';
-import { winner } from 'synonyms/dictionary';
+
 
 
 const Container=styled.div`
@@ -36,6 +36,7 @@ flex-direction:column;
 justify-content:center;
 background: linear-gradient(90.13deg, #efe9ce 0.15%, #cfdbd9 99.93%);
 position:relative;
+filter:${props=>props.popup ?'blur(10px)':''};
 `
 
 const DiscordButton2=styled.button`
@@ -420,33 +421,7 @@ flex-direction:column;
 z-index:999;
 `
 
-const ButtonContainer=styled.div`
-z-index:999;
-display:flex;
-align-items:center;
 
-@media screen and (max-width: 500px) {
-  flex-direction:column;
-    }
-`
-
-const Button=styled.button`
-padding:10px 20px;
-width:200px;
-border:none;
-background-color:#434343;
-margin:0 20px;
-color:#fff;
-border-radius:15px;
-font-size:18px;
-font-weight:600;
-z-index:99;
-
-:hover{
-  background-color:#000;
-  cursor:pointer;
-}
-`
 
 
 const WinnersTitle=styled.h1`
@@ -474,6 +449,150 @@ margin:10px;
 `
 
 
+
+const PopupContainer=styled.div`
+position:absolute;
+width:800px;
+height:360px;
+background-color:#f6f6f6;
+z-index:999;
+top:30%;
+right:calc(50% - 400px);
+border-radius:20px;
+display:flex;
+flex-direction:column;
+
+@media screen and (max-width:500px){
+   width:90%;
+   left:0;
+   margin:0 20px;
+    }
+`
+
+const PopupTitle=styled.h4`
+font-size:30px;
+font-weight:700;
+
+@media screen and (max-width:500px){
+   font-size:24px;
+     }
+`
+
+const PopupForm=styled.form`
+display:flex;
+flex-direction:column;
+align-items:center;
+position:relative;
+padding-top:20px;
+
+`
+
+const PopupInput=styled.input`
+margin:20px;
+border:none;
+font-size:18px;
+background-color: #EFEFEF;
+color:#000;
+padding:10px 30px;
+border-radius:10px;
+
+@media screen and (max-width:500px){
+      width:320px;
+      margin:20px 0px;
+      }
+`
+
+const PopupSubmit=styled.button`
+margin-top:10px;
+padding:10px;
+width:150px;
+background-color:#000;
+color:#fff;
+border:none;
+border-radius:10px;
+
+
+:hover{
+    background-color:#444;
+}
+`
+
+const CloseButton=styled.button`
+position:absolute;
+top:5px;
+right:5px;
+background-color:#DC143C;
+border:none;
+padding:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:5px;
+
+:hover{
+    background-color:red;
+    transform:scale(1.2);
+}
+`
+
+const PopupInfo=styled.div`
+background-color:#434343;
+display:flex;
+align-items:center;
+justify-content:center;
+width:600px;
+height:30px;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+color:#fff;
+font-size:16px;
+font-weight:600;
+
+
+@media screen and (max-width:500px){
+  width:95%;
+  font-size:14px;
+
+}
+`
+
+const Success = styled.div`
+background-color: #62a762;
+margin: 10px 0;
+width:50%;
+border-radius: 5px;
+text-align:center;
+@media screen and (max-width: 500px) {
+    width:100%;
+    margin:10px;
+    }
+`
+const Fail = styled.div`
+  background-color: #f86060;
+  width: 50%;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align:center;
+
+  @media screen and (max-width: 500px) {
+    width:100%;
+    margin:10px;
+    }
+
+`
+const Info = styled.p`
+color: #fff;
+font-size: 14px;
+padding: 10px;
+
+@media screen and (max-width: 500px) {
+   font-size:12px;
+   padding:5px;
+    }
+`
+
+
 const HomePage = () => {
    const dispatch=useDispatch();
    const blockchain=useSelector((state)=>state.blockchain);
@@ -482,7 +601,16 @@ const HomePage = () => {
    const [feedback, setFeedback] = useState(``);
    const [sold,setSold]=useState(false)
 
-   const [revealed,setRevealed]=useState(false)
+   const [emailSent, setEmailSent] = useState(false)
+   const [error, setError] = useState(false)
+   const [invalid, setInvalid] = useState(false)
+   const [popup,setPopup]=useState(false);
+   const [list,setList]=useState();
+   const [listed,setListed]=useState(false)
+   const [email,setEmail]=useState('');
+   const [walletAddress,setwalletAddress]=useState('');
+   const [info,setInfo]=useState(false);
+   const [loading,setLoading]=useState(false)
 
 
 
@@ -490,11 +618,10 @@ const HomePage = () => {
    const presale=data.presale;
    const owner=data.owner;
    const winners=data.winners;
-   const totalsupply=data.totalSupply;
    const soldout=data.soldout;
 
 
-    
+
 
    const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -515,6 +642,12 @@ const HomePage = () => {
   const getData = () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account))
+      if(soldout === 0 &&  !sold && winners.length === 0){
+        setSold(true);
+        FetchWinners();
+      }       
+      setInfo(true)
+      setPopup(true)
      }
   };
 
@@ -564,13 +697,87 @@ const HomePage = () => {
       });
   };
 
- const connectWallet=()=>{
-   if(blockchain.account === null){
-     dispatch(connect())
-   }
- }
+
+  let formdata={email,walletAddress}
+
+ const closeModal=()=>{
+  setPopup(false)
+}
+
+  const sendEmail = (e) => {
+      e.preventDefault();
+      let cost = CONFIG.WEI_COST;
+      let gasLimit = CONFIG.GAS_LIMIT;
+      let totalCostWei = String(cost);
+      let totalGasLimit = String(gasLimit);
+      if(blockchain.account === null){
+          dispatch(connect());
+      }else{
+      
+      if (e.target.email.value !== '' && e.target.walletAdd.value !== '') {
+          const whitelisted=data.whitelisted;
+          if(whitelisted && data){
+             setListed(true)
+             setEmail('')
+             setwalletAddress('')
+             setTimeout(
+              () => {
+             setListed(false);
+              },
+              3000
+          )
+
+          }
+          else{
+          setLoading(true)
+          blockchain.smartContract.methods.whitelistUser().send({
+          gasLimit: String(totalGasLimit),
+           to: CONFIG.CONTRACT_ADDRESS,
+          from: blockchain.account,
+          }).then(()=>{
+          getData();
+          dispatch(Submit(formdata)).then((result) => {
+              setEmailSent(true)
+              setEmail('')
+              setwalletAddress('')
+              setLoading(false)
+              setTimeout(
+                  () => {
+                      setEmailSent(false)
+                      closeModal();
+                  },
+                  5000
+              )
+          }, (error) => {
+           setError(true)
+           setEmail('')
+           setwalletAddress('')
+           setTimeout(
+               () => {
+                   setError(false)
+               },
+               3000
+           )
+    })
+          }
+         )
+  }
+
+} else{
+          setInvalid(true)
+          setEmail('')
+          setwalletAddress('')
+          setTimeout(
+              () => {
+                  setInvalid(false)
+              },
+              3000
+          )
+      }
+  }
 
 
+}
 
  const FetchWinners=()=>{
   let gasLimit = CONFIG.GAS_LIMIT;
@@ -581,8 +788,6 @@ const HomePage = () => {
    from: blockchain.account
   })
  }
-
-
 
 
   useEffect(()=>{
@@ -596,19 +801,26 @@ const HomePage = () => {
   useEffect(()=>{
      connectWallet()
   },[])
- 
-  useEffect(()=>{
-      if(soldout == 0 &&  !sold){
-        setSold(true);
-        FetchWinners();
-      }               
-  },[])
+
+  const connectWallet=()=>{
+    if(blockchain.account === null){
+      dispatch(connect())
+    }
+  }
   
+ useEffect(()=>{
+     setList(list)
+ },[list])
+
+
+ 
+
 
 
   return (
-    <Container>
-
+    <>
+    <Container popup={popup}>
+   
        <NavContainer />
 
         <TitleContainer>
@@ -780,6 +992,57 @@ const HomePage = () => {
 
       <SocialMedia size="large"/>
     </Container>
+          {
+            popup && info ?
+            (
+                <PopupContainer>
+                <PopupForm onSubmit={sendEmail}>
+                <PopupTitle>Whitelist User</PopupTitle>
+                {
+                    blockchain.account === null &&
+                <PopupInfo>Please Connect your Wallet</PopupInfo>
+                }
+                <PopupInput className='input' type={"email"} placeholder="Email..." name='email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                <PopupInput className='input' type={"text"} placeholder="WalletAddress..." name="walletAdd" value={blockchain.account} onChange={(e)=>setwalletAddress(e.target.value)}/>
+                {emailSent &&  !listed ?
+                    <Success>
+                        <Info className='info'>You are whitelisted successfully</Info>
+                    </Success> 
+                    :
+                    ""
+                }
+                {
+                    listed &&
+                    <Fail>
+                        <Info className='info' >You are already whitelisted</Info>
+                    </Fail>
+                }
+                {
+                    invalid &&
+                    <Fail>
+                        <Info className='info'>Please enter the crendentials</Info>
+                    </Fail>
+                }
+                {
+                    error &&
+                    <Fail>
+                        <Info>Something went wrong. Please try again </Info>
+                    </Fail>
+                }
+  
+                  
+             
+                <PopupSubmit className='submit' type='submit'>{loading ? <TailSpin/> : "Submit"}</PopupSubmit>
+        
+                <CloseButton onClick={closeModal}><MdClose color='white' size={'20px'}/></CloseButton>
+                </PopupForm>
+            </PopupContainer>
+            )
+            :
+            ""
+        }
+
+        </>
   )
 }
 
