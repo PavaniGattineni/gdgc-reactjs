@@ -1,6 +1,6 @@
 
 import './App.css';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/home/HomePage';
 // import UpdateRegisterPage from './pages/UpdateRegisterPage';
 import ContactPage from './pages/ContactPage';
 import DoxxingPage from './pages/DoxxingPage';
